@@ -1,0 +1,53 @@
+<h1 class="font-bold mb-2 text-center text-lg">{{ title | titlecase }}</h1>
+
+<input
+  type="text"
+  class="mb-2 border py-2 px-4 w-full"
+  placeholder="Filter products..."
+  [(ngModel)]="term"
+>
+
+<p *ngIf="loading" class="text-center text-lg">Loading...</p>
+
+<!--<div *ngIf="productsService.products">-->
+<!--  <app-product-->
+<!--    *ngFor="let product of productsService.products | filterProducts:term; let i = index"-->
+<!--    [product]="product"-->
+<!--  ></app-product>-->
+<!--</div>-->
+<div class="w-full">
+  <div class="tui-col_md-4 w-full flex-auto">
+    <tui-island >
+<!--      TODO: добавить пол, status-->
+      <label tuiLabel="Пол">Мужчина</label>
+      <label tuiLabel="Дата рождения">{{patients[0].birth_date}}</label>
+      <label tuiLabel="Возраст">{{calculateAge(patients[0].birth_date)}}</label>
+      <label tuiLabel="Статус">СТАТУС</label>
+      <label tuiLabel="Место жительства">{{patients[0].address}}</label>
+      <label tuiLabel="Данные о работе">{{patients[0].work_place_data}}</label>
+      <label tuiLabel="Заметка врача">{{patients[0].bookmark}}</label>
+    </tui-island>
+  </div>
+    <tui-accordion-item class="pb-5 w-full">
+      О докторе
+      <ng-template tuiAccordionItemContent>
+        <div #content>
+          <img [src]="image" height="100" width="150" class="rounded">
+<!--          <img [src]="product.image" [alt]="product.title" class="w-1/6 mb-2">-->
+          <h2 class="font-bold">ФАМИЛИЯ ИМЯ ОТЧЕСТВО</h2>
+          <label tuiLabel="Должность">{{graduation}}</label>
+          <label tuiLabel="Стаж">{{staj_old}}</label>
+        </div>
+      </ng-template>
+    </tui-accordion-item>
+    <tui-accordion-item class="pb-5 w-full">
+      Паспорт РФ
+      <ng-template tuiAccordionItemContent>
+        <div #content>
+          <label tuiLabel="Серия и номер паспорта">{{patients[0].passport.number}} {{patients[0].passport.series}}</label>
+          <label tuiLabel="Кем Выдан">{{patients[0].passport.issued_by}}</label>
+          <label tuiLabel="Дата выдачи">{{patients[0].passport.issued_date}}</label>
+        </div>
+      </ng-template>
+    </tui-accordion-item>
+</div>

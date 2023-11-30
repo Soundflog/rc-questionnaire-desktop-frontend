@@ -1,0 +1,9 @@
+.module-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.module-text {
+  margin-right: auto; /* Задайте нужное значение отступа между текстом и кнопкой */
+
+}

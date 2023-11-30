@@ -1,0 +1,62 @@
+<tui-island>
+  <h3 class="tui-island__title">Вводная анкета</h3>
+  <p class="tui-island__paragraph">
+    Анкета (опросник) по оценке качества жизни пациента для определения ШРМ
+    при заболеваниях периферической нервной системы и опорно-двигательного аппарата
+  </p>
+  <button
+    size="s"
+    appearance="primary"
+    tuiButton
+    type="button"
+  >
+    Перейти
+  </button>
+  <label tuiLabel="Дата прохождения">**01.10.2023**</label>
+</tui-island>
+
+<tui-accordion class="container">
+  <tui-accordion-item>
+
+    <h3 class="font-bold">Мероприятия медицинской реабилитации</h3>
+    <tui-badge
+      status="success"
+      value="Success"
+      class="tui-space_right-2 tui-space_bottom-2"
+    ></tui-badge>
+
+    <ng-template tuiAccordionItemContent>
+      <tui-island>
+        <div class="module-content">
+          <span class="module-text">Модуль 1</span>
+          <button
+            size="s"
+            appearance="primary"
+            tuiButton
+            type="button"
+            routerLink="/rehabilitation/program/module/:moduleId"
+          >
+            Перейти
+          </button>
+        </div>
+      </tui-island>
+    </ng-template>
+  </tui-accordion-item>
+</tui-accordion>
+
+<tui-island>
+  <h3 class="tui-island__title">Выходная анкета</h3>
+  <p class="tui-island__paragraph">
+    Анкета (опросник) по оценке качества жизни пациента для определения
+    ШРМ при заболеваниях периферической нервной системы и опорно-двигательного аппарата
+  </p>
+  <button
+    size="s"
+    appearance="primary"
+    tuiButton
+    type="button"
+  >
+    Перейти
+  </button>
+  <label tuiLabel="Дата прохождения">**01.10.2023**</label>
+</tui-island>

@@ -1,0 +1,290 @@
+.div1 {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(180deg, #bec3e8, rgba(255, 255, 255, 0));
+}
+.div2,
+.text {
+  display: flex;
+  align-items: center;
+}
+.text {
+  position: relative;
+  line-height: 24px;
+  width: 432px;
+  height: 59px;
+  flex-shrink: 0;
+}
+.div2 {
+  width: 872px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.label {
+  position: relative;
+  letter-spacing: 0.4px;
+  line-height: 16px;
+  font-weight: 500;
+}
+.min-width-icon {
+  position: relative;
+  width: 8px;
+  height: 0;
+}
+.labelcont,
+.tui-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.labelcont {
+  align-self: stretch;
+  flex-direction: column;
+}
+.tui-badge {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  box-sizing: border-box;
+  height: 22px;
+  flex-direction: row;
+}
+.topbage {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 20px;
+  height: 20px;
+  display: none;
+}
+.icon {
+  position: relative;
+  width: 16px;
+  height: 16px;
+}
+.iconcont {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+}
+.iconcont,
+.labelcont1,
+.tui-badge1 {
+  align-items: center;
+  justify-content: center;
+}
+.labelcont1 {
+  align-self: stretch;
+  display: none;
+  flex-direction: column;
+}
+.tui-badge1 {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  box-sizing: border-box;
+  height: 22px;
+  display: flex;
+  flex-direction: row;
+}
+.bottombage {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  width: 20px;
+  height: 20px;
+  display: none;
+}
+.div3 {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  text-align: center;
+}
+.frame1 {
+  height: 164px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.fieldlabeltext {
+  flex: 1;
+  position: relative;
+  line-height: 24px;
+  font-weight: 500;
+}
+.fieldcontent,
+.fieldlabel {
+  display: flex;
+  align-items: flex-start;
+}
+.fieldlabel {
+  align-self: stretch;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.fieldcontent {
+  flex: 1;
+  height: 56px;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+.hint-icon,
+.hintcont {
+  overflow: hidden;
+  display: none;
+}
+.hint-icon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+.hintcont {
+  align-items: flex-start;
+}
+.field,
+.hintcont,
+.iconscont,
+.typecont {
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.typecont {
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+}
+.field,
+.iconscont {
+  align-self: stretch;
+}
+.iconscont {
+  display: none;
+  align-items: center;
+}
+.field {
+  display: flex;
+  align-items: flex-start;
+}
+.descriptiondata {
+  flex: 1;
+  position: relative;
+  line-height: 20px;
+  font-weight: 500;
+  display: none;
+}
+.description {
+  align-self: stretch;
+  display: none;
+  flex-direction: row;
+}
+.description,
+.div4,
+.icon1 {
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.div4 {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+}
+.icon1 {
+  display: none;
+  flex-direction: row;
+}
+.label3 {
+  position: relative;
+  line-height: 24px;
+  font-weight: 800;
+}
+.label2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.container1 {
+  width: 15px;
+  display: none;
+}
+.buttoncontainer,
+.container1,
+.div6,
+.tui-button {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.buttoncontainer {
+  height: 56px;
+  display: flex;
+  box-sizing: border-box;
+}
+.div6,
+.tui-button {
+}
+.div6 {
+  background-color: #52d367;
+  width: 208px;
+  display: flex;
+  cursor: pointer;
+}
+.tui-button {
+  display: none;
+}
+.frame,
+.log-in {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.log-in {
+  border-radius: 41px;
+  background-color: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(4px);
+  height: 368px;
+  flex-shrink: 0;
+  padding: 68px 115px;
+  box-sizing: border-box;
+}
+.frame {
+  position: absolute;
+  top: 109px;
+  left: 284px;
+  height: 651px;
+}
+.div {
+  position: relative;
+  background: linear-gradient(180deg, rgba(11, 64, 252, 0.78), #292b5f);
+  width: 100%;
+  height: 1080px;
+  text-align: left;
+  font-size: 32px;
+  color: rgba(255, 255, 255, 0.9);
+}

@@ -8,7 +8,13 @@
     ]
   },
   "include": [
-    "src/**/*.spec.ts",
-    "src/**/*.d.ts"
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.json",
+    "src/**/*.scss",
+    "src/**/*.html",
+    "src/environments/*.ts",
+    "src/app/directives/focus.directive.ts"
   ]
 }

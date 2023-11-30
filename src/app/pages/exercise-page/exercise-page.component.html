@@ -1,0 +1,47 @@
+<tui-island>
+  <button
+    size="m"
+    tuiButton
+    type="button"
+    class="tui-space_bottom-4"
+    (click)="show()"
+  >
+    Посмотреть упражнение
+  </button>
+
+  <ng-template
+    #preview
+    let-preview
+  >
+    <tui-preview
+      [rotatable]="false"
+      [zoomable]="false"
+    >
+      <iframe
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        frameborder="0"
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+        title="Youtube"
+        class="content"
+      ></iframe>
+
+      <button
+        icon="tuiIconClose"
+        title="Close"
+        tuiIconButton
+        tuiPreviewAction
+        type="button"
+        (click)="preview.complete()"
+      ></button>
+    </tui-preview>
+  </ng-template>
+
+  <label class="mb-4"
+         tuiLabel="Название Упражнения">
+    Очень длинное описание упражнения Очень длинное описание упражнения
+    Очень длинное описание упражнения Очень длинное описание упражнения
+    Очень длинное описание упражнения Очень длинное описание упражнения
+  </label>
+  <label tuiLabel="Дата прохождения">**01.10.2023**</label>
+</tui-island>
