@@ -1,7 +1,8 @@
 <!--TODO: сделать это for-->
+<ng-container *ngFor="let q of questions">
 <div class="tui-space_bottom-5">
-  <h3 class="title">{{ anketa || 'Вопрос 1' }}</h3>
-  <form [formGroup]="testForm">
+  <h3 class="title">{{ q || 'Вопрос 1' }}</h3>
+  <form [formGroup]="q">
     <div
       orientation="vertical"
       tuiGroup
@@ -10,15 +11,17 @@
     >
       <!--TODO: сделать это for,
       Noted: item='orange' это тоже надо изменять/менять-->
-      <tui-radio-block
-        contentAlign="right"
-        formControlName="testValue"
-        item="orange"
-        size="l"
-      >
-        {{ 'Ответ 1' }}
-      </tui-radio-block>
-      <tui-radio-block
+      <ng-container *ngFor="let fruit of fruits">
+        <tui-radio-block
+          contentAlign="right"
+          formControlName="testValue"
+          item="{{fruit}}"
+          size="l"
+        >
+          {{ fruit || 'Ответ 1' }}
+        </tui-radio-block>
+      </ng-container>
+      <!--<tui-radio-block
         contentAlign="right"
         formControlName="testValue"
         item="apple"
@@ -33,7 +36,8 @@
         size="l"
       >
         Ответ 3
-      </tui-radio-block>
+      </tui-radio-block>-->
     </div>
   </form>
 </div>
+</ng-container>

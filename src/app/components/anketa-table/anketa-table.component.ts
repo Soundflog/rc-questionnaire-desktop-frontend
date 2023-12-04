@@ -8,10 +8,18 @@ import {FormControl, FormGroup} from '@angular/forms';
 })
 export class AnketaTableComponent {
   readonly testForm = new FormGroup({
-    testValue: new FormControl('orange'),
+    testValue: new FormControl('orange')
   });
-
+  readonly questions = [
+    new FormGroup({testValue: new FormControl('orange')}),
+    new FormGroup({testValue: new FormControl('orange')}),
+    new FormGroup({testValue: new FormControl('orange')}),
+  ]
   readonly fruits = ['apple', 'orange', 'pineapple'];
-
+  readonly answers = [
+    ['apple', 'orange', 'pineapple'],
+    ['apple', 'orange', 'pineapple'],
+    ['apple', 'orange', 'pineapple']
+  ]
   @Input() anketa: any;
 }
