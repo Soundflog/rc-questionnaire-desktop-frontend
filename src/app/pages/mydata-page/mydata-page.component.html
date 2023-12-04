@@ -1,12 +1,11 @@
-<h1 class="font-bold mb-2 text-center text-lg">{{ title | titlecase }}</h1>
-
+<!--<h1 class="font-bold mb-2 text-center text-lg">{{ title | titlecase }}</h1>-->
+<!--
 <input
   type="text"
   class="mb-2 border py-2 px-4 w-full"
   placeholder="Filter products..."
-  [(ngModel)]="term"
->
-
+  [(ngModel)]="term">
+-->
 <p *ngIf="loading" class="text-center text-lg">Loading...</p>
 
 <!--<div *ngIf="productsService.products">-->
@@ -15,8 +14,8 @@
 <!--    [product]="product"-->
 <!--  ></app-product>-->
 <!--</div>-->
-<div class="w-full">
-  <div class="tui-col_md-4 w-full flex-auto">
+<div class="w-full tui-space_auto ">
+  <div class="tui-col_md-4 w-full flex-auto tui-space_bottom-4">
     <tui-island >
 <!--      TODO: добавить пол, status-->
       <label tuiLabel="Пол">Мужчина</label>
@@ -28,7 +27,7 @@
       <label tuiLabel="Заметка врача">{{patients[0].bookmark}}</label>
     </tui-island>
   </div>
-    <tui-accordion-item class="pb-5 w-full">
+    <tui-accordion-item class="pb-5 w-full tui-space_bottom-4">
       О докторе
       <ng-template tuiAccordionItemContent>
         <div #content>
@@ -40,7 +39,7 @@
         </div>
       </ng-template>
     </tui-accordion-item>
-    <tui-accordion-item class="pb-5 w-full">
+    <tui-accordion-item class="pb-5 w-full tui-space_bottom-4">
       Паспорт РФ
       <ng-template tuiAccordionItemContent>
         <div #content>
