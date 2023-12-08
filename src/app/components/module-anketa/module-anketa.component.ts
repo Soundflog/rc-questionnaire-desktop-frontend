@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-module-anketa',
@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./module-anketa.component.css']
 })
 export class ModuleAnketaComponent {
+  @Input() description: string
+  @Input() title: string
 
 }
