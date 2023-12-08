@@ -10,16 +10,18 @@ export class AnketaTableComponent {
   readonly testForm = new FormGroup({
     testValue: new FormControl('orange')
   });
+
   readonly questions = [
-    new FormGroup({testValue: new FormControl('orange')}),
-    new FormGroup({testValue: new FormControl('orange')}),
-    new FormGroup({testValue: new FormControl('orange')}),
+    new FormGroup({answer: new FormControl('')}),
+    new FormGroup({answer: new FormControl('')}),
+    new FormGroup({answer: new FormControl('')}),
   ]
-  readonly fruits = ['apple', 'orange', 'pineapple'];
-  readonly answers = [
-    ['apple', 'orange', 'pineapple'],
-    ['apple', 'orange', 'pineapple'],
-    ['apple', 'orange', 'pineapple']
-  ]
-  @Input() anketa: any;
+  readonly answers = ['Ответ 1', 'Ответ 2', 'Ответ 3'];
+  readonly quests = ['Вопрос 1', 'Вопрос 2', 'Вопрос 3'];
+
+  readonly form = new FormGroup({
+    quest1: new FormGroup({answer: new FormControl('')}),
+    quest2: new FormGroup({answer: new FormControl('')}),
+    quest3: new FormGroup({answer: new FormControl('')})
+  })
 }
