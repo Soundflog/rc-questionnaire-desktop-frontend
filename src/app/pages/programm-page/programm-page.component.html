@@ -1,4 +1,4 @@
-<tui-island>
+<tui-island class="tui-space_bottom-5">
   <h3 class="tui-island__title">Вводная анкета</h3>
   <p class="tui-island__paragraph">
     Анкета (опросник) по оценке качества жизни пациента для определения ШРМ
@@ -15,7 +15,7 @@
   <label tuiLabel="Дата прохождения">**01.10.2023**</label>
 </tui-island>
 
-<tui-accordion class="container">
+<tui-accordion class="container tui-space_bottom-5">
   <tui-accordion-item>
 
     <h3 class="font-bold">Мероприятия медицинской реабилитации</h3>
@@ -26,25 +26,28 @@
     ></tui-badge>
 
     <ng-template tuiAccordionItemContent>
-      <tui-island>
-        <div class="module-content">
-          <span class="module-text">Модуль 1</span>
-          <button
-            size="s"
-            appearance="primary"
-            tuiButton
-            type="button"
-            routerLink="/rehabilitation/program/module/:moduleId"
-          >
-            Перейти
-          </button>
-        </div>
-      </tui-island>
+      <ng-container *ngFor="let m of modules">
+        <tui-island class="tui-space_bottom-1">
+          <div class="module-content">
+            <span class="module-text">{{m.name}}</span>
+            <button
+              size="s"
+              appearance="primary"
+              tuiButton
+              type="button"
+              routerLink="/rehabilitation/program/module/{{m.id}}"
+            >
+              Перейти
+            </button>
+          </div>
+        </tui-island>
+      </ng-container>
+
     </ng-template>
   </tui-accordion-item>
 </tui-accordion>
 
-<tui-island>
+<tui-island class="tui-space_bottom-5">
   <h3 class="tui-island__title">Выходная анкета</h3>
   <p class="tui-island__paragraph">
     Анкета (опросник) по оценке качества жизни пациента для определения

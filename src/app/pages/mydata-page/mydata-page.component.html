@@ -14,13 +14,17 @@
 <!--    [product]="product"-->
 <!--  ></app-product>-->
 <!--</div>-->
-<div class="w-full tui-space_auto ">
-  <div class="tui-col_md-4 w-full flex-auto tui-space_bottom-4">
+<tui-island class="container w-full tui-space_auto ">
+  <div class=" tui-col_md-4 w-full flex-auto tui-space_bottom-4">
     <tui-island >
 <!--      TODO: добавить пол, status-->
       <label tuiLabel="Пол">Мужчина</label>
-      <label tuiLabel="Дата рождения">{{patients[0].birth_date}}</label>
-      <label tuiLabel="Возраст">{{calculateAge(patients[0].birth_date)}}</label>
+        <div tuiGroup
+             class="group"
+             [collapsed]="true">
+            <label tuiLabel="Дата рождения">{{patients[0].birth_date}}</label>
+            <label tuiLabel="Возраст">{{calculateAge(patients[0].birth_date)}}</label>
+        </div>
       <label tuiLabel="Статус">СТАТУС</label>
       <label tuiLabel="Место жительства">{{patients[0].address}}</label>
       <label tuiLabel="Данные о работе">{{patients[0].work_place_data}}</label>
@@ -39,7 +43,7 @@
         </div>
       </ng-template>
     </tui-accordion-item>
-    <tui-accordion-item class="pb-5 w-full tui-space_bottom-4">
+    <tui-accordion-item class="pb-5 w-full">
       Паспорт РФ
       <ng-template tuiAccordionItemContent>
         <div #content>
@@ -49,4 +53,4 @@
         </div>
       </ng-template>
     </tui-accordion-item>
-</div>
+</tui-island>

@@ -1,4 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {modules} from "../../data/modules";
+import {IModule} from "../../models/module";
 
 @Component({
   selector: 'app-programm-page',
@@ -7,4 +9,10 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProgrammPageComponent {
+  // readonly modules = [
+  //     "Модуль 1",
+  //     "Модуль 2",
+  //     "Модуль 3"
+  // ]
+  modules: readonly IModule[] = modules
 }
