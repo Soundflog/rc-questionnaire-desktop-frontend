@@ -12,8 +12,9 @@ export class AuthPageComponent implements OnInit{
 
   logo_im = 'https://angular.io/assets/images/logos/angular/angular.png'
 
-  readonly testForm = new FormGroup({
+  readonly auth = new FormGroup({
     Login: new FormControl('Логин'),
+    Password: new FormControl('Пароль')
   });
   constructor() { }
 
