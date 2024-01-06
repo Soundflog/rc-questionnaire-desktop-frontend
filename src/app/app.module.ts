@@ -14,10 +14,10 @@ import {FocusDirective} from './directives/focus.directive'
 import {AnketirovaniePageComponent} from './pages/anketirovanie-page/anketirovanie-page.component'
 import {AboutPageComponent} from './pages/about-page/about-page.component';
 import { NavigationComponent } from './components/navigation/navigation.component'
-import {TuiButtonModule, TuiGroupModule, TuiLabelModule, TuiRootModule} from "@taiga-ui/core";
+import {TuiButtonModule, TuiGroupModule, TuiLabelModule, TuiLinkModule, TuiRootModule} from "@taiga-ui/core";
 import {
   TuiAccordionModule, TuiAvatarModule,
-  TuiBadgeModule,
+  TuiBadgeModule, TuiBreadcrumbsModule,
   TuiInputModule,
   TuiIslandModule, TuiRadioBlockModule,
   TuiRatingModule,
@@ -42,6 +42,7 @@ import { ModuleRodPageComponent } from './pages/module-rod-page/module-rod-page.
 import {TuiPreviewModule} from "@taiga-ui/addon-preview";
 import { AnketaTableComponent } from './components/anketa-table/anketa-table.component';
 import {TuiTableModule} from "@taiga-ui/addon-table";
+import { NavModuleComponent } from './components/nav-module/nav-module.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import {TuiTableModule} from "@taiga-ui/addon-table";
     ModuleExerciseComponent,
     ModuleAnketaComponent,
     ModuleRodPageComponent,
-    AnketaTableComponent
+    AnketaTableComponent,
+    NavModuleComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +95,9 @@ import {TuiTableModule} from "@taiga-ui/addon-table";
     TuiPreviewModule,
     TuiTagModule,
     TuiTableModule,
-    TuiRadioBlockModule
+    TuiRadioBlockModule,
+    TuiBreadcrumbsModule,
+    TuiLinkModule
   ],
   providers: [Title],
   bootstrap: [AppComponent]

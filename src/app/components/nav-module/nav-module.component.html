@@ -1,0 +1,19 @@
+<tui-breadcrumbs
+  size="l"
+  class="tui-space_top-2"
+>
+  <!--<a
+    *tuiItem
+    tuiLink
+    [routerLink]="item.routerLink"
+    ></a>-->
+  <ng-container *ngFor="let item of items">
+    <a
+      *tuiItem
+      tuiLink
+      (click)="goToNextPage(item.page)"
+    >
+      {{ item.caption }}
+    </a>
+  </ng-container>
+</tui-breadcrumbs>
