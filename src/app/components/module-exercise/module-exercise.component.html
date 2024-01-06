@@ -1,6 +1,6 @@
 <div class="tui-col_md-12">
   <a
-    routerLink="/rehabilitation/program/module/:moduleId/exercise/:exerciseId"
+    (click)="goToNextPage(id)"
     rel="noreferrer"
     size="l"
     target="_blank"
@@ -14,7 +14,7 @@
     ></tui-avatar>
     <div class="tui-island__content">
       <div>
-        <h3 class="tui-island__title">{{title}}</h3>
+        <h3 class="tui-island__title">{{name}}</h3>
         <p class="tui-island__paragraph">
           {{description}}
         </p>

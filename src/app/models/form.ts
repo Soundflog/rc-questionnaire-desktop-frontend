@@ -5,4 +5,5 @@ export interface IForm {
     name: string
     description: string
     scale_id: IScale
+    // scale_id: number
 }

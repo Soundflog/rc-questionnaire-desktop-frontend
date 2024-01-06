@@ -6,7 +6,11 @@
           <ng-container *ngFor="let ex of exercises">
             <div class="tui-island__content">
           <!--      TODO: for app-module-exercise необходимо сделать-->
-                  <app-module-exercise description="{{ex.description}}" title="{{ex.name}}"/>
+                  <app-module-exercise
+                    id="{{ex.id.toString()}}"
+                    name="{{ex.name}}"
+                    description="{{ex.description}}"
+                  />
             </div>
           </ng-container>
         </div>
@@ -17,7 +21,8 @@
           <!--      TODO: for app-module-anketa необходимо сделать-->
           <ng-container *ngFor="let f of forms">
             <div class="">
-              <app-module-anketa title="{{f.name}}" description="{{f.description}}"/>
+              <app-module-anketa
+                title="{{f.name}}" description="{{f.description}}" id="{{f.id.toString()}}"/>
             </div>
           </ng-container>
         </div>
@@ -34,7 +39,10 @@
           <ng-container *ngFor="let ex of exercises">
             <div class="tui-island__content">
               <!--      TODO: for app-module-exercise необходимо сделать-->
-              <app-module-exercise description="{{ex.description}}" title="{{ex.name}}"/>
+              <app-module-exercise
+                id="{{ex.id.toString()}}"
+                name="{{ex.name}}"
+                description="{{ex.description}}"/>
             </div>
           </ng-container>
         </div>
@@ -45,7 +53,8 @@
           <!--      TODO: for app-module-anketa необходимо сделать-->
           <ng-container *ngFor="let f of forms">
             <div class="">
-              <app-module-anketa title="{{f.name}}" description="{{f.description}}"/>
+              <app-module-anketa id="{{f.id.toString()}}"
+                title="{{f.name}}" description="{{f.description}}"/>
             </div>
           </ng-container>
         </div>
@@ -62,7 +71,10 @@
           <ng-container *ngFor="let ex of exercises">
             <div class="tui-island__content">
               <!--      TODO: for app-module-exercise необходимо сделать-->
-              <app-module-exercise description="{{ex.description}}" title="{{ex.name}}"/>
+              <app-module-exercise
+                id="{{ex.id.toString()}}"
+                name="{{ex.name}}"
+                description="{{ex.description}}"/>
             </div>
           </ng-container>
         </div>
@@ -73,7 +85,8 @@
           <!--      TODO: for app-module-anketa необходимо сделать-->
           <ng-container *ngFor="let f of forms">
             <div class="">
-              <app-module-anketa title="{{f.name}}" description="{{f.description}}"/>
+              <app-module-anketa id="{{f.id.toString()}}"
+                title="{{f.name}}" description="{{f.description}}"/>
             </div>
           </ng-container>
         </div>
