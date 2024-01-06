@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ChangeDetectionStrategy, ViewEncapsulation} from '@angular/core'
+import {AuthService} from "../../services/auth/AuthService";
 @Component({
   selector: 'app-auth-page',
   templateUrl: './auth-page.component.html',
@@ -11,13 +12,28 @@ import {ChangeDetectionStrategy, ViewEncapsulation} from '@angular/core'
 export class AuthPageComponent implements OnInit{
 
   logo_im = 'https://angular.io/assets/images/logos/angular/angular.png'
-
-  readonly auth = new FormGroup({
+  authForm : FormGroup;
+  /*readonly authForm = new FormGroup({
     Login: new FormControl('Логин'),
     Password: new FormControl('Пароль')
-  });
-  constructor() { }
+  });*/
+  constructor(private fb: FormBuilder, private authService: AuthService) {
+    this.authForm = fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+    });
+  }
 
+  onSubmit(): void{
+    const credentials = this.authForm.value;
+    this.authService.login(credentials).subscribe((success) =>{
+      if (success){
+        // Перенаправление на защищенную страницу или обновление текущей страницы
+      } else {
+        // Обработка ошибки входа
+      }
+    })
+  }
   ngOnInit(): void {
   }
 

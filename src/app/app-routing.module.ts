@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core'
+import {Injectable, NgModule} from '@angular/core'
 import {RouterModule, Routes} from '@angular/router'
 import {AnketirovaniePageComponent} from './pages/anketirovanie-page/anketirovanie-page.component'
 import {AuthPageComponent} from "./pages/auth-page/auth-page.component";
@@ -10,6 +10,13 @@ import {ModulePageComponent} from "./pages/module-page/module-page.component";
 import {ExercisePageComponent} from "./pages/exercise-page/exercise-page.component";
 import {AnketaPageComponent} from "./pages/anketa-page/anketa-page.component";
 import {ModuleRodPageComponent} from "./pages/module-rod-page/module-rod-page.component";
+
+@Injectable({providedIn: 'root'})
+export class AuthGuard {
+  canActivate() {
+    return true;
+  }
+}
 
 const routes: Routes = [
   { path: '', component: AuthPageComponent },
@@ -27,7 +34,7 @@ const routes: Routes = [
         component: ModuleRodPageComponent,
         data: { title: 'Реабилитационный модуль' },
         children: [
-          { path: '', component: ModulePageComponent, data: { title: 'Упражнение' } },
+          { path: '', component: ModulePageComponent, data: { title: 'Модуль' } },
           { path: 'exercise/:exerciseId', component: ExercisePageComponent, data: { title: 'Упражнение' } },
           { path: 'anketa/:anketaId', component: AnketaPageComponent, data: { title: 'Анкета' } },
         ],
