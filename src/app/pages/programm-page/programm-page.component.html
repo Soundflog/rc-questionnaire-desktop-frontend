@@ -33,7 +33,7 @@
       class="tui-space_right-2 tui-space_bottom-2"
     ></tui-badge>
 
-    <ng-template>
+    <ng-template tuiAccordionItemContent>
       <ng-container *ngFor="let m of modules">
         <tui-island class="tui-space_bottom-1">
           <div class="module-content">
@@ -58,11 +58,12 @@
 
 <tui-island class="tui-space_bottom-5">
   <h3 class="tui-island__title">Выходная анкета</h3>
-  <p class="tui-island__paragraph">
+  <p class="tui-island__paragraph tui-space_bottom-3">
     Анкета (опросник) по оценке качества жизни пациента для определения
     ШРМ при заболеваниях периферической нервной системы и опорно-двигательного аппарата
   </p>
   <button
+    class="tui-space_bottom-3"
     size="s"
     appearance="primary"
     tuiButton
@@ -72,5 +73,9 @@
   >
     Перейти
   </button>
-  <label tuiLabel="Дата прохождения">**01.10.2023**</label>
+  <label class="tui-space_bottom-3"
+    tuiLabel="Дата прохождения"
+  >
+    **01.10.2023**
+  </label>
 </tui-island>
