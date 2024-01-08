@@ -1,10 +1,8 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {modules} from "../../data/modules";
 import {IModule} from "../../models/module";
 import {ModuleIdService} from "../../services/module/ModuleService";
-import {ExerciseService} from "../../services/module/ExerciseService";
-import {IExercise} from "../../models/exercise";
-import {exercises} from "../../data/exercises";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-programm-page',
@@ -12,19 +10,23 @@ import {exercises} from "../../data/exercises";
   styleUrls: ['programm-page.component.css', 'programm-page.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProgrammPageComponent {
-  // readonly modules = [
-  //     "Модуль 1",
-  //     "Модуль 2",
-  //     "Модуль 3"
-  // ]
+export class ProgrammPageComponent implements OnInit{
+
   modules: readonly IModule[] = modules
+  visiblePrimaryAnketa = false;
 
   constructor(
+    private router: Router,
     private moduleIdService: ModuleIdService) {}
 
+  ngOnInit(): void {
+  }
   sendModuleId(moduleId:number): void {
     this.moduleIdService.setModuleId(moduleId);
   }
 
+  goToNextPage(page: string){
+    this.router.navigate(['/rehabilitation/program/module/' + 0 + '/anketa/' + page]);
+    this.visiblePrimaryAnketa = !this.visiblePrimaryAnketa;
+  }
 }
