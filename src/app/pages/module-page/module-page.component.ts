@@ -4,7 +4,6 @@ import { exercises } from 'src/app/data/exercises';
 import {modules} from "../../data/modules";
 import {forms} from "../../data/forms";
 import {IForm} from "../../models/form";
-import {ModuleIdService} from "../../services/module/ModuleService";
 import {ExerciseService} from "../../services/module/ExerciseService";
 
 @Component({
