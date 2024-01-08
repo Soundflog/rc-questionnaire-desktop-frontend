@@ -8,19 +8,27 @@
 <!--</nav>-->
 <div class="align-middle justify-items-center flex-auto">
 <tui-app-bar class="color">
-  <a tuiSlot="right">Иванов Иван Иванович</a>
   <a
+    tuiSlot="right"
+    routerLink="/rehabilitation/data"
+  >
+    {{username}}
+  </a>
+  <a
+    class="button_background"
     icon="tuiIconUserLarge"
     title="User"
     tuiIconButton
     tuiSlot="right"
+    routerLink="/"
   ></a>
   <button
+    class="button_background"
     icon="tuiIconSettingsLarge"
     title="Settings"
     tuiIconButton
     tuiSlot="right"
-    routerLink="/auth"
+    routerLink="/settings"
   ></button>
   <a tuiSlot="left">Название организации</a>
 </tui-app-bar>

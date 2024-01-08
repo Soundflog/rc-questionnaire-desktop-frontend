@@ -14,7 +14,13 @@ import {FocusDirective} from './directives/focus.directive'
 import {AnketirovaniePageComponent} from './pages/anketirovanie-page/anketirovanie-page.component'
 import {AboutPageComponent} from './pages/about-page/about-page.component';
 import { NavigationComponent } from './components/navigation/navigation.component'
-import {TuiButtonModule, TuiGroupModule, TuiLabelModule, TuiLinkModule, TuiRootModule} from "@taiga-ui/core";
+import {
+  TuiButtonModule,
+  TuiGroupModule,
+  TuiLabelModule,
+  TuiLinkModule,
+  TuiRootModule,
+} from "@taiga-ui/core";
 import {
   TuiAccordionModule, TuiAvatarModule,
   TuiBadgeModule, TuiBreadcrumbsModule,
