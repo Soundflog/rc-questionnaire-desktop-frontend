@@ -12,7 +12,6 @@ import {ModalComponent} from './components/another/modal/modal.component'
 import {CreateProductComponent} from './components/another/create-product/create-product.component'
 import {FocusDirective} from './directives/focus.directive'
 import {AnketirovaniePageComponent} from './pages/anketirovanie-page/anketirovanie-page.component'
-import {AboutPageComponent} from './pages/about-page/about-page.component';
 import { NavigationComponent } from './components/navigation/navigation.component'
 import {
   TuiButtonModule,
@@ -60,7 +59,6 @@ import { NavModuleComponent } from './components/nav-module/nav-module.component
     CreateProductComponent,
     FocusDirective,
     AnketirovaniePageComponent,
-    AboutPageComponent,
     NavigationComponent,
     LeftNavComponent,
     AuthPageComponent,
