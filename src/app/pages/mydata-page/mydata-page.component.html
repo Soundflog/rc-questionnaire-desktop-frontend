@@ -6,14 +6,14 @@
   placeholder="Filter products..."
   [(ngModel)]="term">
 -->
-<p *ngIf="loading" class="text-center text-lg">Loading...</p>
 
-<!--<div *ngIf="productsService.products">-->
-<!--  <app-product-->
-<!--    *ngFor="let product of productsService.products | filterProducts:term; let i = index"-->
-<!--    [product]="product"-->
-<!--  ></app-product>-->
-<!--</div>-->
+<!--<p *ngIf="loading" class="text-center text-lg">Loading...</p>-->
+<!--<div *ngIf="productsService.products">
+  <app-product
+    *ngFor="let product of productsService.products | filterProducts:term; let i = index"
+    [product]="product"
+  ></app-product>
+</div>-->
 <tui-island class="container w-full tui-space_auto ">
   <div class=" tui-col_md-4 w-full flex-auto tui-space_bottom-4">
     <tui-island >
@@ -22,13 +22,13 @@
         <div tuiGroup
              class="group"
              [collapsed]="true">
-            <label tuiLabel="Дата рождения">{{patients[0].birth_date}}</label>
-            <label tuiLabel="Возраст">{{calculateAge(patients[0].birth_date)}}</label>
+            <label tuiLabel="Дата рождения">{{patient.birth_date}}</label>
+            <label tuiLabel="Возраст">{{calculateAge(patient.birth_date)}}</label>
         </div>
       <label tuiLabel="Статус">СТАТУС</label>
-      <label tuiLabel="Место жительства">{{patients[0].address}}</label>
-      <label tuiLabel="Данные о работе">{{patients[0].work_place_data}}</label>
-      <label tuiLabel="Заметка врача">{{patients[0].bookmark}}</label>
+      <label tuiLabel="Место жительства">{{patient.address}}</label>
+      <label tuiLabel="Данные о работе">{{patient.work_place_data}}</label>
+      <label tuiLabel="Заметка врача">{{patient.bookmark}}</label>
     </tui-island>
   </div>
     <tui-accordion-item class="pb-5 w-full tui-space_bottom-4">
@@ -47,9 +47,9 @@
       Паспорт РФ
       <ng-template tuiAccordionItemContent>
         <div #content>
-          <label tuiLabel="Серия и номер паспорта">{{patients[0].passport.number}} {{patients[0].passport.series}}</label>
-          <label tuiLabel="Кем Выдан">{{patients[0].passport.issued_by}}</label>
-          <label tuiLabel="Дата выдачи">{{patients[0].passport.issued_date}}</label>
+          <label tuiLabel="Серия и номер паспорта">{{patient.passport.number}} {{patient.passport.series}}</label>
+          <label tuiLabel="Кем Выдан">{{patient.passport.issued_by}}</label>
+          <label tuiLabel="Дата выдачи">{{patient.passport.issued_date}}</label>
         </div>
       </ng-template>
     </tui-accordion-item>

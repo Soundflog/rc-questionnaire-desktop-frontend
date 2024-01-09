@@ -29,27 +29,24 @@ export class MydataPageComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.loading = true
+    // this.loading = true
     // this.products$ = this.productsService.getAll().pipe(
     //   tap(() => this.loading = false)
     // )
-    this.productsService.getAll().subscribe(() => {
-      this.loading = false
-    })
+    // this.productsService.getAll().subscribe(() => {
+    //   this.loading = false
+    // })
   }
 
-  protected readonly patients = patients;
+  protected readonly patient = patients[0];
   protected readonly Date = Date;
   calculateAge(birthDate: string): number {
     // Преобразование строки даты в объект Date
     const birthDateObject = new Date(birthDate);
-
     // Текущая дата
     const currentDate = new Date();
-
     // Вычисление разницы в годах
     const age = currentDate.getFullYear() - birthDateObject.getFullYear();
-
     // Проверка, добавляем один год, если день рождения еще не наступил
     if (
       currentDate.getMonth() < birthDateObject.getMonth() ||
@@ -58,7 +55,6 @@ export class MydataPageComponent implements OnInit{
     ) {
       return age - 1;
     }
-
     return age;
   }
 }
