@@ -13,7 +13,7 @@ import {patients} from "../../data/patients";
 })
 export class NavigationComponent implements OnInit {
   title = "НАЗВАНИЕ из data";
-  pageText = ''
+  pageText = this.pageContentService.pageText$
   user = patients[0]
   username = this.user.last_name + " " + this.user.first_name + " " + this.user.middle_name
   constructor(
@@ -24,17 +24,16 @@ export class NavigationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-      this.navigationService.initialize();
+    this.navigationService.initialize();
 
-      this.navigationService.title$.subscribe((title) => {
-          this.titleService.setTitle(`${title}`);
-          this.pageContentService.updatePageContent(title, '');
-      });
+    this.navigationService.title$.subscribe((title) => {
+        this.titleService.setTitle(`${title}`);
+        this.pageContentService.updatePageContent(title, title);
+    });
 
-      this.pageContentService.pageTitle$.subscribe((text) => {
-          this.pageText = text;
-      });
-
+    this.pageContentService.pageTitle$.subscribe((title) => {
+        this.title = title;
+    });
   }
 
 
