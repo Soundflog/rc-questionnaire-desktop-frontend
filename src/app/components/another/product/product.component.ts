@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core'
-import {IProduct} from '../../models/product'
+import {IProduct} from '../../../models/another/product'
 import {FormControl} from '@angular/forms';
 @Component({
   selector: 'app-product',

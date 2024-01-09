@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import {ProductsService} from '../../services/products.service'
+import {ProductsService} from '../../services/another/products/products.service'
 import {PageContentService} from "../../components/navigation/page-content.service";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-anketirovanie-page',
   templateUrl: './anketirovanie-page.component.html',
-  styleUrls: ['./anketirovanie-page.component.less', './anketirovanie-page.component.scss']
+  styleUrls: ['./anketirovanie-page.component.less']
 })
 export class AnketirovaniePageComponent implements OnInit {
   pageTitle = 'angular app';
   pageText = ''
   loading = false;
-  term = '';
 
   constructor(
     public productsService: ProductsService,

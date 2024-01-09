@@ -3,13 +3,13 @@ import {BrowserModule, Title} from '@angular/platform-browser'
 
 import {AppRoutingModule} from './app-routing.module'
 import {AppComponent} from './app.component'
-import {ProductComponent} from './components/product/product.component'
+import {ProductComponent} from './components/another/product/product.component'
 import {HttpClientModule} from '@angular/common/http'
 import {GlobalErrorComponent} from './components/global-error/global-error.component'
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import {FilterProductsPipe} from './pipes/filter-products.pipe'
-import {ModalComponent} from './components/modal/modal.component'
-import {CreateProductComponent} from './components/create-product/create-product.component'
+import {ModalComponent} from './components/another/modal/modal.component'
+import {CreateProductComponent} from './components/another/create-product/create-product.component'
 import {FocusDirective} from './directives/focus.directive'
 import {AnketirovaniePageComponent} from './pages/anketirovanie-page/anketirovanie-page.component'
 import {AboutPageComponent} from './pages/about-page/about-page.component';
@@ -36,7 +36,7 @@ import { MydataPageComponent } from './pages/mydata-page/mydata-page.component';
 import { HistoryPageComponent } from './pages/history-page/history-page.component';
 import { ProgrammPageComponent } from './pages/programm-page/programm-page.component';
 import { ResultsPageComponent } from './pages/results-page/results-page.component';
-import { AccordComponent } from './components/accord/accord.component';
+import { AccordComponent } from './components/another/accord/accord.component';
 import {NgOptimizedImage} from "@angular/common";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { ModulePageComponent } from './pages/module-page/module-page.component';

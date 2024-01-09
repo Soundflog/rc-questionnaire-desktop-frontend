@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms'
-import {ProductsService} from '../../services/products.service'
-import {ModalService} from '../../services/modal.service'
+import {ProductsService} from '../../../services/another/products/products.service'
+import {ModalService} from '../../../services/another/modal/modal.service'
 
 @Component({
   selector: 'app-create-product',

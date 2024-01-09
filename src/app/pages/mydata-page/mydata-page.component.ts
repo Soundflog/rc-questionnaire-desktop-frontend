@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {ProductsService} from "../../services/products.service";
-import {ModalService} from "../../services/modal.service";
+import {ProductsService} from "../../services/another/products/products.service";
+import {ModalService} from "../../services/another/modal/modal.service";
 import {IPatient} from "../../models/patient";
 import {Observable} from "rxjs";
 import {patients} from "../../data/patients";
@@ -17,10 +17,6 @@ export class MydataPageComponent implements OnInit{
   staj_old = 25
 
   title = 'angular app'
-  // products: IProduct[] = []
-  loading = false
-  // products$: Observable<IProduct[]>
-  term = ''
 
   constructor(
     public productsService: ProductsService,
