@@ -32,6 +32,7 @@
         appearance="custom"
         tuiButton
         type="submit"
+        [disabled]="(isSubmitting$ | async)!"
       >
         Войти
       </button>

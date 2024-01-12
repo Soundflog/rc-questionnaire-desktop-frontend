@@ -2,8 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ChangeDetectionStrategy, ViewEncapsulation} from '@angular/core'
 import {AuthService} from "../../../services/auth/AuthService";
-import {Store} from "@ngrx/store";
+import {select, Store} from "@ngrx/store";
 import {loginAction} from "../../../store/action/login.action";
+import {Observable} from "rxjs";
+import {isSubmittingSelector} from "../../../store/selectors";
 @Component({
   selector: 'app-auth-page',
   templateUrl: './auth-page.component.html',
@@ -15,10 +17,28 @@ export class AuthPageComponent implements OnInit{
 
   logo_im = 'https://angular.io/assets/images/logos/angular/angular.png'
   authForm : FormGroup;
+  isSubmitting$: Observable<boolean>
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private store: Store) {
+  }
+
+  ngOnInit(): void {
+    this.initializeForm()
+    this.initializeValues()
+  }
+
+  initializeForm(): void {
+    this.authForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+    });
+  }
+
+  initializeValues(): void{
+    this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector))
   }
 
   onSubmit(): void{
@@ -33,16 +53,4 @@ export class AuthPageComponent implements OnInit{
     console.log(this.authForm.value)
     this.store.dispatch(loginAction(this.authForm.value))
   }
-  ngOnInit(): void {
-    this.initializeForm()
-  }
-
-  initializeForm(): void {
-    this.authForm = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
-    });
-    console.log(this.authForm.valid)
-  }
-
 }
