@@ -1,7 +1,7 @@
 import {Injectable, NgModule} from '@angular/core'
 import {RouterModule, Routes} from '@angular/router'
 import {AnketirovaniePageComponent} from './pages/anketirovanie-page/anketirovanie-page.component'
-import {AuthPageComponent} from "./pages/auth-page/auth-page.component";
+import {AuthPageComponent} from "./auth/component/auth-page/auth-page.component";
 import {MydataPageComponent} from "./pages/mydata-page/mydata-page.component";
 import {HistoryPageComponent} from "./pages/history-page/history-page.component";
 import {ProgrammPageComponent} from "./pages/programm-page/programm-page.component";

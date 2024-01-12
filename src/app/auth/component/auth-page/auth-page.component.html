@@ -6,29 +6,35 @@
       <div class="organization-label">НАЗВАНИЕ ОРГАНИЗАЦИИ</div>
       <img class="logo" [src]="logo_im" alt="Organization Logo">
     </div>
-    <div class="login-container" [formGroup]="authForm">
-      <tui-input class="w-full p-3">
+    <form
+      class="login-container"
+      [formGroup]="authForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <tui-input class="w-full p-3" formControlName="username">
         Логин
         <input
           tuiTextfield
           type="text"
+          formControlName="username"
         />
       </tui-input>
-      <tui-input class="w-full p-3">
+      <tui-input class="w-full p-3" formControlName="password">
         Пароль
         <input
           tuiTextfield
           type="password"
+          formControlName="password"
         />
       </tui-input>
       <button
         class="w-56"
         appearance="custom"
         tuiButton
-        routerLink="/rehabilitation"
+        type="submit"
       >
         Войти
       </button>
-    </div>
+    </form>
   </div>
 </div>

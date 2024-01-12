@@ -30,7 +30,6 @@ import {
 } from "@taiga-ui/kit";
 import {TuiAppBarModule} from "@taiga-ui/addon-mobile";
 import { LeftNavComponent } from './components/left-nav/left-nav.component';
-import { AuthPageComponent } from './pages/auth-page/auth-page.component';
 import { MydataPageComponent } from './pages/mydata-page/mydata-page.component';
 import { HistoryPageComponent } from './pages/history-page/history-page.component';
 import { ProgrammPageComponent } from './pages/programm-page/programm-page.component';
@@ -48,8 +47,12 @@ import {TuiPreviewModule} from "@taiga-ui/addon-preview";
 import { AnketaTableComponent } from './components/anketa-table/anketa-table.component';
 import {TuiTableModule} from "@taiga-ui/addon-table";
 import { NavModuleComponent } from './components/nav-module/nav-module.component';
+import { StoreModule } from '@ngrx/store';
+import {reducer} from "./store/reducers";
+import {AuthModule} from "./auth/auth.module";
 
 @NgModule({
+  bootstrap: [AppComponent],
   declarations: [
     AppComponent,
     ProductComponent,
@@ -61,7 +64,6 @@ import { NavModuleComponent } from './components/nav-module/nav-module.component
     AnketirovaniePageComponent,
     NavigationComponent,
     LeftNavComponent,
-    AuthPageComponent,
     MydataPageComponent,
     HistoryPageComponent,
     ProgrammPageComponent,
@@ -101,10 +103,11 @@ import { NavModuleComponent } from './components/nav-module/nav-module.component
     TuiTableModule,
     TuiRadioBlockModule,
     TuiBreadcrumbsModule,
-    TuiLinkModule
+    TuiLinkModule,
+    AuthModule,
+    StoreModule.forRoot({}, {}),
   ],
-  providers: [Title],
-  bootstrap: [AppComponent]
+  providers: [Title]
 })
 export class AppModule {
 
