@@ -4,6 +4,7 @@
     Анкета (опросник) по оценке качества жизни пациента для определения ШРМ
     при заболеваниях периферической нервной системы и опорно-двигательного аппарата
   </p>
+<!--  (click)="goToNextPage('0')"-->
   <button
     class="tui-space_bottom-3"
     size="m"
@@ -12,10 +13,12 @@
     type="button"
     [disabled]="visiblePrimaryAnketa"
     (click)="goToNextPage('0')"
+    routerLink="module/0/anketa/0"
   >
      Перейти
   </button>
   <label
+    *ngIf="isDate"
     class="tui-space_bottom-3"
     tuiLabel="Дата прохождения"
   >
@@ -70,10 +73,13 @@
     type="button"
     [disabled]="visiblePrimaryAnketa"
     (click)="goToNextPage('0')"
+    routerLink="module/0/anketa/0"
   >
     Перейти
   </button>
-  <label class="tui-space_bottom-3"
+  <label
+    *ngIf="isDate"
+    class="tui-space_bottom-3"
     tuiLabel="Дата прохождения"
   >
     **01.10.2023**

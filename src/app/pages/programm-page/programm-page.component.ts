@@ -14,6 +14,7 @@ export class ProgrammPageComponent implements OnInit{
 
   modules: readonly IModule[] = modules
   visiblePrimaryAnketa = false;
+  isDate = false;
 
   constructor(
     private router: Router,
@@ -26,7 +27,8 @@ export class ProgrammPageComponent implements OnInit{
   }
 
   goToNextPage(page: string){
-    this.router.navigate(['/rehabilitation/program/module/' + 0 + '/anketa/' + page]);
+    this.isDate = !this.isDate;
     this.visiblePrimaryAnketa = !this.visiblePrimaryAnketa;
+    // this.router.navigate(['/rehabilitation/program/module/' + 0 + '/anketa/' + page]);
   }
 }
