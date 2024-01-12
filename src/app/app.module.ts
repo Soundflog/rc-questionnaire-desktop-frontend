@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core'
+import {NgModule, isDevMode} from '@angular/core'
 import {BrowserModule, Title} from '@angular/platform-browser'
 
 import {AppRoutingModule} from './app-routing.module'
@@ -50,6 +50,7 @@ import { NavModuleComponent } from './components/nav-module/nav-module.component
 import { StoreModule } from '@ngrx/store';
 import {reducer} from "./store/reducers";
 import {AuthModule} from "./auth/auth.module";
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -106,6 +107,7 @@ import {AuthModule} from "./auth/auth.module";
     TuiLinkModule,
     AuthModule,
     StoreModule.forRoot({}, {}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
   providers: [Title]
 })
