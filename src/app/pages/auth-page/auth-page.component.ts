@@ -20,8 +20,10 @@ export class AuthPageComponent implements OnInit{
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.authForm = fb.group({
       username: ['', Validators.required],
-      password: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(3)]],
     });
+  }
+  ngOnInit(): void {
   }
 
   onSubmit(): void{
@@ -33,8 +35,6 @@ export class AuthPageComponent implements OnInit{
         // Обработка ошибки входа
       }
     })
-  }
-  ngOnInit(): void {
   }
 
 }
