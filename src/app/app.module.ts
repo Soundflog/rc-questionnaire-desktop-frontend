@@ -51,6 +51,7 @@ import { StoreModule } from '@ngrx/store';
 import {reducer} from "./store/reducers";
 import {AuthModule} from "./auth/auth.module";
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -77,7 +78,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     ModuleAnketaComponent,
     ModuleRodPageComponent,
     AnketaTableComponent,
-    NavModuleComponent
+    NavModuleComponent,
   ],
   imports: [
     BrowserModule,
@@ -107,7 +108,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     TuiLinkModule,
     AuthModule,
     StoreModule.forRoot({}, {}),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: !isDevMode()}),
+    EffectsModule.forRoot([]),
   ],
   providers: [Title]
 })

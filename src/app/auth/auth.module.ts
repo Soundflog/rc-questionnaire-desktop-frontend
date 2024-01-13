@@ -7,6 +7,9 @@ import {RouterModule, Routes} from "@angular/router";
 import {StoreModule} from "@ngrx/store";
 import {reducer} from "../store/reducers";
 import {TuiButtonModule} from "@taiga-ui/core";
+import {AuthService} from "./services/auth.service";
+import {AppModule} from "../app.module";
+import {BackendErrorMessagesModule} from "../shared/modules/backend-errors-messages/backendErrorMessages.module";
 
 const routes: Routes = [
   {
@@ -22,8 +25,10 @@ const routes: Routes = [
     TuiInputModule,
     ReactiveFormsModule,
     TuiButtonModule,
-    StoreModule.forFeature('auth', reducer)
-  ]
+    StoreModule.forFeature('auth', reducer),
+    BackendErrorMessagesModule,
+  ],
+  providers: [AuthService]
 })
 export class AuthModule{
 

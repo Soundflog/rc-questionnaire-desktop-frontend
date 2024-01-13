@@ -6,6 +6,10 @@
       <div class="organization-label">НАЗВАНИЕ ОРГАНИЗАЦИИ</div>
       <img class="logo" [src]="logo_im" alt="Organization Logo">
     </div>
+    <app-backend-errors-messages
+      *ngIf="backendErrors$ | async"
+      [backendErrors]="backendErrors$ | async"
+    />
     <form
       class="login-container"
       [formGroup]="authForm"
