@@ -1,10 +1,16 @@
 <div class="container">
-<tui-island>
-    <h3 class="tui-island__title">История проведения медицинской реабилитации</h3>
-    <p class="tui-island__paragraph">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-      et dolore magna aliqua.
+  <tui-island>
+    <h3 class="tui-island__title"
+        (click)="isHistory=!isHistory"
+    >
+      История проведения медицинской реабилитации
+    </h3>
+
+    <p *ngIf="isHistory" class="tui-island__paragraph">
+      {{history}}
     </p>
-<!--  <label tuiLabel="Пол">Мужчина</label>-->
-</tui-island>
+    <p *ngIf="!isHistory" class="tui-island__paragraph">
+      Отсутствует
+    </p>
+  </tui-island>
 </div>

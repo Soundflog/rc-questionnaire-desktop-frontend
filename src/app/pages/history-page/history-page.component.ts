@@ -10,4 +10,8 @@ import {patients} from "../../data/patients";
 export class HistoryPageComponent {
 
   protected readonly patients = patients;
+
+  history = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore\n" +
+    "      et dolore magna aliqua.";
+  isHistory = false;
 }
