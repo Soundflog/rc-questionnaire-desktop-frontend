@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ChangeDetectionStrategy, ViewEncapsulation} from '@angular/core'
-import {AuthService} from "../../services/auth/AuthService";
+import {AuthService} from "../../services/auth/auth.service";
 @Component({
   selector: 'app-auth-page',
   templateUrl: './auth-page.component.html',
