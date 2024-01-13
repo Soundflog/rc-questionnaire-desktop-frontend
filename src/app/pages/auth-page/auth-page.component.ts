@@ -27,14 +27,19 @@ export class AuthPageComponent implements OnInit{
   }
 
   onSubmit(): void{
-    const credentials = this.authForm.value;
+    if (this.authForm.valid){
+      this.authService.login(this.authForm.value)
+    } else {
+      console.log('not valid')
+    }
+    /*const credentials = this.authForm.value;
     this.authService.login(credentials).subscribe((success) =>{
       if (success){
         // Перенаправление на защищенную страницу или обновление текущей страницы
       } else {
         // Обработка ошибки входа
       }
-    })
+    })*/
   }
 
 }

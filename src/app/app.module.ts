@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core'
 import {BrowserModule, Title} from '@angular/platform-browser'
-
+import {ToastrModule} from "ngx-toastr";
 import {AppRoutingModule} from './app-routing.module'
 import {AppComponent} from './app.component'
 import {ProductComponent} from './components/another/product/product.component'
@@ -12,7 +12,7 @@ import {ModalComponent} from './components/another/modal/modal.component'
 import {CreateProductComponent} from './components/another/create-product/create-product.component'
 import {FocusDirective} from './directives/focus.directive'
 import {AnketirovaniePageComponent} from './pages/anketirovanie-page/anketirovanie-page.component'
-import { NavigationComponent } from './components/navigation/navigation.component'
+import {NavigationComponent} from './components/navigation/navigation.component'
 import {
   TuiButtonModule,
   TuiGroupModule,
@@ -29,26 +29,26 @@ import {
   TuiTabsModule, TuiTagModule
 } from "@taiga-ui/kit";
 import {TuiAppBarModule} from "@taiga-ui/addon-mobile";
-import { LeftNavComponent } from './components/left-nav/left-nav.component';
-import { AuthPageComponent } from './pages/auth-page/auth-page.component';
-import { MydataPageComponent } from './pages/mydata-page/mydata-page.component';
-import { HistoryPageComponent } from './pages/history-page/history-page.component';
-import { ProgrammPageComponent } from './pages/programm-page/programm-page.component';
-import { ResultsPageComponent } from './pages/results-page/results-page.component';
-import { AccordComponent } from './components/another/accord/accord.component';
+import {LeftNavComponent} from './components/left-nav/left-nav.component';
+import {AuthPageComponent} from './pages/auth-page/auth-page.component';
+import {MydataPageComponent} from './pages/mydata-page/mydata-page.component';
+import {HistoryPageComponent} from './pages/history-page/history-page.component';
+import {ProgrammPageComponent} from './pages/programm-page/programm-page.component';
+import {ResultsPageComponent} from './pages/results-page/results-page.component';
+import {AccordComponent} from './components/another/accord/accord.component';
 import {NgOptimizedImage} from "@angular/common";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import { ModulePageComponent } from './pages/module-page/module-page.component';
-import { ExercisePageComponent } from './pages/exercise-page/exercise-page.component';
-import { AnketaPageComponent } from './pages/anketa-page/anketa-page.component';
-import { ModuleExerciseComponent } from './components/module-exercise/module-exercise.component';
-import { ModuleAnketaComponent } from './components/module-anketa/module-anketa.component';
-import { ModuleRodPageComponent } from './pages/module-rod-page/module-rod-page.component';
+import {ModulePageComponent} from './pages/module-page/module-page.component';
+import {ExercisePageComponent} from './pages/exercise-page/exercise-page.component';
+import {AnketaPageComponent} from './pages/anketa-page/anketa-page.component';
+import {ModuleExerciseComponent} from './components/module-exercise/module-exercise.component';
+import {ModuleAnketaComponent} from './components/module-anketa/module-anketa.component';
+import {ModuleRodPageComponent} from './pages/module-rod-page/module-rod-page.component';
 import {TuiPreviewModule} from "@taiga-ui/addon-preview";
-import { AnketaTableComponent } from './components/anketa-table/anketa-table.component';
+import {AnketaTableComponent} from './components/anketa-table/anketa-table.component';
 import {TuiTableModule} from "@taiga-ui/addon-table";
-import { NavModuleComponent } from './components/nav-module/nav-module.component';
-import {ToastrModule} from "ngx-toastr";
+import {NavModuleComponent} from './components/nav-module/nav-module.component';
+
 
 @NgModule({
   declarations: [

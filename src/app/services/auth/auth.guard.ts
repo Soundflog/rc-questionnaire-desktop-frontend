@@ -1,12 +1,12 @@
 // auth.guard.ts
-import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import {inject, Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
+import {Observable, of} from 'rxjs';
 
 import {map} from "rxjs/operators";
 import {AuthService} from "./auth.service";
 
-@Injectable({
+/*@Injectable({
   providedIn: 'root',
 })
 export class AuthGuard {
@@ -25,5 +25,18 @@ export class AuthGuard {
         }
       })
     );
+  }
+}*/
+
+export function authGuard():CanActivateFn{
+  return () => {
+    const authService: AuthService = inject(AuthService)
+    const router: Router = inject(Router)
+
+    if (authService.isAuthSig()){
+      return true
+    }
+    router.navigate(['/login']).then(r => of())
+    return false
   }
 }

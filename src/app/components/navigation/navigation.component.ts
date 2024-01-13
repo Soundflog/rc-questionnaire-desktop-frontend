@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { PageContentService } from './page-content.service';
 import {Title} from "@angular/platform-browser";
 import {patients} from "../../data/patients";
+import {AuthService} from "../../services/auth/auth.service";
 
 @Component({
     selector: 'app-navigation',
@@ -20,7 +21,8 @@ export class NavigationComponent implements OnInit {
       private _location: Location,
       private navigationService: NavigationService,
       private pageContentService: PageContentService,
-      private titleService: Title
+      private titleService: Title,
+      public authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +38,9 @@ export class NavigationComponent implements OnInit {
     });
   }
 
+  logout(){
+    this.authService.logout()
+  }
 
   backClicked() {
       this._location.back();
