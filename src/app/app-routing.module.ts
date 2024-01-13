@@ -19,7 +19,7 @@ export class AuthGuard {
 }
 
 const routes: Routes = [
-  { path: '', component: AuthPageComponent },
+  { path: 'login', component: AuthPageComponent },
   {
     path: 'rehabilitation',
     component: AnketirovaniePageComponent,
