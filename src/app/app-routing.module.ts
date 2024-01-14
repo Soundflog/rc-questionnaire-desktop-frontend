@@ -12,19 +12,14 @@ import {AnketaPageComponent} from "./pages/anketa-page/anketa-page.component";
 import {ModuleRodPageComponent} from "./pages/module-rod-page/module-rod-page.component";
 import {authGuard} from "./services/auth/auth.guard";
 
-@Injectable({providedIn: 'root'})
-export class AuthGuard {
-  canActivate() {
-    return true;
-  }
-}
+
 
 const routes: Routes = [
   { path: 'login', component: AuthPageComponent },
   {
     path: 'rehabilitation',
     component: AnketirovaniePageComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard()],
     children: [
       { path: '', redirectTo: 'data', pathMatch: 'full'},
       { path: 'data', component: MydataPageComponent, data: {title: 'Мои данные', text: 'Text for my data'}},

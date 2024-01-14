@@ -1,3 +1,4 @@
+import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
 import {NgModule} from '@angular/core'
 import {BrowserModule, Title} from '@angular/platform-browser'
 import {ToastrModule} from "ngx-toastr";
@@ -13,13 +14,7 @@ import {CreateProductComponent} from './components/another/create-product/create
 import {FocusDirective} from './directives/focus.directive'
 import {AnketirovaniePageComponent} from './pages/anketirovanie-page/anketirovanie-page.component'
 import {NavigationComponent} from './components/navigation/navigation.component'
-import {
-  TuiButtonModule,
-  TuiGroupModule,
-  TuiLabelModule,
-  TuiLinkModule,
-  TuiRootModule,
-} from "@taiga-ui/core";
+import { TuiButtonModule, TuiGroupModule, TuiLabelModule, TuiLinkModule, TuiRootModule, TuiDialogModule, TuiAlertModule, TUI_SANITIZER } from "@taiga-ui/core";
 import {
   TuiAccordionModule, TuiAvatarModule,
   TuiBadgeModule, TuiBreadcrumbsModule,
@@ -103,9 +98,11 @@ import {NavModuleComponent} from './components/nav-module/nav-module.component';
     TuiRadioBlockModule,
     TuiBreadcrumbsModule,
     TuiLinkModule,
-    ToastrModule.forRoot()
-  ],
-  providers: [Title],
+    ToastrModule.forRoot(),
+      TuiDialogModule,
+      TuiAlertModule
+],
+  providers: [Title, {provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

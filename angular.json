@@ -13,6 +13,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "lodash"
+            ],
             "outputPath": "dist/angular-test-project",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -23,6 +26,11 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/@taiga-ui/icons/src",
+                "output": "assets/taiga-ui/icons"
+              },
               {
                 "glob": "**/*",
                 "input": "node_modules/@taiga-ui/icons/src",

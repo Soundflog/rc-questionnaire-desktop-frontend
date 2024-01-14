@@ -22,7 +22,7 @@ export class NavigationComponent implements OnInit {
       private navigationService: NavigationService,
       private pageContentService: PageContentService,
       private titleService: Title,
-      public authService: AuthService
+      private authService: AuthService
   ) {}
 
   ngOnInit(): void {
