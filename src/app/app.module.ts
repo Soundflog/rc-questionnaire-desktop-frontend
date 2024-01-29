@@ -16,12 +16,12 @@ import {AnketirovaniePageComponent} from './pages/anketirovanie-page/anketirovan
 import {NavigationComponent} from './components/navigation/navigation.component'
 import { TuiButtonModule, TuiGroupModule, TuiLabelModule, TuiLinkModule, TuiRootModule, TuiDialogModule, TuiAlertModule, TUI_SANITIZER } from "@taiga-ui/core";
 import {
-  TuiAccordionModule, TuiAvatarModule,
-  TuiBadgeModule, TuiBreadcrumbsModule,
-  TuiInputModule,
-  TuiIslandModule, TuiRadioBlockModule,
-  TuiRatingModule,
-  TuiTabsModule, TuiTagModule
+    TuiAccordionModule, TuiAvatarModule,
+    TuiBadgeModule, TuiBreadcrumbsModule, TuiCheckboxBlockModule,
+    TuiInputModule,
+    TuiIslandModule, TuiRadioBlockModule,
+    TuiRatingModule,
+    TuiTabsModule, TuiTagModule
 } from "@taiga-ui/kit";
 import {TuiAppBarModule} from "@taiga-ui/addon-mobile";
 import {LeftNavComponent} from './components/left-nav/left-nav.component';
@@ -72,36 +72,37 @@ import {NavModuleComponent} from './components/nav-module/nav-module.component';
     AnketaTableComponent,
     NavModuleComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    TuiRootModule,
-    TuiRatingModule,
-    TuiAppBarModule,
-    TuiButtonModule,
-    TuiTabsModule,
-    TuiAccordionModule,
-    NgOptimizedImage,
-    TuiIslandModule,
-    TuiLabelModule,
-    TuiBadgeModule,
-    TuiGroupModule,
-    TuiInputModule,
-    TuiAvatarModule,
-    TuiPreviewModule,
-    TuiTagModule,
-    TuiTableModule,
-    TuiRadioBlockModule,
-    TuiBreadcrumbsModule,
-    TuiLinkModule,
-    ToastrModule.forRoot(),
-      TuiDialogModule,
-      TuiAlertModule
-],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        TuiRootModule,
+        TuiRatingModule,
+        TuiAppBarModule,
+        TuiButtonModule,
+        TuiTabsModule,
+        TuiAccordionModule,
+        NgOptimizedImage,
+        TuiIslandModule,
+        TuiLabelModule,
+        TuiBadgeModule,
+        TuiGroupModule,
+        TuiInputModule,
+        TuiAvatarModule,
+        TuiPreviewModule,
+        TuiTagModule,
+        TuiTableModule,
+        TuiRadioBlockModule,
+        TuiBreadcrumbsModule,
+        TuiLinkModule,
+        ToastrModule.forRoot(),
+        TuiDialogModule,
+        TuiAlertModule,
+        TuiCheckboxBlockModule
+    ],
   providers: [Title, {provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
   bootstrap: [AppComponent]
 })

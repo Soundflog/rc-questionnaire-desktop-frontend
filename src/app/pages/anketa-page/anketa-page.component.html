@@ -11,13 +11,6 @@
   <!--<div *ngFor="let item of items">
     <app-anketa-table [anketa]="item"/>
   </div>-->
-  <app-anketa-table/>
-  <button
-  tuiButton
-  size="xl"
-  appearance="primary"
-  type="submit"
-  class="w-full">
-    Отправить
-  </button>
+  <app-anketa-table [form]="formsData[0]"/>
+
 </tui-island>
