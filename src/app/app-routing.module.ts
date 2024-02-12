@@ -10,19 +10,16 @@ import {ModulePageComponent} from "./pages/module-page/module-page.component";
 import {ExercisePageComponent} from "./pages/exercise-page/exercise-page.component";
 import {AnketaPageComponent} from "./pages/anketa-page/anketa-page.component";
 import {ModuleRodPageComponent} from "./pages/module-rod-page/module-rod-page.component";
+import {authGuard} from "./services/auth/auth.guard";
 
-@Injectable({providedIn: 'root'})
-export class AuthGuard {
-  canActivate() {
-    return true;
-  }
-}
+
 
 const routes: Routes = [
-  { path: '', component: AuthPageComponent },
+  { path: 'login', component: AuthPageComponent },
   {
     path: 'rehabilitation',
     component: AnketirovaniePageComponent,
+    canActivate: [authGuard()],
     children: [
       { path: '', redirectTo: 'data', pathMatch: 'full'},
       { path: 'data', component: MydataPageComponent, data: {title: 'Мои данные', text: 'Text for my data'}},
