@@ -43,6 +43,7 @@ import {TuiPreviewModule} from "@taiga-ui/addon-preview";
 import {AnketaTableComponent} from './components/anketa-table/anketa-table.component';
 import {TuiTableModule} from "@taiga-ui/addon-table";
 import {NavModuleComponent} from './components/nav-module/nav-module.component';
+import { StoreModule } from '@ngrx/store';
 
 
 @NgModule({
@@ -101,7 +102,8 @@ import {NavModuleComponent} from './components/nav-module/nav-module.component';
         ToastrModule.forRoot(),
         TuiDialogModule,
         TuiAlertModule,
-        TuiCheckboxBlockModule
+        TuiCheckboxBlockModule,
+        StoreModule.forRoot({}, {})
     ],
   providers: [Title, {provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
   bootstrap: [AppComponent]

@@ -10,6 +10,7 @@ const initialState: AuthStateInterface = {
   validationErrors: null
 }
 
+
 const authReducer = createReducer(
   initialState,
   on(
@@ -33,8 +34,7 @@ const authReducer = createReducer(
     loginFailureAction,
     (state, action): AuthStateInterface => ({
       ...state,
-      isSubmitting: false,
-      validationErrors: action.errors
+      isSubmitting: false
     })
   )
 )
