@@ -3,6 +3,8 @@ import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {IForm} from "../../models/form";
 import {map} from "rxjs/operators";
+import {IQuestion} from "../../models/question";
+import {IVariant} from "../../models/variant";
 
 @Component({
   selector: 'app-anketa-table',
@@ -25,13 +27,15 @@ export class AnketaTableComponent implements OnInit{
     this.form.questions.forEach(question => {
       const questionGroup = this.fb.group({
         content: [question.content, Validators.required],
+        type: [question.type, Validators.required],
         variants: this.fb.array([])
       });
       question.variants.forEach(variant => {
         (questionGroup.get('variants') as FormArray).push(
           this.fb.group({
+            id: [variant.id],
             content: [variant.content, Validators.required],
-            answer: [variant.answer, Validators.required]
+            answer: [variant.answer, Validators.required],
           })
         );
       });
@@ -58,5 +62,30 @@ export class AnketaTableComponent implements OnInit{
   sendSurvey() {
     // Отправьте данные формы на сервер
     console.log(this.surveyForm.value);
+    const selectedVariantIds = this.getSelectedVariantIds();
+    console.log(selectedVariantIds);
   }
+
+  // Необходимо при отправке данных на сервер создать List Id из вариантов в которых отмеченные (answer=true)
+  // возвращает list id вариантов
+  getSelectedVariantIds(): number[] {
+    const selectedVariantIds: number[] = [];
+
+    const formValue = this.surveyForm.value;
+
+    Object.keys(formValue).forEach((questionKey) => {
+      const questionValue = formValue[questionKey];
+
+      if (questionValue && questionValue.variants) {
+        questionValue.variants.forEach((variant: { id: number, answer: boolean }) => {
+          if (variant.answer) {
+            selectedVariantIds.push(variant.id);
+          }
+        });
+      }
+    });
+
+    return selectedVariantIds;
+  }
+
 }
