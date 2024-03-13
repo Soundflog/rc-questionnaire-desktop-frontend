@@ -1,5 +1,6 @@
 import {IForm} from "../models/form";
 import {IScale} from "../models/scale";
+import {QuestionType} from "../models/question";
 
 export const forms: IForm[] = [
   {
@@ -15,6 +16,7 @@ export const forms: IForm[] = [
       {
         id: 1,
         content: "QUESTION1",
+        type: QuestionType.SINGLE_CHOICE,
         variants: [
           {
             id: 1,
@@ -26,6 +28,7 @@ export const forms: IForm[] = [
       {
         id: 2,
         content: "QUESTION2",
+        type: QuestionType.SINGLE_CHOICE,
         variants: [
           {
             id: 2,
@@ -42,6 +45,7 @@ export const forms: IForm[] = [
       {
         id: 3,
         content: "QUESTION3",
+        type: QuestionType.MULTIPLE_CHOICE,
         variants: [
           {
             id: 4,
@@ -63,6 +67,7 @@ export const forms: IForm[] = [
       {
         id: 4,
         content: "QUESTION4",
+        type: QuestionType.MULTIPLE_CHOICE,
         variants: [
           {
             id: 7,
