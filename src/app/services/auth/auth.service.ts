@@ -52,6 +52,7 @@ export class AuthService {
         catchError((error) => {
           console.error('Login error:', error);
           this.handeError(error);
+          this.toastr.error(error.message)
           throw new Error(error.message);
         })
       )
