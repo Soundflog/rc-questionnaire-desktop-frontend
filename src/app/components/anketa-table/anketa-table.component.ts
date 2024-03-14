@@ -3,6 +3,7 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angul
 
 import {IForm} from "../../models/form";
 import {QuestionType} from "../../models/question";
+import {IVariant} from "../../models/variant";
 
 @Component({
   selector: 'app-anketa-table',
@@ -14,6 +15,9 @@ export class AnketaTableComponent implements OnInit {
   @Input() form: IForm;
 
   surveyForm: FormGroup;
+  segments = 0;
+  lengthVariants = 0;
+  maxScoreVariants = 0;
 
   constructor(private fb: FormBuilder) {
     this.surveyForm = this.fb.group({});
@@ -24,43 +28,54 @@ export class AnketaTableComponent implements OnInit {
     this.form.questions.forEach(question => {
       let questionGroup: FormGroup;
 
-      if (question.type === QuestionType.SINGLE_CHOICE) {
-        // Поле для выбора одного варианта ответа
-        // FormGroup
-        questionGroup = this.fb.group({
-          content: [question.content, Validators.required],
-          type: [question.type, Validators.required],
-          variants: this.fb.group({})
-        });
-        (questionGroup.get('variants') as FormGroup).addControl(
-          "id", this.fb.control(question.variants[0].id, Validators.required)
-        );
-      } else {
-        // Поле для выбора нескольких вариантов ответа
-        // FormArray для вариантов ответа
-        questionGroup = this.fb.group({
-          content: [question.content, Validators.required],
-          type: [question.type, Validators.required],
-          variants: this.fb.array([])
-        });
-        question.variants.forEach(variant => {
-          (questionGroup.get('variants') as FormArray).push(
-            this.fb.group({
-              id: [variant.id],
-              content: [variant.content, Validators.required],
-              answer: [false, Validators.required],
-            })
+      switch (question.type) {
+        case QuestionType.SINGLE_CHOICE: // Поле для выбора одного варианта ответа
+          // FormGroup
+          questionGroup = this.fb.group({
+            content: [question.content, Validators.required],
+            type: [question.type, Validators.required],
+            variants: this.fb.group({})
+          });
+          (questionGroup.get('variants') as FormGroup).addControl(
+            "id", this.fb.control(question.variants[0].id, Validators.required)
           );
-        });
+          break;
+        case QuestionType.SCALE: // Шкала ответов
+          // FormGroup
+          questionGroup = this.fb.group({
+            content: [question.content, Validators.required],
+            type: [question.type, Validators.required],
+            variants: this.fb.group({
+              score: [question.variants[0].score, Validators.required]
+            })
+          });
+          this.lengthVariants = question.variants.length;
+          // Доверяем тому что в конце массива будет лежать максимальный score у варианта
+          this.maxScoreVariants = question.variants[question.variants.length - 1].score;
+          break;
+        default: // Поле для выбора нескольких вариантов ответа
+          // FormArray для вариантов ответа
+          questionGroup = this.fb.group({
+            content: [question.content, Validators.required],
+            type: [question.type, Validators.required],
+            variants: this.fb.array([])
+          });
+          question.variants.forEach(variant => {
+            (questionGroup.get('variants') as FormArray).push(
+              this.fb.group({
+                id: [variant.id],
+                content: [variant.content, Validators.required],
+                answer: [false, Validators.required],
+              })
+            );
+          });
+          break;
       }
 
       this.surveyForm.addControl(`question_${question.id}`, questionGroup);
     });
 
     console.log(this.surveyForm)
-
-    console.log(this.surveyForm)
-
   }
 
   private addFormControls() {
@@ -75,6 +90,21 @@ export class AnketaTableComponent implements OnInit {
       });
     }
   }
+
+  scalePatchValue(newVariant: IVariant) {
+    Object.keys(this.surveyForm.controls).forEach((questionKey) => {
+      const questionGroup = this.surveyForm.get(questionKey) as FormGroup;
+      const questionType = (questionGroup.get('type') as FormControl).value;
+
+      if (questionType === QuestionType.SCALE) {
+        const variants = questionGroup.get('variants') as FormGroup;
+        variants.patchValue({
+          score: newVariant.score
+        });
+      }
+    });
+  }
+
 
   sendSurvey() {
     // Отправьте данные формы на сервер
@@ -114,6 +144,8 @@ export class AnketaTableComponent implements OnInit {
       if (questionType === QuestionType.SINGLE_CHOICE) {
         const selectedVariantId = (questionGroup.get('variants.id') as FormControl).value;
         selectedVariantIds.push(selectedVariantId);
+      } else if (questionType === QuestionType.SCALE) {
+        // TODO: Scale подсчет
       } else {
         const variantsArray = questionGroup.get('variants') as FormArray;
         variantsArray.controls.forEach((variantGroup) => {
@@ -131,4 +163,6 @@ export class AnketaTableComponent implements OnInit {
   }
 
 
+  protected readonly QuestionType = QuestionType;
+  protected readonly length = length;
 }

@@ -18,20 +18,23 @@
         *ngIf="question?.variants"
       >
         <ng-container *ngIf="question.type==='multiple_choice'">
-          <div formArrayName="variants">
+          <div
+            tuiGroup
+            class="group"
+            [collapsed]="true"
+            formArrayName="variants"
+          >
             <ng-container
               *ngFor="let variant of question.variants; let j = index"
+              [formGroupName]="j"
             >
-              <div [formGroupName]="j" tuiGroup>
-
-                <tui-checkbox-block
-                  contentAlign="right"
-                  formControlName="answer"
-                  size="l"
-                >
-                  {{ variant.content || 'Ответ 1' }}
-                </tui-checkbox-block>
-              </div>
+              <tui-checkbox-block
+                contentAlign="right"
+                formControlName="answer"
+                size="l"
+              >
+                {{ variant.content || 'Ответ 1' }}
+              </tui-checkbox-block>
             </ng-container>
           </div>
         </ng-container>
@@ -42,40 +45,48 @@
             tuiGroup
             class="group"
             [collapsed]="true"
+            formGroupName="variants"
           >
-            <tui-radio-group formGroupName="variants">
-              <ng-container *ngFor="let variant of question.variants; let j = index">
-                <tui-radio
-                  formControlName="id"
-                  [item]="variant.id"
-                  size="l"
-                >
-                  {{ variant.content }}
-                </tui-radio>
-              </ng-container>
-            </tui-radio-group>
-          </div>
-        </ng-container>
-
-        <ng-container *ngIf="question.type==='scale'">
-          <!-- Для вопросов со шкалой -->
-          <div formArrayName="variants">
-            <ng-container
-              *ngFor="let variant of question.variants; let j = index"
-            >
-              <div [formGroupName]="j" tuiGroup>
-                <input
-                  max="10"
-                  size="s"
-                  step="1"
-                  tuiSlider
-                  type="range"
-                  [(ngModel)]="variant.content"
-                />
-              </div>
+            <ng-container *ngFor="let variant of question.variants; let j = index">
+              <tui-radio-block
+                contentAlign="right"
+                formControlName="id"
+                [item]="variant.id"
+                size="l"
+              >
+                {{variant.content}}
+              </tui-radio-block>
             </ng-container>
           </div>
         </ng-container>
+
+        <ng-container *ngIf="question.type === QuestionType.SCALE">
+          <!-- Для вопросов со шкалой -->
+          <div formGroupName="variants">
+            <input
+              size="m"
+              tuiSlider
+              type="range"
+              formControlName="score"
+              [max]="maxScoreVariants"
+              [min]="1.00"
+              [segments]="lengthVariants - 1"
+              [step]="1.00"
+            />
+
+            <div class="ticks-labels">
+              <button
+                *ngFor="let variant of question.variants"
+                type="button"
+                class="tick-label"
+                (click)="scalePatchValue(variant)"
+              >
+                {{ variant.score }}
+              </button>
+            </div>
+          </div>
+        </ng-container>
+
       </div>
     </div>
   </form>
