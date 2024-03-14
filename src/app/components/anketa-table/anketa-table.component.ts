@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {IForm} from "../../models/form";
 import {QuestionType} from "../../models/question";
@@ -22,8 +22,12 @@ export class AnketaTableComponent implements OnInit {
   ngOnInit() {
     // Добавление FormControl для каждого вопроса в форме
     this.form.questions.forEach(question => {
+      let questionGroup: FormGroup;
+
       if (question.type === QuestionType.SINGLE_CHOICE) {
-        const questionGroup = this.fb.group({
+        // Поле для выбора одного варианта ответа
+        // FormGroup
+        questionGroup = this.fb.group({
           content: [question.content, Validators.required],
           type: [question.type, Validators.required],
           variants: this.fb.group({})
@@ -31,9 +35,10 @@ export class AnketaTableComponent implements OnInit {
         (questionGroup.get('variants') as FormGroup).addControl(
           "id", this.fb.control(question.variants[0].id, Validators.required)
         );
-        this.surveyForm.addControl(`question_${question.id}`, questionGroup);
       } else {
-        const questionGroup = this.fb.group({
+        // Поле для выбора нескольких вариантов ответа
+        // FormArray для вариантов ответа
+        questionGroup = this.fb.group({
           content: [question.content, Validators.required],
           type: [question.type, Validators.required],
           variants: this.fb.array([])
@@ -47,9 +52,12 @@ export class AnketaTableComponent implements OnInit {
             })
           );
         });
-        this.surveyForm.addControl(`question_${question.id}`, questionGroup);
       }
+
+      this.surveyForm.addControl(`question_${question.id}`, questionGroup);
     });
+
+    console.log(this.surveyForm)
 
     console.log(this.surveyForm)
 
@@ -77,7 +85,7 @@ export class AnketaTableComponent implements OnInit {
 
   // Необходимо при отправке данных на сервер создать List Id из вариантов в которых отмеченные (answer=true)
   // возвращает list id вариантов
-  getSelectedVariantIds(): number[] {
+  /*getSelectedVariantIds(): number[] {
     const selectedVariantIds: number[] = [];
 
     const formValue = this.surveyForm.value;
@@ -95,6 +103,32 @@ export class AnketaTableComponent implements OnInit {
     });
 
     return selectedVariantIds;
+  }*/
+  getSelectedVariantIds(): number[] {
+    const selectedVariantIds: number[] = [];
+
+    Object.keys(this.surveyForm.controls).forEach((questionKey) => {
+      const questionGroup = this.surveyForm.get(questionKey) as FormGroup;
+      const questionType = (questionGroup.get('type') as FormControl).value;
+
+      if (questionType === QuestionType.SINGLE_CHOICE) {
+        const selectedVariantId = (questionGroup.get('variants.id') as FormControl).value;
+        selectedVariantIds.push(selectedVariantId);
+      } else {
+        const variantsArray = questionGroup.get('variants') as FormArray;
+        variantsArray.controls.forEach((variantGroup) => {
+          const variantId = (variantGroup.get('id') as FormControl).value;
+          const variantAnswer = (variantGroup.get('answer') as FormControl).value;
+
+          if (variantAnswer) {
+            selectedVariantIds.push(variantId);
+          }
+        });
+      }
+    });
+
+    return selectedVariantIds;
   }
+
 
 }
