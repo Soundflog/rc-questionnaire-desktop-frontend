@@ -2,9 +2,7 @@ import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {IForm} from "../../models/form";
-import {map} from "rxjs/operators";
-import {IQuestion} from "../../models/question";
-import {IVariant} from "../../models/variant";
+import {QuestionType} from "../../models/question";
 
 @Component({
   selector: 'app-anketa-table',
@@ -12,34 +10,45 @@ import {IVariant} from "../../models/variant";
   styleUrls: ['./anketa-table.component.css', './anketa-table.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AnketaTableComponent implements OnInit{
+export class AnketaTableComponent implements OnInit {
   @Input() form: IForm;
 
   surveyForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
-    this.surveyForm = this.fb.group({
-    });
+    this.surveyForm = this.fb.group({});
   }
 
   ngOnInit() {
     // Добавление FormControl для каждого вопроса в форме
     this.form.questions.forEach(question => {
-      const questionGroup = this.fb.group({
-        content: [question.content, Validators.required],
-        type: [question.type, Validators.required],
-        variants: this.fb.array([])
-      });
-      question.variants.forEach(variant => {
-        (questionGroup.get('variants') as FormArray).push(
-          this.fb.group({
-            id: [variant.id],
-            content: [variant.content, Validators.required],
-            answer: [variant.answer, Validators.required],
-          })
+      if (question.type === QuestionType.SINGLE_CHOICE) {
+        const questionGroup = this.fb.group({
+          content: [question.content, Validators.required],
+          type: [question.type, Validators.required],
+          variants: this.fb.group({})
+        });
+        (questionGroup.get('variants') as FormGroup).addControl(
+          "id", this.fb.control(question.variants[0].id, Validators.required)
         );
-      });
-      this.surveyForm.addControl(`question_${question.id}`, questionGroup);
+        this.surveyForm.addControl(`question_${question.id}`, questionGroup);
+      } else {
+        const questionGroup = this.fb.group({
+          content: [question.content, Validators.required],
+          type: [question.type, Validators.required],
+          variants: this.fb.array([])
+        });
+        question.variants.forEach(variant => {
+          (questionGroup.get('variants') as FormArray).push(
+            this.fb.group({
+              id: [variant.id],
+              content: [variant.content, Validators.required],
+              answer: [false, Validators.required],
+            })
+          );
+        });
+        this.surveyForm.addControl(`question_${question.id}`, questionGroup);
+      }
     });
 
     console.log(this.surveyForm)
