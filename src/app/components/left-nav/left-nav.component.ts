@@ -6,5 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./left-nav.component.less']
 })
 export class LeftNavComponent {
+  open = false;
 
+  readonly nav = [
+    {title: 'Мои данные', link: 'data'},
+    {title: 'История проведения медицинской реабилитации', link: 'history'},
+    {title: 'Программа реабилитации', link: 'program'},
+    {title: 'Результаты реабилитации', link:'results'},
+  ];
+
+  toggle(open: boolean): void {
+    this.open = open;
+  }
 }

@@ -14,7 +14,17 @@ import {CreateProductComponent} from './components/another/create-product/create
 import {FocusDirective} from './directives/focus.directive'
 import {AnketirovaniePageComponent} from './pages/anketirovanie-page/anketirovanie-page.component'
 import {NavigationComponent} from './components/navigation/navigation.component'
-import { TuiButtonModule, TuiGroupModule, TuiLabelModule, TuiLinkModule, TuiRootModule, TuiDialogModule, TuiAlertModule, TUI_SANITIZER } from "@taiga-ui/core";
+import {
+  TuiButtonModule,
+  TuiGroupModule,
+  TuiLabelModule,
+  TuiLinkModule,
+  TuiRootModule,
+  TuiDialogModule,
+  TuiAlertModule,
+  TUI_SANITIZER,
+  TuiHostedDropdownModule, TuiDataListModule, TuiExpandModule
+} from "@taiga-ui/core";
 import {
   TuiAccordionModule, TuiAvatarModule,
   TuiBadgeModule, TuiBreadcrumbsModule, TuiCheckboxBlockModule,
@@ -23,7 +33,7 @@ import {
   TuiRatingModule, TuiSliderModule,
   TuiTabsModule, TuiTagModule
 } from "@taiga-ui/kit";
-import {TuiAppBarModule} from "@taiga-ui/addon-mobile";
+import {TuiAppBarModule, TuiSidebarModule, TuiTabBarModule} from "@taiga-ui/addon-mobile";
 import {LeftNavComponent} from './components/left-nav/left-nav.component';
 import {AuthPageComponent} from './pages/auth-page/auth-page.component';
 import {MydataPageComponent} from './pages/mydata-page/mydata-page.component';
@@ -43,7 +53,8 @@ import {TuiPreviewModule} from "@taiga-ui/addon-preview";
 import {AnketaTableComponent} from './components/anketa-table/anketa-table.component';
 import {TuiTableModule} from "@taiga-ui/addon-table";
 import {NavModuleComponent} from './components/nav-module/nav-module.component';
-import {TuiValueChangesModule} from "@taiga-ui/cdk";
+import {TuiActiveZoneModule, TuiValueChangesModule} from "@taiga-ui/cdk";
+import {TuiAppearanceModule, TuiFadeModule, TuiIconsModule, TuiNavigationModule} from "@taiga-ui/experimental";
 
 
 @NgModule({
@@ -109,7 +120,17 @@ import {TuiValueChangesModule} from "@taiga-ui/cdk";
     TuiRadioLabeledModule,
     TuiValueChangesModule,
     TuiRadioGroupModule,
-    TuiRadioModule
+    TuiRadioModule,
+    TuiNavigationModule,
+    TuiIconsModule,
+    TuiFadeModule,
+    TuiAppearanceModule,
+    TuiHostedDropdownModule,
+    TuiDataListModule,
+    TuiExpandModule,
+    TuiActiveZoneModule,
+    TuiSidebarModule,
+    TuiTabBarModule
   ],
   providers: [Title, {provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
   bootstrap: [AppComponent]
