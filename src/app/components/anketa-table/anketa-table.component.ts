@@ -15,7 +15,6 @@ export class AnketaTableComponent implements OnInit {
   @Input() form: IForm;
 
   surveyForm: FormGroup;
-  segments = 0;
   lengthVariants = 0;
   maxScoreVariants = 0;
 
@@ -34,14 +33,12 @@ export class AnketaTableComponent implements OnInit {
           questionGroup = this.fb.group({
             content: [question.content, Validators.required],
             type: [question.type, Validators.required],
-            variants: this.fb.group({})
+            variants: this.fb.group({
+              id: [question.variants[0].id, Validators.required]
+            })
           });
-          (questionGroup.get('variants') as FormGroup).addControl(
-            "id", this.fb.control(question.variants[0].id, Validators.required)
-          );
           break;
         case QuestionType.SCALE: // Шкала ответов
-          // FormGroup
           questionGroup = this.fb.group({
             content: [question.content, Validators.required],
             type: [question.type, Validators.required],
@@ -78,19 +75,6 @@ export class AnketaTableComponent implements OnInit {
     console.log(this.surveyForm)
   }
 
-  private addFormControls() {
-    // Добавьте контролы в форму для каждого вопроса
-    if (this.form && this.form.questions) {
-      this.form.questions.forEach((question) => {
-        if (question.variants) {
-          question.variants.forEach((variant) => {
-            this.surveyForm.addControl(String(variant.id + "variant"), this.fb.control(variant.answer));
-          });
-        }
-      });
-    }
-  }
-
   scalePatchValue(newVariant: IVariant) {
     Object.keys(this.surveyForm.controls).forEach((questionKey) => {
       const questionGroup = this.surveyForm.get(questionKey) as FormGroup;
@@ -105,7 +89,6 @@ export class AnketaTableComponent implements OnInit {
     });
   }
 
-
   sendSurvey() {
     // Отправьте данные формы на сервер
     console.log(this.surveyForm.value);
@@ -115,25 +98,6 @@ export class AnketaTableComponent implements OnInit {
 
   // Необходимо при отправке данных на сервер создать List Id из вариантов в которых отмеченные (answer=true)
   // возвращает list id вариантов
-  /*getSelectedVariantIds(): number[] {
-    const selectedVariantIds: number[] = [];
-
-    const formValue = this.surveyForm.value;
-
-    Object.keys(formValue).forEach((questionKey) => {
-      const questionValue = formValue[questionKey];
-
-      if (questionValue && questionValue.variants) {
-        questionValue.variants.forEach((variant: { id: number, answer: boolean }) => {
-          if (variant.answer) {
-            selectedVariantIds.push(variant.id);
-          }
-        });
-      }
-    });
-
-    return selectedVariantIds;
-  }*/
   getSelectedVariantIds(): number[] {
     const selectedVariantIds: number[] = [];
 
@@ -146,6 +110,15 @@ export class AnketaTableComponent implements OnInit {
         selectedVariantIds.push(selectedVariantId);
       } else if (questionType === QuestionType.SCALE) {
         // TODO: Scale подсчет
+        const selectedScore = (questionGroup.get('variants.score') as FormControl).value;
+
+        const question = this.form.questions.find(q => q.id === +questionKey.split('_')[1]);
+        if (question) {
+          const selectedVariant = question.variants.find(v => v.score === selectedScore);
+          if (selectedVariant) {
+            selectedVariantIds.push(selectedVariant.id);
+          }
+        }
       } else {
         const variantsArray = questionGroup.get('variants') as FormArray;
         variantsArray.controls.forEach((variantGroup) => {

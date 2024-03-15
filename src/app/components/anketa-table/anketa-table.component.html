@@ -1,33 +1,24 @@
-<!--TODO: сделать это for-->
-
-<!--<ng-container *ngFor="let q of formsTest">-->
 <div class="tui-space_bottom-5">
   <form [formGroup]="surveyForm">
     <h3 class="title"> {{ form.name }}</h3>
-    <div
-      class="group tui-space_bottom-5"
-      *ngFor="let question of form.questions; let i = index"
-      [formGroupName]="'question_'+question.id"
+    <div class="tui-space_bottom-5"
+         *ngFor="let question of form.questions; let i = index"
+         [formGroupName]="'question_'+question.id"
     >
       <h4 class="title">{{ question.content }}</h4>
-      <div
-        orientation="vertical"
-        tuiGroup
-        class="group"
-        [collapsed]="true"
-        *ngIf="question?.variants"
+      <div orientation="vertical" tuiGroup class="group"
+           [collapsed]="true"
+           *ngIf="question?.variants"
       >
+        <!--        Множество-->
         <ng-container *ngIf="question.type==='multiple_choice'">
-          <div
-            tuiGroup
-            class="group"
-            [collapsed]="true"
-            formArrayName="variants"
+          <div orientation="vertical" tuiGroup class="group"
+               [collapsed]="true"
+               formArrayName="variants"
           >
             <ng-container
               *ngFor="let variant of question.variants; let j = index"
-              [formGroupName]="j"
-            >
+              [formGroupName]="j">
               <tui-checkbox-block
                 contentAlign="right"
                 formControlName="answer"
@@ -38,65 +29,49 @@
             </ng-container>
           </div>
         </ng-container>
-
+        <!-- Один из нескольких -->
         <ng-container *ngIf="question.type==='single_choice'">
-          <div
-            orientation="vertical"
-            tuiGroup
-            class="group"
-            [collapsed]="true"
-            formGroupName="variants"
+          <div orientation="vertical" tuiGroup class="group"
+               [collapsed]="true"
+               formGroupName="variants"
           >
             <ng-container *ngFor="let variant of question.variants; let j = index">
-              <tui-radio-block
-                contentAlign="right"
-                formControlName="id"
-                [item]="variant.id"
-                size="l"
+              <tui-radio-block contentAlign="right" size="l"
+                               formControlName="id"
+                               [item]="variant.id"
               >
                 {{variant.content}}
               </tui-radio-block>
             </ng-container>
           </div>
         </ng-container>
-
+        <!-- Для вопросов со шкалой -->
         <ng-container *ngIf="question.type === QuestionType.SCALE">
-          <!-- Для вопросов со шкалой -->
           <div formGroupName="variants">
-            <input
-              size="m"
-              tuiSlider
-              type="range"
-              formControlName="score"
-              [max]="maxScoreVariants"
-              [min]="1.00"
-              [segments]="lengthVariants - 1"
-              [step]="1.00"
-            />
-
+            <input size="m" tuiSlider type="range"
+                   formControlName="score"
+                   [max]="maxScoreVariants"
+                   [min]="1.00"
+                   [segments]="lengthVariants - 1"
+                   [step]="1.00"/>
             <div class="ticks-labels">
-              <button
-                *ngFor="let variant of question.variants"
-                type="button"
-                class="tick-label"
-                (click)="scalePatchValue(variant)"
+              <button class="tick-label" type="button"
+                      *ngFor="let variant of question.variants"
+                      (click)="scalePatchValue(variant)"
               >
                 {{ variant.score }}
               </button>
             </div>
           </div>
         </ng-container>
-
       </div>
     </div>
   </form>
-  <button
-    tuiButton
-    size="xl"
-    appearance="primary"
-    type="submit"
-    (click)="sendSurvey()"
-    class="w-full">
+  <button class="w-full" tuiButton size="xl"
+          appearance="primary"
+          type="submit"
+          (click)="sendSurvey()"
+  >
     Отправить
   </button>
 </div>

@@ -110,11 +110,22 @@ export const forms: IForm[] = [
             content: "Variant 10",
             score: 1.00,
             answer: false
-          }
-          ,
+          },
           {
             id: 13,
             content: "Variant 11",
+            score: 1.00,
+            answer: false
+          },
+          {
+            id: 14,
+            content: "Variant 14",
+            score: 1.00,
+            answer: false
+          },
+          {
+            id: 15,
+            content: "Variant 15",
             score: 1.00,
             answer: false
           }
