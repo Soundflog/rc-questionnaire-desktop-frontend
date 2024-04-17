@@ -1,56 +1,38 @@
-<!--<h1 class="font-bold mb-2 text-center text-lg">{{ title | titlecase }}</h1>-->
-<!--
-<input
-  type="text"
-  class="mb-2 border py-2 px-4 w-full"
-  placeholder="Filter products..."
-  [(ngModel)]="term">
--->
-
-<!--<p *ngIf="loading" class="text-center text-lg">Loading...</p>-->
-<!--<div *ngIf="productsService.products">
-  <app-product
-    *ngFor="let product of productsService.products | filterProducts:term; let i = index"
-    [product]="product"
-  ></app-product>
-</div>-->
-<tui-island class="container w-full tui-space_auto ">
-  <div class=" tui-col_md-4 w-full flex-auto tui-space_bottom-4">
-    <tui-island >
-<!--      TODO: добавить пол, status-->
-      <label tuiLabel="Пол">Мужчина</label>
-        <div tuiGroup
-             class="group"
-             [collapsed]="true">
-            <label tuiLabel="Дата рождения">{{patient.birth_date}}</label>
-            <label tuiLabel="Возраст">{{calculateAge(patient.birth_date)}}</label>
-        </div>
-      <label tuiLabel="Статус">СТАТУС</label>
-      <label tuiLabel="Место жительства">{{patient.address}}</label>
-      <label tuiLabel="Данные о работе">{{patient.work_place_data}}</label>
-      <label tuiLabel="Заметка врача">{{patient.bookmark}}</label>
-    </tui-island>
-  </div>
-    <tui-accordion-item class="pb-5 w-full tui-space_bottom-4">
-      О докторе
-      <ng-template tuiAccordionItemContent>
-        <div #content>
-          <img [src]="image" height="100" width="150" class="rounded">
-<!--          <img [src]="product.image" [alt]="product.title" class="w-1/6 mb-2">-->
-          <h2 class="font-bold">ФАМИЛИЯ ИМЯ ОТЧЕСТВО</h2>
-          <label tuiLabel="Должность">{{graduation}}</label>
-          <label tuiLabel="Стаж">{{staj_old}}</label>
-        </div>
-      </ng-template>
-    </tui-accordion-item>
-    <tui-accordion-item class="pb-5 w-full">
-      Паспорт РФ
-      <ng-template tuiAccordionItemContent>
-        <div #content>
-          <label tuiLabel="Серия и номер паспорта">{{patient.passport.number}} {{patient.passport.series}}</label>
-          <label tuiLabel="Кем Выдан">{{patient.passport.issued_by}}</label>
-          <label tuiLabel="Дата выдачи">{{patient.passport.issued_date}}</label>
-        </div>
-      </ng-template>
-    </tui-accordion-item>
+<tui-island>
+  <tui-island class="tui-space_bottom-5">
+    <!--      TODO: добавить пол, status-->
+    <label tuiLabel="Пол">Мужчина</label>
+    <div tuiGroup
+         class="group"
+         [collapsed]="true">
+      <label tuiLabel="Дата рождения">{{ patient.birth_date }}</label>
+      <label tuiLabel="Возраст">{{ calculateAge(patient.birth_date) }}</label>
+    </div>
+    <label tuiLabel="Статус">СТАТУС</label>
+    <label tuiLabel="Место жительства">{{ patient.address }}</label>
+    <label tuiLabel="Данные о работе">{{ patient.work_place_data }}</label>
+    <label tuiLabel="Заметка врача">{{ patient.bookmark }}</label>
+  </tui-island>
+  <tui-accordion-item class="pb-5 w-full tui-space_bottom-4">
+    О докторе
+    <ng-template tuiAccordionItemContent>
+      <div #content>
+        <img [src]="image" height="100" width="150" class="rounded">
+        <!--          <img [src]="product.image" [alt]="product.title" class="w-1/6 mb-2">-->
+        <h2 class="font-bold">ФАМИЛИЯ ИМЯ ОТЧЕСТВО</h2>
+        <label tuiLabel="Должность">{{ graduation }}</label>
+        <label tuiLabel="Стаж">{{ staj_old }}</label>
+      </div>
+    </ng-template>
+  </tui-accordion-item>
+  <tui-accordion-item class="pb-5 w-full">
+    Паспорт РФ
+    <ng-template tuiAccordionItemContent>
+      <div #content>
+        <label tuiLabel="Серия и номер паспорта">{{ patient.passport.number }} {{ patient.passport.series }}</label>
+        <label tuiLabel="Кем Выдан">{{ patient.passport.issued_by }}</label>
+        <label tuiLabel="Дата выдачи">{{ patient.passport.issued_date }}</label>
+      </div>
+    </ng-template>
+  </tui-accordion-item>
 </tui-island>

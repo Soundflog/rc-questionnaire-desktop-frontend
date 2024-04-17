@@ -23,7 +23,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'data', pathMatch: 'full'},
       { path: 'data', component: MydataPageComponent, data: {title: 'Мои данные', text: 'Text for my data'}},
-      { path: 'history', component: HistoryPageComponent, data: {title: 'История проведения медицинской реабилитации'} },
+      { path: 'history', component: HistoryPageComponent, data: {title: 'История реабилитации'} },
       { path: 'program', component: ProgrammPageComponent, data: {title: 'Программа реабилитации'} },
       { path: 'results', component: ResultsPageComponent, data: {title: 'Результаты реабилитации'} },
       {
