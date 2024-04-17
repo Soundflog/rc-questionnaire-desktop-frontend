@@ -13,7 +13,7 @@ import {AuthService} from "../../services/auth/auth.service";
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavigationComponent implements OnInit {
-  title = "НАЗВАНИЕ из data";
+  title = "RehabSurvey";
   pageText = this.pageContentService.pageText$
   user = patients[0]
   username = this.user.last_name + " " + this.user.first_name + " " + this.user.middle_name

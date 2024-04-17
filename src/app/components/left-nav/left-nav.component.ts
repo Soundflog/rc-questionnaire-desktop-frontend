@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
 export class LeftNavComponent {
   open = false;
 
+  activeItemIndex = 0;
+
   readonly nav = [
     {title: 'Мои данные', link: 'data'},
     {title: 'История проведения медицинской реабилитации', link: 'history'},
@@ -15,7 +17,4 @@ export class LeftNavComponent {
     {title: 'Результаты реабилитации', link:'results'},
   ];
 
-  toggle(open: boolean): void {
-    this.open = open;
-  }
 }

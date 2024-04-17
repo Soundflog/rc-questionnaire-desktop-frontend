@@ -1,37 +1,36 @@
-<nav tuiTabs vertical="left" class="left">
+<!--<nav tuiTabs vertical="left" class="left">
   <button routerLink="data" routerLinkActive tuiTab>Мои данные</button>
   <button routerLink="history" routerLinkActive tuiTab>История проведения медицинской реабилитации</button>
   <button routerLink="program" routerLinkActive tuiTab>Программа реабилитации</button>
   <button routerLink="results" routerLinkActive tuiTab>Результаты реабилитации</button>
-</nav>
-<!--
-<button
-  tuiIconButton
-  icon="tuiIconHome"
-  type="button"
-  (click)="toggle(true)"
-  (tuiActiveZoneChange)="toggle($event)"
+</nav>-->
+<tui-tabs-with-more
+  [itemsLimit]="4"
+  [(activeItemIndex)]="activeItemIndex"
 >
-  Show sidebar
-  &lt;!&ndash; Nest the directive so it is considered the same active zone &ndash;&gt;
-  <div *tuiSidebar="open; direction: 'left'">
-    <tui-accordion [rounded]="false">
-      <tui-accordion-item borders="top-bottom" [open]="true">
-        НАЗВАНИЕ ОРГАНИЗАЦИИ
-        <ng-template tuiAccordionItemContent>
-          <a
-            *ngFor="let link of nav"
-            [routerLink]="link.link"
-            rel="noreferrer"
-            target="_blank"
-            tuiLink
-            class="link"
-          >
-            {{ link.title }}
-          </a>
-        </ng-template>
-      </tui-accordion-item>
-    </tui-accordion>
-  </div>
-</button>-->
+  <button *tuiItem routerLink="data" routerLinkActive tuiTab>
+    <tui-svg
+      src="tuiIconHome"
+      class="tui-space_right-2"
+    ></tui-svg>
+  </button>
+  <button *tuiItem routerLink="history" routerLinkActive tuiTab>
+    <tui-svg
+      src="tuiIconClock"
+      class="tui-space_right-2"
+    ></tui-svg>
+  </button>
+  <button *tuiItem routerLink="program" routerLinkActive tuiTab>
+    <tui-svg
+      src="tuiIconBriefcase"
+      class="tui-space_right-2"
+    ></tui-svg>
+  </button>
+  <button *tuiItem routerLink="results" routerLinkActive tuiTab>
+    <tui-svg
+      src="tuiIconCheckSquare"
+      class="tui-space_right-2"
+    ></tui-svg>
+  </button>
+</tui-tabs-with-more>
 

@@ -1,37 +1,19 @@
-<div class="align-middle justify-items-center flex-auto">
-<tui-app-bar class="color">
-  <a
-    tuiSlot="right"
-    routerLink="/rehabilitation/data"
-  >
-    {{username}}
-  </a>
-  <a
-    class="button_background"
-    icon="tuiIconUserLarge"
-    title="User"
-    tuiIconButton
-    tuiSlot="right"
-    (click)="logout()"
-  ></a>
+<tui-app-bar>
+  <button
+    tuiAppBarBack
+    tuiSlot="left"
+    title="Назад"
+    (click)="backClicked()"
+  ></button>
+  RehabSurvey
   <button
     class="button_background"
     icon="tuiIconSettingsLarge"
     title="Settings"
     tuiIconButton
     tuiSlot="right"
-    routerLink="/settings"
   ></button>
-<!--  <app-left-nav tuiSlot="left"></app-left-nav>-->
-  <a
-    routerLink="/rehabilitation/data"
-    tuiSlot="left"
-  >
-    Название организации
-  </a>
 </tui-app-bar>
 <div class="tui-island_text-align_center mx-5 flex-auto content-center">
-  <a class="text-lg text-blue-700" tuiSlot="left" tuiAppBarBack (click)="backClicked()">Назад</a>
-  <div class="flex-grow font-bold flex-auto text-2xl">{{pageText | async}}</div>
-</div>
+  <div class="flex-grow font-bold flex-auto text-2xl">{{ pageText | async }}</div>
 </div>

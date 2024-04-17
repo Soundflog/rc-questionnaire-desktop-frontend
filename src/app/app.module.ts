@@ -23,7 +23,7 @@ import {
   TuiDialogModule,
   TuiAlertModule,
   TUI_SANITIZER,
-  TuiHostedDropdownModule, TuiDataListModule, TuiExpandModule
+  TuiHostedDropdownModule, TuiDataListModule, TuiExpandModule, TuiSvgModule
 } from "@taiga-ui/core";
 import {
   TuiAccordionModule, TuiAvatarModule,
@@ -130,7 +130,8 @@ import {TuiAppearanceModule, TuiFadeModule, TuiIconsModule, TuiNavigationModule}
     TuiExpandModule,
     TuiActiveZoneModule,
     TuiSidebarModule,
-    TuiTabBarModule
+    TuiTabBarModule,
+    TuiSvgModule
   ],
   providers: [Title, {provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
   bootstrap: [AppComponent]
