@@ -1,18 +1,23 @@
 <tui-island>
-  <tui-island class="tui-space_bottom-5">
-    <!--      TODO: добавить пол, status-->
-    <label tuiLabel="Пол">Мужчина</label>
-    <div tuiGroup
-         class="group"
-         [collapsed]="true">
-      <label tuiLabel="Дата рождения">{{ patient.birth_date }}</label>
-      <label tuiLabel="Возраст">{{ calculateAge(patient.birth_date) }}</label>
+  <!--      TODO: добавить пол, status-->
+  <div>
+    <hr/>
+    <button tuiIconButton icon="tuiIconAirplay"></button>
+    <div>
+      <label tuiLabel="Пол">Мужчина</label>
+      <div tuiGroup
+           class="group"
+           [collapsed]="true">
+        <label tuiLabel="Дата рождения">{{ patient.birth_date }}</label>
+        <label tuiLabel="Возраст">{{ calculateAge(patient.birth_date) }}</label>
+      </div>
+      <label tuiLabel="Статус">СТАТУС</label>
+      <label tuiLabel="Место жительства">{{ patient.address }}</label>
+      <label tuiLabel="Данные о работе">{{ patient.work_place_data }}</label>
+      <label tuiLabel="Заметка врача">{{ patient.bookmark }}</label>
     </div>
-    <label tuiLabel="Статус">СТАТУС</label>
-    <label tuiLabel="Место жительства">{{ patient.address }}</label>
-    <label tuiLabel="Данные о работе">{{ patient.work_place_data }}</label>
-    <label tuiLabel="Заметка врача">{{ patient.bookmark }}</label>
-  </tui-island>
+  </div>
+  <hr/>
   <tui-accordion-item class="pb-5 w-full tui-space_bottom-4">
     О докторе
     <ng-template tuiAccordionItemContent>
