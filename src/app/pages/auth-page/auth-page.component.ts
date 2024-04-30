@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ChangeDetectionStrategy, ViewEncapsulation} from '@angular/core'
 import {AuthService} from "../../services/auth/auth.service";
+import {ToastrService} from "ngx-toastr";
+import {Router} from "@angular/router";
+
 @Component({
   selector: 'app-auth-page',
   templateUrl: './auth-page.component.html',
@@ -17,7 +20,10 @@ export class AuthPageComponent implements OnInit{
     Login: new FormControl('Логин'),
     Password: new FormControl('Пароль')
   });*/
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder,
+              private authService: AuthService,
+              private toastr: ToastrService,
+              private router: Router) {
     this.authForm = fb.group({
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(3)]],
@@ -28,7 +34,11 @@ export class AuthPageComponent implements OnInit{
 
   onSubmit(): void{
     if (this.authForm.valid){
-      this.authService.login(this.authForm.value)
+      this.authService.login(this.authForm.value).subscribe(
+        ()=> {
+          this.toastr.success('logged in')
+          this.router.navigate(['/rehabilitation/data'])
+        });
     } else {
       console.log('not valid')
     }

@@ -1,5 +1,3 @@
-
-
 <div class="body">
   <div class="top-container">
     <div class="organization-container">
@@ -54,7 +52,7 @@
         appearance="custom"
         tuiButton
         type="submit"
-        routerLink="/rehabilitation"
+        (click)="onSubmit()"
         [disabled]="!authForm.valid"
       >
         Войти

@@ -15,13 +15,12 @@ import {authGuard} from "./services/auth/auth.guard";
 
 
 const routes: Routes = [
-  { path: 'login', component: AuthPageComponent },
+  { path: '', component: AuthPageComponent },
   {
     path: 'rehabilitation',
     component: AnketirovaniePageComponent,
     canActivate: [authGuard()],
     children: [
-      { path: '', redirectTo: 'data', pathMatch: 'full'},
       { path: 'data', component: MydataPageComponent, data: {title: 'Мои данные', text: 'Text for my data'}},
       { path: 'history', component: HistoryPageComponent, data: {title: 'История реабилитации'} },
       { path: 'program', component: ProgrammPageComponent, data: {title: 'Программа реабилитации'} },

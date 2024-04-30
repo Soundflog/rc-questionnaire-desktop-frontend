@@ -36,7 +36,7 @@ export function authGuard():CanActivateFn{
     if (authService.isAuthSig()){
       return true
     }
-    router.navigate(['/login'])
+    router.navigate(['/'])
     return false
   }
 }

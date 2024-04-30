@@ -13,7 +13,7 @@ import {API_URL} from "../../constants/constants";
 })
 export class AuthService {
   // real-project = false
-  isAuthSig = signal<boolean>(true)
+  isAuthSig = signal<boolean>(false)
 
   constructor(
     private http: HttpClient,
@@ -43,7 +43,7 @@ export class AuthService {
   }
 
   login(userData: IAuthUser) {
-    return this.http.post<IUser>(`${API_URL}/auth`, userData)
+    return this.http.post<IUser>(`${API_URL}/auth/auth`, userData)
       .pipe(
         tap((res: IUser)=> {
           localStorage.setItem('token', res.token)
@@ -56,17 +56,13 @@ export class AuthService {
           throw new Error(error.message);
         })
       )
-      .subscribe(
-        ()=> {
-          this.toastr.success('logged in')
-          this.router.navigate(['/rehabilitation'])
-        });
+
   }
 
   logout(): void {
     localStorage.removeItem('token');
     this.isAuthSig.set(false)
-    this.router.navigate(['/login']).then(r =>of() )
+    this.router.navigate(['/']).then(r =>of() )
     this.toastr.success('Logged out')
   }
 
@@ -76,7 +72,7 @@ export class AuthService {
   }
 
   redirectToLogin(): Promise<Observable<never>> {
-    return this.router.navigate(['login']).then(() => of());
+    return this.router.navigate(['']).then(() => of());
   }
 
   private handeError(err: HttpErrorResponse) {
