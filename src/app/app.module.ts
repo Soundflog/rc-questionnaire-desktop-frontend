@@ -31,7 +31,7 @@ import {
   TuiInputModule, TuiInputSliderModule,
   TuiIslandModule, TuiRadioBlockModule, TuiRadioGroupModule, TuiRadioLabeledModule, TuiRadioListModule, TuiRadioModule,
   TuiRatingModule, TuiSliderModule,
-  TuiTabsModule, TuiTagModule
+  TuiTabsModule, TuiTagModule, TuiToggleModule
 } from "@taiga-ui/kit";
 import {TuiAppBarModule, TuiSidebarModule, TuiTabBarModule} from "@taiga-ui/addon-mobile";
 import {LeftNavComponent} from './components/left-nav/left-nav.component';
@@ -54,7 +54,14 @@ import {AnketaTableComponent} from './components/anketa-table/anketa-table.compo
 import {TuiTableModule} from "@taiga-ui/addon-table";
 import {NavModuleComponent} from './components/nav-module/nav-module.component';
 import {TuiActiveZoneModule, TuiValueChangesModule} from "@taiga-ui/cdk";
-import {TuiAppearanceModule, TuiFadeModule, TuiIconsModule, TuiNavigationModule} from "@taiga-ui/experimental";
+import {
+    TuiAppearanceModule,
+    TuiFadeModule,
+    TuiIconsModule,
+    TuiNavigationModule,
+    TuiSensitiveModule
+} from "@taiga-ui/experimental";
+import { LoadingComponent } from './components/loading/loading.component';
 
 
 @NgModule({
@@ -82,7 +89,8 @@ import {TuiAppearanceModule, TuiFadeModule, TuiIconsModule, TuiNavigationModule}
     ModuleAnketaComponent,
     ModuleRodPageComponent,
     AnketaTableComponent,
-    NavModuleComponent
+    NavModuleComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -131,7 +139,9 @@ import {TuiAppearanceModule, TuiFadeModule, TuiIconsModule, TuiNavigationModule}
     TuiActiveZoneModule,
     TuiSidebarModule,
     TuiTabBarModule,
-    TuiSvgModule
+    TuiSvgModule,
+    TuiSensitiveModule,
+    TuiToggleModule
   ],
   providers: [Title, {provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
   bootstrap: [AppComponent]

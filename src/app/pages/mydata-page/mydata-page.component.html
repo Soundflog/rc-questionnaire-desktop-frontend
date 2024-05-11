@@ -1,43 +1,72 @@
 <tui-island>
   <!--      TODO: добавить пол, status-->
-  <div>
-    <hr/>
-    <button tuiIconButton icon="tuiIconAirplay"></button>
+  <ng-container *ngIf="patient$ | async as patient; else loading">
     <div>
-      <label tuiLabel="Пол">Мужчина</label>
-      <div tuiGroup
-           class="group"
-           [collapsed]="true">
-        <label tuiLabel="Дата рождения">{{ patient.birth_date }}</label>
-        <label tuiLabel="Возраст">{{ calculateAge(patient.birth_date) }}</label>
+      <hr/>
+      <button tuiIconButton icon="tuiIconAirplay"></button>
+      <div>
+        <label tuiLabel="Пол">Мужчина</label>
+        <div tuiGroup
+             class="group"
+             [collapsed]="true">
+          <label tuiLabel="Дата рождения">{{ stringFyAge(patient.birthDate) }}</label>
+          <label tuiLabel="Возраст">{{ calculateAge(patient.birthDate) }}</label>
+        </div>
+        <label tuiLabel="Статус">{{ patient.patientStatus.name }}</label>
+        <label tuiLabel="Место жительства">{{ patient.address }}</label>
+        <label tuiLabel="Данные о работе">{{ patient.workPlaceData }}</label>
+        <div *ngIf="patient.bookmark">
+          <label tuiLabel="Заметка врача">{{ patient.bookmark }}</label>
+        </div>
       </div>
-      <label tuiLabel="Статус">СТАТУС</label>
-      <label tuiLabel="Место жительства">{{ patient.address }}</label>
-      <label tuiLabel="Данные о работе">{{ patient.work_place_data }}</label>
-      <label tuiLabel="Заметка врача">{{ patient.bookmark }}</label>
     </div>
-  </div>
-  <hr/>
-  <tui-accordion-item class="pb-5 w-full tui-space_bottom-4">
-    О докторе
-    <ng-template tuiAccordionItemContent>
-      <div #content>
-        <img [src]="image" height="100" width="150" class="rounded">
-        <!--          <img [src]="product.image" [alt]="product.title" class="w-1/6 mb-2">-->
-        <h2 class="font-bold">ФАМИЛИЯ ИМЯ ОТЧЕСТВО</h2>
-        <label tuiLabel="Должность">{{ graduation }}</label>
-        <label tuiLabel="Стаж">{{ staj_old }}</label>
-      </div>
-    </ng-template>
-  </tui-accordion-item>
-  <tui-accordion-item class="pb-5 w-full">
-    Паспорт РФ
-    <ng-template tuiAccordionItemContent>
-      <div #content>
-        <label tuiLabel="Серия и номер паспорта">{{ patient.passport.number }} {{ patient.passport.series }}</label>
-        <label tuiLabel="Кем Выдан">{{ patient.passport.issued_by }}</label>
-        <label tuiLabel="Дата выдачи">{{ patient.passport.issued_date }}</label>
-      </div>
-    </ng-template>
-  </tui-accordion-item>
+    <hr/>
+    <tui-accordion-item class="pb-5 w-full tui-space_bottom-4">
+      О докторе
+      <ng-template tuiAccordionItemContent>
+        <div #content>
+          <img ngSrc="image" height="100" width="150" class="rounded">
+          <!--          <img [src]="product.image" [alt]="product.title" class="w-1/6 mb-2">-->
+          <h2 class="font-bold">ФАМИЛИЯ ИМЯ ОТЧЕСТВО</h2>
+          <label tuiLabel="Должность">{{ graduation }}</label>
+          <label tuiLabel="Стаж">{{ staj_old }}</label>
+        </div>
+      </ng-template>
+    </tui-accordion-item>
+    <tui-accordion-item class="pb-5 w-full">
+      Паспорт РФ
+      <ng-template tuiAccordionItemContent>
+        <div #content>
+          <span class="small">
+            <label tuiLabel="Серия и номер паспорта">
+              <span [tuiSensitive]="sensitive">{{ patient.passport.number }} {{ patient.passport.series }}</span>
+            </label>
+          </span>
+          <span class="small">
+            <label tuiLabel="Кем Выдан">
+              <span [tuiSensitive]="sensitive">
+                {{ patient.passport.issued }}
+              </span>
+            </label>
+          </span>
+
+          <span class="small">
+            <label tuiLabel="Дата выдачи">
+              <span [tuiSensitive]="sensitive">
+                {{ patient.passport.issuedDate }}
+              </span>
+            </label>
+          </span>
+
+          <label>
+            <tui-toggle [(ngModel)]="sensitive"></tui-toggle>
+            Скрыть
+          </label>
+        </div>
+      </ng-template>
+    </tui-accordion-item>
+  </ng-container>
+  <ng-template #loading>
+    <app-loading/>
+  </ng-template>
 </tui-island>

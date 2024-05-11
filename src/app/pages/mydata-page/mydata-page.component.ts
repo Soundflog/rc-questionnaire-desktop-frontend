@@ -2,8 +2,11 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {ProductsService} from "../../services/another/products/products.service";
 import {ModalService} from "../../services/another/modal/modal.service";
 import {IPatient} from "../../models/patient";
-import {Observable} from "rxjs";
+import {Observable, tap} from "rxjs";
 import {patients} from "../../data/patients";
+import {PatientService} from "../../services/patient/patient.service";
+import {ToastrService} from "ngx-toastr";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-mydata-page',
@@ -17,29 +20,34 @@ export class MydataPageComponent implements OnInit{
   staj_old = 25
 
   title = 'angular app'
-
+  sensitive = true; // Скрыть паспортные данные
+  patient$: Observable<IPatient>;
   constructor(
-    public productsService: ProductsService,
-    public modalService: ModalService
+    private patientService: PatientService,
+    private toastr: ToastrService,
+    private router: Router
   ) {
   }
 
   ngOnInit(): void {
-    // this.loading = true
-    // this.products$ = this.productsService.getAll().pipe(
-    //   tap(() => this.loading = false)
-    // )
-    // this.productsService.getAll().subscribe(() => {
-    //   this.loading = false
-    // })
+    this.patient$ = this.patientService.getMe().pipe(
+      tap((patient: IPatient) => {
+        console.log(patient);
+        if (!patient) {
+          this.toastr.error('Не удалось получить данные о пациенте', 'Ошибка');
+          this.router.navigate(['/']);
+        }
+      })
+    )
   }
 
-  protected readonly patient = patients[0];
-  protected readonly Date = Date;
+  stringFyAge(birthDate: string): string {
+    const [year, month, day] = birthDate.split('-');
+    return day + '-' + month + '-' + year;
+  }
+
   calculateAge(birthDate: string): number {
-    // Преобразование строки даты в объект Date
     const birthDateObject = new Date(birthDate);
-    // Текущая дата
     const currentDate = new Date();
     // Вычисление разницы в годах
     const age = currentDate.getFullYear() - birthDateObject.getFullYear();

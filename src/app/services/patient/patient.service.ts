@@ -3,26 +3,28 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {BehaviorSubject, catchError, tap, throwError} from "rxjs";
 import {API_URL} from "../../constants/constants";
 import {ErrorService} from "../error/error.service";
+import {IPatientStatus} from "../../models/patientstatus";
+import {IPatient} from "../../models/patient";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PatientService {
-  private _baseUrl = `${API_URL}/patient`;
-  private patientSubject = new BehaviorSubject<[]>([]);
+  // http://localhost:8081/api/v1/patient/me
+  private _baseUrl = `${API_URL}`;
+  private patientSubject = new BehaviorSubject<IPatient[]>([]);
   patient$ = this.patientSubject.asObservable();
 
   constructor(private _http: HttpClient,
               private errorService: ErrorService) {
-    this.get(null);
+    this.getMe();
   }
 
-  get(name:string | null) {
+  getMe() {
     const headers = { 'Authorization': 'Bearer ' + localStorage.getItem("token") }
 
-    return this._http.get<[]>(`${this._baseUrl}/all`, {headers: headers})
+    return this._http.get<IPatient>(`${this._baseUrl}/me`, {headers: headers})
       .pipe(
-        tap(scales => this.patientSubject.next(scales)),
         catchError(this.errorHandler.bind(this))
       )
   }
