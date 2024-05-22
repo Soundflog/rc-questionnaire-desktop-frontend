@@ -1,4 +1,4 @@
-import {IPatient} from '../models/patient'
+import {IPatient} from '../models/response/patient'
 
 export const patients: IPatient[] = [
   {
@@ -12,10 +12,7 @@ export const patients: IPatient[] = [
     workPlaceData: 'Молокозавод на ул. Ленина, ст. 5',
     bookmark: 'Боли в животе',
     snils: 124125,
-    patientStatus: {
-      id: 1,
-      name: 'Нуждается в реабилитации',
-    },
+    patientStatus: 'Нуждается в реабилитации',
     passport:{
       series: 124125,
       number: 124125,
@@ -36,10 +33,7 @@ export const patients: IPatient[] = [
     workPlaceData: 'г. Москва, ул. Ленина, д. 1, кв. 1',
     bookmark: 'г. Москва, ул. Ленина, д. 1, кв. 1',
     snils: 124125,
-    patientStatus: {
-      id: 1,
-      name: 'Нуждается в реабилитации',
-    },
+    patientStatus: 'Нуждается в реабилитации',
     passport:{
       id: 1,
       series: 124125,

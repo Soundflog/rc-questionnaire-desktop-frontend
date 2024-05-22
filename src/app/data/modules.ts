@@ -1,7 +1,7 @@
-import {IModule} from "../models/module";
-import {IRehabProgram} from "../models/rehab_program";
+import {IModuleShort} from "../models/response/rehab/moduleShort";
+import {IRehabProgram} from "../models/response/rehab/rehab_program";
 
-export const modules: IModule[] = [
+export const modules  = [
     {
         id: 1,
         name: "Модуль 1",
