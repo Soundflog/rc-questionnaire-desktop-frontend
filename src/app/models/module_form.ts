@@ -1,11 +1,11 @@
-import {IPatient} from "./patient";
+import {IPatient} from "./response/patient";
 import {IForm} from "./form";
-import {IModule} from "./module";
+import {IModuleShort} from "./response/rehab/moduleShort";
 import {IBlock} from "./block";
 
 export interface IModuleForm {
     id: number
     form_id: IForm
-    module_id: IModule
+    module_id: IModuleShort
     block_id: IBlock
 }

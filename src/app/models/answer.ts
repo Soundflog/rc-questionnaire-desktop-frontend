@@ -1,4 +1,4 @@
-import {IPatient} from "./patient";
+import {IPatient} from "./response/patient";
 import {IVariant} from "./variant";
 
 export interface IAnswer {
