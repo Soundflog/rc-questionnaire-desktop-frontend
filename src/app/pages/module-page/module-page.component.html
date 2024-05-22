@@ -1,25 +1,26 @@
 <div class="container">
+  <ng-container *ngIf="modules$ | async as mods; else loading">
     <tui-island class="tui-space_bottom-5">
-      <h3 class="tui-island__title">Разминочный блок</h3>
-      <div class="container tui-space_bottom-4">
-        <div class="tui-row">
-          <ng-container *ngFor="let ex of exercises">
+      <ng-container *ngFor="let ex of mods.exercises">
+        <h3 class="tui-island__title">{{ ex.blockType }}</h3>
+        <div class="container tui-space_bottom-4">
+          <div class="tui-row">
             <div class="tui-island__content">
-          <!--      TODO: for app-module-exercise необходимо сделать-->
-                  <app-module-exercise
-                    id="{{ex.id.toString()}}"
-                    name="{{ex.name}}"
-                    description="{{ex.description}}"
-                  />
+              <!--      TODO: for app-module-exercise необходимо сделать-->
+              <app-module-exercise
+                id="{{ex.id.toString()}}"
+                name="{{ex.name}}"
+                description="{{ex.description}}"
+              />
             </div>
-          </ng-container>
+          </div>
         </div>
-      </div>
+      </ng-container>
       <h3 class="tui-island__title">Опросы</h3>
       <div class="container">
         <div class="tui-row">
           <!--      TODO: for app-module-anketa необходимо сделать-->
-          <ng-container *ngFor="let f of forms">
+          <ng-container *ngFor="let f of mods.forms">
             <div class="">
               <app-module-anketa
                 title="{{f.name}}" description="{{f.description}}" id="{{f.id.toString()}}"/>
@@ -28,68 +29,8 @@
         </div>
       </div>
     </tui-island>
-<!--  </div>-->
-
-<!--  <div class="tui-row">-->
-    <tui-island class="tui-space_bottom-5">
-      <h3 class="tui-island__title">Основной блок</h3>
-      <div class="container tui-space_bottom-4">
-        <div class="tui-row ">
-          <!--      TODO: for app-module-exercise необходимо сделать-->
-          <ng-container *ngFor="let ex of exercises">
-            <div class="tui-island__content">
-              <!--      TODO: for app-module-exercise необходимо сделать-->
-              <app-module-exercise
-                id="{{ex.id.toString()}}"
-                name="{{ex.name}}"
-                description="{{ex.description}}"/>
-            </div>
-          </ng-container>
-        </div>
-      </div>
-      <h3 class="tui-island__title">Опросы</h3>
-      <div class="container">
-        <div class="tui-row">
-          <!--      TODO: for app-module-anketa необходимо сделать-->
-          <ng-container *ngFor="let f of forms">
-            <div class="">
-              <app-module-anketa id="{{f.id.toString()}}"
-                title="{{f.name}}" description="{{f.description}}"/>
-            </div>
-          </ng-container>
-        </div>
-      </div>
-    </tui-island>
-<!--  </div>-->
-
-<!--  <div class="tui-row">-->
-    <tui-island class="tui-space_bottom-5">
-      <h3 class="tui-island__title">Завершающий блок</h3>
-      <div class="container tui-space_bottom-4">
-        <div class="tui-row">
-          <!--      TODO: for app-module-exercise необходимо сделать-->
-          <ng-container *ngFor="let ex of exercises">
-            <div class="tui-island__content">
-              <!--      TODO: for app-module-exercise необходимо сделать-->
-              <app-module-exercise
-                id="{{ex.id.toString()}}"
-                name="{{ex.name}}"
-                description="{{ex.description}}"/>
-            </div>
-          </ng-container>
-        </div>
-      </div>
-      <h3 class="tui-island__title">Опросы</h3>
-      <div class="container">
-        <div class="tui-row">
-          <!--      TODO: for app-module-anketa необходимо сделать-->
-          <ng-container *ngFor="let f of forms">
-            <div class="">
-              <app-module-anketa id="{{f.id.toString()}}"
-                title="{{f.name}}" description="{{f.description}}"/>
-            </div>
-          </ng-container>
-        </div>
-      </div>
-    </tui-island>
-  </div>
+  </ng-container>
+  <ng-template #loading>
+    <app-loading/>
+  </ng-template>
+</div>

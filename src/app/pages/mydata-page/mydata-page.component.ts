@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {ProductsService} from "../../services/another/products/products.service";
 import {ModalService} from "../../services/another/modal/modal.service";
-import {IPatient} from "../../models/patient";
+import {IPatient} from "../../models/response/patient";
 import {Observable, tap} from "rxjs";
 import {patients} from "../../data/patients";
 import {PatientService} from "../../services/patient/patient.service";

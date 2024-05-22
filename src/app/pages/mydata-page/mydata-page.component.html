@@ -12,7 +12,7 @@
           <label tuiLabel="Дата рождения">{{ stringFyAge(patient.birthDate) }}</label>
           <label tuiLabel="Возраст">{{ calculateAge(patient.birthDate) }}</label>
         </div>
-        <label tuiLabel="Статус">{{ patient.patientStatus.name }}</label>
+        <label tuiLabel="Статус">{{ patient.patientStatus }}</label>
         <label tuiLabel="Место жительства">{{ patient.address }}</label>
         <label tuiLabel="Данные о работе">{{ patient.workPlaceData }}</label>
         <div *ngIf="patient.bookmark">
@@ -53,7 +53,7 @@
           <span class="small">
             <label tuiLabel="Дата выдачи">
               <span [tuiSensitive]="sensitive">
-                {{ patient.passport.issuedDate }}
+                {{ stringFyAge(patient.passport.issuedDate) }}
               </span>
             </label>
           </span>

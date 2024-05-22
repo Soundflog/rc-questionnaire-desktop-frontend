@@ -1,83 +1,101 @@
 <tui-island>
-  <tui-island class="tui-space_bottom-5">
-    <h3 class="tui-island__title">Вводная анкета</h3>
-    <p class="tui-island__paragraph tui-space_bottom-3">
-      Анкета (опросник) по оценке качества жизни пациента для определения ШРМ
-      при заболеваниях периферической нервной системы и опорно-двигательного аппарата
-    </p>
-    <button
-      class="tui-space_bottom-3"
-      size="m"
-      appearance="primary"
-      tuiButton
-      type="button"
-      [disabled]="visiblePrimaryAnketa"
-      (click)="goToNextPage('0')"
-    >
-      Перейти
-    </button>
-    <label
-      class="tui-space_bottom-3"
-      tuiLabel="Дата прохождения"
-    >
-      **01.10.2023**
-    </label>
-  </tui-island>
+  <ng-container *ngIf="rehabProgram$ | async as rehabProgram; else loading">
+    <tui-island class="tui-space_bottom-5">
+      <h3 class="tui-island__title">{{ rehabProgram.programFormResponses[0].typeName }} </h3>
+      <p class="tui-island__paragraph tui-space_bottom-3">
+        {{ rehabProgram.programFormResponses[0].name }}
+      </p>
+      <p class="tui-island__paragraph tui-space_bottom-3">
+        {{ rehabProgram.programFormResponses[0].description }}
+      </p>
+      <button
+        class="tui-space_bottom-3"
+        size="m"
+        appearance="primary"
+        tuiButton
+        type="button"
+        [disabled]="visiblePrimaryAnketa"
+        (click)="goToNextPage('0')"
+      >
+        Перейти
+      </button>
+      <label class="tui-space_bottom-3"
+             tuiLabel="Дата прохождения"
+      >
+        {{ rehabProgram.programFormResponses[0].finishedAt }}
+      </label>
+    </tui-island>
 
-  <tui-accordion class="container tui-space_bottom-5">
-    <tui-accordion-item>
+    <tui-accordion class="container tui-space_bottom-5">
+      <tui-accordion-item>
 
-      <h3 class="font-bold">Мероприятия медицинской реабилитации</h3>
-      <tui-badge
-        status="success"
-        value="Success"
-        class="tui-space_right-2 tui-space_bottom-2"
-      ></tui-badge>
+        <h3 class="font-bold">Мероприятия медицинской реабилитации</h3>
+        <tui-badge
+          status="success"
+          value="Success"
+          class="tui-space_right-2 tui-space_bottom-2"
+        ></tui-badge>
 
-      <ng-template tuiAccordionItemContent>
-        <ng-container *ngFor="let m of modules">
-          <tui-island class="tui-space_bottom-2">
-            <div class="module-content">
-              <span class="module-text">{{ m.name }}</span>
-              <button
-                size="m"
-                appearance="primary"
-                tuiButton
-                type="button"
-                (click)="sendModuleId(m.id)"
-                routerLink="/rehabilitation/program/module/{{m.id}}"
-              >
-                Перейти
-              </button>
-            </div>
-          </tui-island>
-        </ng-container>
+        <ng-template tuiAccordionItemContent>
+          <ng-container *ngFor="let m of rehabProgram.moduleShortResponses">
+            <tui-island class="tui-space_bottom-2">
+              <div class="module-content">
+                <span class="module-text">{{ m.name }}</span>
+                <button
+                  size="m"
+                  appearance="primary"
+                  tuiButton
+                  type="button"
+                  (click)="sendModuleId(m.id)"
+                  routerLink="/rehabilitation/program/module/{{m.id}}"
+                >
+                  Перейти
+                </button>
+              </div>
+            </tui-island>
+          </ng-container>
+        </ng-template>
+      </tui-accordion-item>
+    </tui-accordion>
 
-      </ng-template>
-    </tui-accordion-item>
-  </tui-accordion>
+    <tui-island class="tui-space_bottom-5">
+      <h3 class="tui-island__title">{{ rehabProgram.programFormResponses[1].typeName }} </h3>
+      <p class="tui-island__paragraph tui-space_bottom-3">
+        {{ rehabProgram.programFormResponses[1].name }}
+      </p>
+      <p class="tui-island__paragraph tui-space_bottom-3">
+        {{ rehabProgram.programFormResponses[1].description }}
+      </p>
+      <button
+        class="tui-space_bottom-3"
+        size="m"
+        appearance="primary"
+        tuiButton
+        type="button"
+        [disabled]="visiblePrimaryAnketa"
+        (click)="goToNextPage('0')"
+      >
+        Перейти
+      </button>
+      <label class="tui-space_bottom-3"
+             tuiLabel="Дата прохождения"
+      >
+        {{ rehabProgram.programFormResponses[0].finishedAt }}
+      </label>
 
-  <tui-island class="tui-space_bottom-5">
-    <h3 class="tui-island__title">Выходная анкета</h3>
-    <p class="tui-island__paragraph tui-space_bottom-3">
-      Анкета (опросник) по оценке качества жизни пациента для определения
-      ШРМ при заболеваниях периферической нервной системы и опорно-двигательного аппарата
-    </p>
-    <button
-      class="tui-space_bottom-3"
-      size="m"
-      appearance="primary"
-      tuiButton
-      type="button"
-      [disabled]="visiblePrimaryAnketa"
-      (click)="goToNextPage('0')"
-    >
-      Перейти
-    </button>
+    </tui-island>
     <label class="tui-space_bottom-3"
-           tuiLabel="Дата прохождения"
+           tuiLabel="Дата начало"
     >
-      **01.10.2023**
+      {{ rehabProgram.startDate }}
     </label>
-  </tui-island>
+    <label class="tui-space_bottom-3"
+           tuiLabel="Дата конца"
+    >
+      {{ rehabProgram.endDate }}
+    </label>
+  </ng-container>
+  <ng-template #loading>
+    <app-loading/>
+  </ng-template>
 </tui-island>
