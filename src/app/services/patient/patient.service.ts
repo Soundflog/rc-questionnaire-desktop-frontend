@@ -4,7 +4,10 @@ import {BehaviorSubject, catchError, tap, throwError} from "rxjs";
 import {API_URL} from "../../constants/constants";
 import {ErrorService} from "../error/error.service";
 import {IPatientStatus} from "../../models/patientstatus";
-import {IPatient} from "../../models/patient";
+import {IPatient} from "../../models/response/patient";
+import {IRehabProgram} from "../../models/response/rehab/rehab_program";
+import {IHistoryResponse} from "../../models/response/history/historyResponse";
+import {IModule} from "../../models/response/module/module";
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +27,33 @@ export class PatientService {
     const headers = { 'Authorization': 'Bearer ' + localStorage.getItem("token") }
 
     return this._http.get<IPatient>(`${this._baseUrl}/me`, {headers: headers})
+      .pipe(
+        catchError(this.errorHandler.bind(this))
+      )
+  }
+
+  getRehab() {
+    const headers = { 'Authorization': 'Bearer ' + localStorage.getItem("token") }
+
+    return this._http.get<IRehabProgram>(`${this._baseUrl}/rehab`, {headers: headers})
+      .pipe(
+        catchError(this.errorHandler.bind(this))
+      )
+  }
+
+  getModule(moduleId: number) {
+    const headers = { 'Authorization': 'Bearer ' + localStorage.getItem("token") }
+
+    return this._http.get<IModule>(`${this._baseUrl}/modules/${moduleId}`, {headers: headers})
+      .pipe(
+        catchError(this.errorHandler.bind(this))
+      )
+  }
+
+  getHistory() {
+    const headers = { 'Authorization': 'Bearer ' + localStorage.getItem("token") }
+
+    return this._http.get<IHistoryResponse[]>(`${this._baseUrl}/history`, {headers: headers})
       .pipe(
         catchError(this.errorHandler.bind(this))
       )
