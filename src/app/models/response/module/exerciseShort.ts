@@ -1,5 +1,5 @@
 export interface IExerciseShortResponse {
-  id: number
+  moduleExId: number
   name: string,
   exerciseType: string,
   description: string,

@@ -3,12 +3,13 @@ import {IVariant} from "./variant";
 export interface IQuestion {
   id: number
   content: string
-  variants: IVariant[]
+  required: boolean | false
   type: QuestionType
+  variants: IVariant[]
 }
 
 export enum QuestionType {
-  MULTIPLE_CHOICE = "multiple_choice",
-  SINGLE_CHOICE = "single_choice",
-  SCALE = "scale",
+  SINGLE_CHOICE = "SINGLE_CHOICE",
+  MULTIPLE_CHOICE = "MULTIPLE_CHOICE",
+  SCALE = "SCALE",
 }

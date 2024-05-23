@@ -1,5 +1,5 @@
 export interface IFormShortResponse {
-  id: number
+  moduleFormId: number
   name: string
   description: string
 }
