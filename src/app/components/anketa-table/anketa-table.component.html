@@ -1,6 +1,5 @@
 <div class="tui-space_bottom-5">
   <form [formGroup]="surveyForm">
-    <h3 class="title"> {{ form.name }}</h3>
     <div class="tui-space_bottom-5"
          *ngFor="let question of form.questions; let i = index"
          [formGroupName]="'question_'+question.id"
@@ -11,7 +10,7 @@
            *ngIf="question?.variants"
       >
         <!--        Множество-->
-        <ng-container *ngIf="question.type==='multiple_choice'">
+        <ng-container *ngIf="question.type === QuestionType.MULTIPLE_CHOICE">
           <div orientation="vertical" tuiGroup class="group"
                [collapsed]="true"
                formArrayName="variants"
@@ -22,6 +21,7 @@
               <tui-checkbox-block
                 contentAlign="right"
                 formControlName="answer"
+                class="container"
                 size="l"
               >
                 {{ variant.content || 'Ответ 1' }}
@@ -30,17 +30,20 @@
           </div>
         </ng-container>
         <!-- Один из нескольких -->
-        <ng-container *ngIf="question.type==='single_choice'">
+        <ng-container *ngIf="question.type=== QuestionType.SINGLE_CHOICE">
           <div orientation="vertical" tuiGroup class="group"
                [collapsed]="true"
                formGroupName="variants"
           >
             <ng-container *ngFor="let variant of question.variants; let j = index">
-              <tui-radio-block contentAlign="right" size="l"
-                               formControlName="id"
-                               [item]="variant.id"
+              <tui-radio-block
+                class="container"
+                contentAlign="right"
+                size="l"
+                formControlName="id"
+                [item]="variant.id"
               >
-                {{variant.content}}
+                {{ variant.content }}
               </tui-radio-block>
             </ng-container>
           </div>
