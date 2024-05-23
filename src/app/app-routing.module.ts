@@ -21,10 +21,10 @@ const routes: Routes = [
     component: AnketirovaniePageComponent,
     canActivate: [authGuard()],
     children: [
-      { path: 'data', component: MydataPageComponent, data: {title: 'Мои данные', text: 'Text for my data'}},
-      { path: 'history', component: HistoryPageComponent, data: {title: 'История реабилитации'} },
-      { path: 'program', component: ProgrammPageComponent, data: {title: 'Программа реабилитации'} },
-      { path: 'results', component: ResultsPageComponent, data: {title: 'Результаты реабилитации'} },
+      { path: 'data', component: MydataPageComponent, data: { title: 'Мои данные', text: 'Text for my data' } },
+      { path: 'history', component: HistoryPageComponent, data: { title: 'История реабилитации' } },
+      { path: 'program', component: ProgrammPageComponent, data: { title: 'Программа реабилитации' } },
+      { path: 'results', component: ResultsPageComponent, data: { title: 'Результаты реабилитации' } },
       {
         path: 'program/module/:moduleId',
         component: ModuleRodPageComponent,
@@ -32,12 +32,13 @@ const routes: Routes = [
         children: [
           { path: '', component: ModulePageComponent, data: { title: 'Модуль' } },
           { path: 'exercise/:exerciseId', component: ExercisePageComponent, data: { title: 'Упражнение' } },
-          { path: 'anketa/:anketaId', component: AnketaPageComponent, data: { title: 'Анкета' } },
+          { path: 'form/:formId', component: AnketaPageComponent, data: { title: 'Анкета' } },
         ],
       },
     ],
   },
-]
+];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
