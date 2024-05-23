@@ -6,11 +6,28 @@
       История проведения медицинской реабилитации
     </h3>
 
-    <p *ngIf="isHistory" class="tui-island__paragraph">
-      {{history}}
-    </p>
-    <p *ngIf="!isHistory" class="tui-island__paragraph">
-      Отсутствует
-    </p>
+    <ng-container *ngIf="history$ | async as historyResponses; else loading">
+      <ng-container *ngFor="let h of historyResponses">
+        <p *ngIf="isHistory" class="tui-island__paragraph">
+          <label
+            class="tui-space_bottom-3"
+            tuiLabel="Дата прохождения"
+          >
+            {{ h.endDate }}
+          </label>
+          <ng-container *ngFor="let pr of h.protocols">
+            <p class="tui-island__paragraph">
+              {{pr.recommendations}}
+            </p>
+          </ng-container>
+        </p>
+      </ng-container>
+      <p *ngIf="!isHistory" class="tui-island__paragraph">
+        Отсутствует
+      </p>
+    </ng-container>
+    <ng-template #loading>
+      <app-loading></app-loading>
+    </ng-template>
   </tui-island>
 </div>

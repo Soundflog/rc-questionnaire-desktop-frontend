@@ -8,9 +8,10 @@
             <div class="tui-island__content">
               <!--      TODO: for app-module-exercise необходимо сделать-->
               <app-module-exercise
-                id="{{ex.id.toString()}}"
-                name="{{ex.name}}"
-                description="{{ex.description}}"
+                [id]="ex.moduleExId"
+                [moduleId]="moduleId"
+                [name]=ex.name
+                [description]=ex.description
               />
             </div>
           </div>
@@ -23,7 +24,11 @@
           <ng-container *ngFor="let f of mods.forms">
             <div class="">
               <app-module-anketa
-                title="{{f.name}}" description="{{f.description}}" id="{{f.id.toString()}}"/>
+                [id]="f.moduleFormId"
+                [moduleId]="moduleId"
+                [title]=f.name
+                [description]=f.description
+              />
             </div>
           </ng-container>
         </div>

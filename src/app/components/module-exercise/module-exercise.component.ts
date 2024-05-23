@@ -12,7 +12,8 @@ import {ExerciseService} from "../../services/module/ExerciseService";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModuleExerciseComponent implements OnInit{
-  @Input() id: string;
+  @Input() id: number;
+  @Input() moduleId: string;
   @Input() name: string;
   @Input() description: string;
 
@@ -38,8 +39,8 @@ export class ModuleExerciseComponent implements OnInit{
   //   TODO: реализовать передачу упражнения из компонента в компонент с endpoint
   }
 
-  goToNextPage(page: string): void {
-    // Здесь 'next-page' - это путь к следующей странице
-    this.router.navigate(['/rehabilitation/program/module/'+ this.receivedModuleId +'/exercise/'+page]);
+  goToNextPage(moduleId: string, exerciseId: number) {
+    String(exerciseId)
+    this.router.navigate([`/rehabilitation/program/module/${moduleId}/exercise/${exerciseId}`]);
   }
 }

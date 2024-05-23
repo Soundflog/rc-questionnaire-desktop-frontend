@@ -1,18 +1,11 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {IExercise} from "../../models/exercise";
-import { exercises } from 'src/app/data/exercises';
-import {modules} from "../../data/modules";
-import {forms} from "../../data/forms";
-import {IForm} from "../../models/form";
 import {ExerciseService} from "../../services/module/ExerciseService";
 import {Observable, tap} from "rxjs";
-import {IRehabProgram} from "../../models/response/rehab/rehab_program";
 import {PatientService} from "../../services/patient/patient.service";
-import {IFormShortResponse} from "../../models/response/module/formShort";
 import {IModule} from "../../models/response/module/module";
-import {IExerciseShortResponse} from "../../models/response/module/exerciseShort";
-import {Router} from "@angular/router";
-import {toNumbers} from "@angular/compiler-cli/src/version_helpers";
+import {ActivatedRoute, Router} from "@angular/router";
+import {ModuleIdService} from "../../services/module/ModuleService";
+import {FormIdService} from "../../services/module/FormIdService";
 
 @Component({
   selector: 'app-module-page',
@@ -20,31 +13,49 @@ import {toNumbers} from "@angular/compiler-cli/src/version_helpers";
   styleUrls: ['./module-page.component.css', "./module-page.component.less"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ModulePageComponent implements OnInit{
+export class ModulePageComponent implements OnInit {
   // protected readonly exercises: IExercise[] = exercises;
   // exercises$ : Observable<IExerciseShortResponse[]>
 
   // protected readonly forms: IForm[] = forms
   // forms$ : Observable<IFormShortResponse[]>
-  modules$ : Observable<IModule>
-  idModule: number
+  modules$: Observable<IModule>
+  moduleId: string;
+
   // protected readonly modules = modules;
 
   constructor(
-    private exerciseService: ExerciseService,
     private patientService: PatientService,
+    private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
-    this.idModule = 3;
-    this.modules$ = this.patientService.getModule(this.idModule).pipe(
+    // this.moduleId = this.moduleIdService.getModuleId()
+    // if (this.moduleId == null){
+    this.route.paramMap.subscribe(params => {
+      const moduleIdParam = params.get('moduleId');
+      // params.getAll().forEach(param => { console.log(param)})
+      if (moduleIdParam !== null) {
+        this.moduleId = moduleIdParam;
+      }
+    });
+
+    this.modules$ = this.patientService.getModule(this.moduleId).pipe(
       tap((module: IModule) => {
         console.log(module)
       }),
     );
   }
-  sendExerciseId(exercise:number): void {
-    this.exerciseService.setExerciseId(exercise);
+
+  navigateToExercise(moduleId: number, exerciseId: number) {
+    this.router.navigate([`/rehabilitation/program/module/${moduleId}/exercise/${exerciseId}`]);
   }
+
+  navigateToForm(moduleId: number, formId: number) {
+    this.router.navigate([`/rehabilitation/program/module/${moduleId}/form/${formId}`]);
+  }
+
+  protected readonly String = String;
 }
