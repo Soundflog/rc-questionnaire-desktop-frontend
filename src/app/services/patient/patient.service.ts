@@ -8,6 +8,8 @@ import {IPatient} from "../../models/response/patient";
 import {IRehabProgram} from "../../models/response/rehab/rehab_program";
 import {IHistoryResponse} from "../../models/response/history/historyResponse";
 import {IModule} from "../../models/response/module/module";
+import {IExercise} from "../../models/exercise";
+import {IForm} from "../../models/form";
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +43,7 @@ export class PatientService {
       )
   }
 
-  getModule(moduleId: number) {
+  getModule(moduleId: string) {
     const headers = { 'Authorization': 'Bearer ' + localStorage.getItem("token") }
 
     return this._http.get<IModule>(`${this._baseUrl}/modules/${moduleId}`, {headers: headers})
@@ -54,6 +56,24 @@ export class PatientService {
     const headers = { 'Authorization': 'Bearer ' + localStorage.getItem("token") }
 
     return this._http.get<IHistoryResponse[]>(`${this._baseUrl}/history`, {headers: headers})
+      .pipe(
+        catchError(this.errorHandler.bind(this))
+      )
+  }
+
+  getExercise(moduleId: string, exerciseId: string) {
+    const headers = { 'Authorization': 'Bearer ' + localStorage.getItem("token") }
+
+    return this._http.get<IExercise>(`${this._baseUrl}/modules/${moduleId}/exercises/${exerciseId}`, {headers: headers})
+      .pipe(
+        catchError(this.errorHandler.bind(this))
+      )
+  }
+
+  getForm(moduleId: string, formId: string) {
+    const headers = { 'Authorization': 'Bearer ' + localStorage.getItem("token") }
+
+    return this._http.get<IForm>(`${this._baseUrl}/modules/${moduleId}/forms/${formId}`, {headers: headers})
       .pipe(
         catchError(this.errorHandler.bind(this))
       )
