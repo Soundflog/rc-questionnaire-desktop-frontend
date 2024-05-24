@@ -1,14 +1,17 @@
 <tui-island class="anketa tui-space_bottom-5">
   <ng-container *ngIf="form$ | async as f; else loading">
-    <p class="tui-island__content tui-space_bottom-3">
-      {{f.name}}
-    </p>
     <label
-      class="tui-space_bottom-3"
-      tuiLabel="Дата прохождения"
+      class="tui-island__content tui-space_bottom-3"
+      tuiLabel="Название"
     >
-      **01.10.2023**
+      {{f.name}}
     </label>
+<!--    <label-->
+<!--      class="tui-space_bottom-3"-->
+<!--      tuiLabel="Дата прохождения"-->
+<!--    >-->
+<!--      **01.10.2023**-->
+<!--    </label>-->
     <!--<div *ngFor="let item of items">
       <app-anketa-table [anketa]="item"/>
     </div>-->

@@ -3,7 +3,6 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {BehaviorSubject, catchError, tap, throwError} from "rxjs";
 import {API_URL} from "../../constants/constants";
 import {ErrorService} from "../error/error.service";
-import {IPatientStatus} from "../../models/patientstatus";
 import {IPatient} from "../../models/response/patient";
 import {IRehabProgram} from "../../models/response/rehab/rehab_program";
 import {IHistoryResponse} from "../../models/response/history/historyResponse";

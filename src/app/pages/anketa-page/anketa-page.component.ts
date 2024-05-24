@@ -24,17 +24,6 @@ export class AnketaPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.route.paramMap.subscribe(params => {
-    //   const moduleIdParam = params.get('moduleId');
-    //   const formIdParam = params.get('formId');
-    //   if (formIdParam !== null) {
-    //     this.formId = formIdParam;
-    //   }
-    //   if (moduleIdParam !== null) {
-    //     this.moduleId = moduleIdParam;
-    //   }
-    // Инициализируем form$ только после назначения значений formId и moduleId
-    // if (this.formId !== undefined && this.moduleId !== undefined) {
     this.formId = this.router.url.split('/')[6];
     this.moduleId = this.router.url.split('/')[4]
     this.form$ = this.patientService.getForm(this.moduleId, this.formId).pipe(

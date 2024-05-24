@@ -4,7 +4,6 @@ import {TuiDialogContext} from '@taiga-ui/core';
 import {PatientService} from "../../services/patient/patient.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable, tap} from "rxjs";
-import {IModule} from "../../models/response/module/module";
 import {IExercise} from "../../models/exercise";
 
 @Component({
@@ -31,7 +30,6 @@ export class ExercisePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // console.log(this.router.url.split('/')[4])
     this.route.paramMap.subscribe(params => {
       const exerciseIdParam = params.get('exerciseId');
       const moduleIdParam = params.get('moduleId');
@@ -44,11 +42,9 @@ export class ExercisePageComponent implements OnInit {
       // Инициализируем form$ только после назначения значений formId и moduleId
       if (this.exerciseId !== undefined || this.moduleId !== undefined) {
         this.exerciseId = this.router.url.split('/')[6];
-        this.moduleId = this.router.url.split('/')[4]
-        console.log(this.exerciseId);
+        this.moduleId = this.router.url.split('/')[4];
         this.exercise$ = this.patientService.getExercise(this.moduleId, this.exerciseId).pipe(
           tap(form => {
-            console.log(form);
           })
         );
       }
