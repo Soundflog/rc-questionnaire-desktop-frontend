@@ -26,54 +26,42 @@ export class PatientService {
   }
 
   getMe() {
-    const headers = { 'Authorization': 'Bearer ' + localStorage.getItem("token") }
-
-    return this._http.get<IPatient>(`${this._baseUrl}/me`, {headers: headers})
+    return this._http.get<IPatient>(`${this._baseUrl}/me`)
       .pipe(
         catchError(this.errorHandler.bind(this))
       )
   }
 
   getRehab() {
-    const headers = { 'Authorization': 'Bearer ' + localStorage.getItem("token") }
-
-    return this._http.get<IRehabProgram>(`${this._baseUrl}/rehab`, {headers: headers})
+    return this._http.get<IRehabProgram>(`${this._baseUrl}/rehab`)
       .pipe(
         catchError(this.errorHandler.bind(this))
       )
   }
 
   getModule(moduleId: string) {
-    const headers = { 'Authorization': 'Bearer ' + localStorage.getItem("token") }
-
-    return this._http.get<IModule>(`${this._baseUrl}/modules/${moduleId}`, {headers: headers})
+    return this._http.get<IModule>(`${this._baseUrl}/modules/${moduleId}`)
       .pipe(
         catchError(this.errorHandler.bind(this))
       )
   }
 
   getHistory() {
-    const headers = { 'Authorization': 'Bearer ' + localStorage.getItem("token") }
-
-    return this._http.get<IHistoryResponse[]>(`${this._baseUrl}/history`, {headers: headers})
+    return this._http.get<IHistoryResponse[]>(`${this._baseUrl}/history`)
       .pipe(
         catchError(this.errorHandler.bind(this))
       )
   }
 
   getExercise(moduleId: string, exerciseId: string) {
-    const headers = { 'Authorization': 'Bearer ' + localStorage.getItem("token") }
-
-    return this._http.get<IExercise>(`${this._baseUrl}/modules/${moduleId}/exercises/${exerciseId}`, {headers: headers})
+    return this._http.get<IExercise>(`${this._baseUrl}/modules/${moduleId}/exercises/${exerciseId}`)
       .pipe(
         catchError(this.errorHandler.bind(this))
       )
   }
 
   getForm(moduleId: string, formId: string) {
-    const headers = { 'Authorization': 'Bearer ' + localStorage.getItem("token") }
-
-    return this._http.get<IForm>(`${this._baseUrl}/modules/${moduleId}/forms/${formId}`, {headers: headers})
+    return this._http.get<IForm>(`${this._baseUrl}/modules/${moduleId}/forms/${formId}`)
       .pipe(
         catchError(this.errorHandler.bind(this))
       )

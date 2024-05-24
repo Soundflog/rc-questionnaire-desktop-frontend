@@ -1,4 +1,4 @@
-import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
+import {NgDompurifySanitizer} from "@tinkoff/ng-dompurify";
 import {NgModule} from '@angular/core'
 import {BrowserModule, Title} from '@angular/platform-browser'
 import {ToastrModule} from "ngx-toastr";
@@ -55,13 +55,15 @@ import {TuiTableModule} from "@taiga-ui/addon-table";
 import {NavModuleComponent} from './components/nav-module/nav-module.component';
 import {TuiActiveZoneModule, TuiValueChangesModule} from "@taiga-ui/cdk";
 import {
-    TuiAppearanceModule,
-    TuiFadeModule,
-    TuiIconsModule,
-    TuiNavigationModule,
-    TuiSensitiveModule
+  TuiAppearanceModule,
+  TuiFadeModule,
+  TuiIconsModule,
+  TuiNavigationModule,
+  TuiSensitiveModule
 } from "@taiga-ui/experimental";
-import { LoadingComponent } from './components/loading/loading.component';
+import {LoadingComponent} from './components/loading/loading.component';
+import {ProgramFormPageComponent} from './pages/program-form-page/program-form-page.component';
+import {httpInterceptorProviders} from "./services/auth/auth-interceptor";
 
 
 @NgModule({
@@ -90,7 +92,8 @@ import { LoadingComponent } from './components/loading/loading.component';
     ModuleRodPageComponent,
     AnketaTableComponent,
     NavModuleComponent,
-    LoadingComponent
+    LoadingComponent,
+    ProgramFormPageComponent
   ],
   imports: [
     BrowserModule,
@@ -143,7 +146,8 @@ import { LoadingComponent } from './components/loading/loading.component';
     TuiSensitiveModule,
     TuiToggleModule
   ],
-  providers: [Title, {provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
+  providers: [Title, httpInterceptorProviders,
+    {provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -2,7 +2,7 @@
 import {Injectable, signal} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Observable, of, tap} from 'rxjs';
-import {catchError, map} from 'rxjs/operators';
+import {catchError} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {ToastrService} from "ngx-toastr";
 import {IAuthUser, IUser} from "../../models/types/user.interface";
@@ -24,24 +24,6 @@ export class AuthService {
     this.isAuthSig.set(!!token)
   }
 
-  // signUp
-  signUp(userData: IAuthUser) {
-    return this.http.post<any>(`${API_URL}/signup`, userData)
-      .pipe(
-        tap(() =>
-          this.login(userData)
-        ),
-        catchError((error) => {
-          console.error('Login error:', error);
-          this.handeError(error);
-          throw new Error(error.message);
-        })
-      )
-      .subscribe(() =>
-        this.toastr.success('created')
-      )
-  }
-
   login(userData: IAuthUser) {
     return this.http.post<IUser>(`${API_URL}/auth/auth`, userData)
       .pipe(
@@ -50,9 +32,7 @@ export class AuthService {
           this.isAuthSig.set(true)
         }),
         catchError((error) => {
-          console.error('Login error:', error);
           this.handeError(error);
-          this.toastr.error(error.message)
           throw new Error(error.message);
         })
       )
@@ -69,10 +49,6 @@ export class AuthService {
   isAuthenticated(): Observable<boolean> {
     const token = localStorage.getItem('token');
     return of(!!token);
-  }
-
-  redirectToLogin(): Promise<Observable<never>> {
-    return this.router.navigate(['']).then(() => of());
   }
 
   private handeError(err: HttpErrorResponse) {
