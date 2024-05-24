@@ -1,29 +1,31 @@
 <tui-island>
   <ng-container *ngIf="rehabProgram$ | async as rehabProgram; else loading">
     <tui-island class="tui-space_bottom-5">
-      <h3 class="tui-island__title">{{ rehabProgram.programFormResponses[0].typeName }} </h3>
-      <p class="tui-island__paragraph tui-space_bottom-3">
-        {{ rehabProgram.programFormResponses[0].name }}
-      </p>
-      <p class="tui-island__paragraph tui-space_bottom-3">
-        {{ rehabProgram.programFormResponses[0].description }}
-      </p>
-      <button
-        class="tui-space_bottom-3"
-        size="m"
-        appearance="primary"
-        tuiButton
-        type="button"
-        [disabled]="visiblePrimaryAnketa"
-        (click)="goToNextPage('0')"
-      >
-        Перейти
-      </button>
-      <label class="tui-space_bottom-3"
-             tuiLabel="Дата прохождения"
-      >
-        {{ rehabProgram.programFormResponses[0].finishedAt }}
-      </label>
+      <ng-container *ngIf="rehabProgram.programFormResponses[0] as prForm0">
+        <h3 class="tui-island__title">{{ prForm0.typeName }} </h3>
+        <p class="tui-island__paragraph tui-space_bottom-3">
+          {{ prForm0.name }}
+        </p>
+        <p class="tui-island__paragraph tui-space_bottom-3">
+          {{ prForm0.description }}
+        </p>
+        <button
+          class="tui-space_bottom-3"
+          size="m"
+          appearance="primary"
+          tuiButton
+          type="button"
+          [disabled]="visiblePrimaryAnketa"
+          (click)="goToNextPage(prForm0.id)"
+        >
+          Перейти
+        </button>
+        <label class="tui-space_bottom-3"
+               tuiLabel="Дата окончания"
+        >
+          {{ stringFyDate(prForm0.finishedAt) }}
+        </label>
+      </ng-container>
     </tui-island>
 
     <tui-accordion class="container tui-space_bottom-5">
@@ -59,40 +61,41 @@
     </tui-accordion>
 
     <tui-island class="tui-space_bottom-5">
-      <h3 class="tui-island__title">{{ rehabProgram.programFormResponses[1].typeName }} </h3>
-      <p class="tui-island__paragraph tui-space_bottom-3">
-        {{ rehabProgram.programFormResponses[1].name }}
-      </p>
-      <p class="tui-island__paragraph tui-space_bottom-3">
-        {{ rehabProgram.programFormResponses[1].description }}
-      </p>
-      <button
-        class="tui-space_bottom-3"
-        size="m"
-        appearance="primary"
-        tuiButton
-        type="button"
-        [disabled]="visiblePrimaryAnketa"
-        (click)="goToNextPage('0')"
-      >
-        Перейти
-      </button>
-      <label class="tui-space_bottom-3"
-             tuiLabel="Дата прохождения"
-      >
-        {{ rehabProgram.programFormResponses[0].finishedAt }}
-      </label>
-
+      <ng-container *ngIf="rehabProgram.programFormResponses[1] as prForm1">
+        <h3 class="tui-island__title">{{ prForm1.typeName }} </h3>
+        <p class="tui-island__paragraph tui-space_bottom-3">
+          {{ prForm1.name }}
+        </p>
+        <p class="tui-island__paragraph tui-space_bottom-3">
+          {{ prForm1.description }}
+        </p>
+        <button
+          class="tui-space_bottom-3"
+          size="m"
+          appearance="primary"
+          tuiButton
+          type="button"
+          [disabled]="visiblePrimaryAnketa"
+          (click)="goToNextPage(prForm1.id)"
+        >
+          Перейти
+        </button>
+        <label class="tui-space_bottom-3"
+               tuiLabel="Дата окончания"
+        >
+          {{ stringFyDate(prForm1.finishedAt) }}
+        </label>
+      </ng-container>
     </tui-island>
     <label class="tui-space_bottom-3"
-           tuiLabel="Дата начало"
+           tuiLabel="Дата начала программы"
     >
-      {{ rehabProgram.startDate }}
+      {{ stringFyDate(rehabProgram.startDate) }}
     </label>
     <label class="tui-space_bottom-3"
-           tuiLabel="Дата конца"
+           tuiLabel="Дата окончания программы"
     >
-      {{ rehabProgram.endDate }}
+      {{ stringFyDate(rehabProgram.endDate) }}
     </label>
   </ng-container>
   <ng-template #loading>

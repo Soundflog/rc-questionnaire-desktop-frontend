@@ -37,8 +37,13 @@ export class ProgrammPageComponent implements OnInit{
     this.moduleIdService.setModuleId(moduleId);
   }
 
-  goToNextPage(page: string){
-    this.router.navigate(['/rehabilitation/program/module/' + 0 + '/anketa/' + page]);
+  stringFyDate(date: string) {
+    return new Date(date).toLocaleDateString();
+  }
+
+  goToNextPage(programFormId: number){
+    String(programFormId);
+    this.router.navigate(['/rehabilitation/program/form/' + programFormId]);
     this.visiblePrimaryAnketa = !this.visiblePrimaryAnketa;
   }
 }
