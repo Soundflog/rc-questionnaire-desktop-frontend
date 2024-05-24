@@ -67,6 +67,13 @@ export class PatientService {
       )
   }
 
+  getProgramForm(programFormId: string) {
+    return this._http.get<IForm>(`${this._baseUrl}/rehab/forms/${programFormId}`)
+      .pipe(
+        catchError(this.errorHandler.bind(this))
+      )
+  }
+
   private errorHandler(error: HttpErrorResponse) {
     this.errorService.handle(error.message)
     return throwError(() => error.message)
