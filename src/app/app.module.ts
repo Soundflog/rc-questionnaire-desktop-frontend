@@ -64,6 +64,8 @@ import {
 import {LoadingComponent} from './components/loading/loading.component';
 import {ProgramFormPageComponent} from './pages/program-form-page/program-form-page.component';
 import {httpInterceptorProviders} from "./services/auth/auth-interceptor";
+import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
+import {TuiBlockStatusModule} from "@taiga-ui/layout";
 
 
 @NgModule({
@@ -93,7 +95,8 @@ import {httpInterceptorProviders} from "./services/auth/auth-interceptor";
     AnketaTableComponent,
     NavModuleComponent,
     LoadingComponent,
-    ProgramFormPageComponent
+    ProgramFormPageComponent,
+    NotFoundPageComponent
   ],
   imports: [
     BrowserModule,
@@ -144,7 +147,8 @@ import {httpInterceptorProviders} from "./services/auth/auth-interceptor";
     TuiTabBarModule,
     TuiSvgModule,
     TuiSensitiveModule,
-    TuiToggleModule
+    TuiToggleModule,
+    TuiBlockStatusModule
   ],
   providers: [Title, httpInterceptorProviders,
     {provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],

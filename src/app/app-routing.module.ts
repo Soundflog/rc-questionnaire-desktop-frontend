@@ -11,6 +11,8 @@ import {ExercisePageComponent} from "./pages/exercise-page/exercise-page.compone
 import {AnketaPageComponent} from "./pages/anketa-page/anketa-page.component";
 import {ModuleRodPageComponent} from "./pages/module-rod-page/module-rod-page.component";
 import {authGuard} from "./services/auth/auth.guard";
+import {NotFoundPageComponent} from "./pages/not-found-page/not-found-page.component";
+import {ProgramFormPageComponent} from "./pages/program-form-page/program-form-page.component";
 
 
 
@@ -35,8 +37,16 @@ const routes: Routes = [
           { path: 'form/:formId', component: AnketaPageComponent, data: { title: 'Анкета' } },
         ],
       },
+      {
+        path: 'program/form/:programFormId',
+        component: ProgramFormPageComponent,
+      }
     ],
   },
+  {
+    path: '**',
+    component: NotFoundPageComponent,
+  }
 ];
 
 
