@@ -1,9 +1,15 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, Input, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {IForm} from "../../models/form";
 import {QuestionType} from "../../models/question";
 import {IVariant} from "../../models/variant";
+import {FormService} from "../../services/form/form.service";
+import {Router} from "@angular/router";
+import {IAnswerRequest} from "../../models/request/answerRequest";
+import {catchError, tap, throwError} from "rxjs";
+import {TuiDialogContext, TuiDialogService} from "@taiga-ui/core";
+import {PolymorpheusContent} from '@tinkoff/ng-polymorpheus';
 
 @Component({
   selector: 'app-anketa-table',
@@ -17,9 +23,17 @@ export class AnketaTableComponent implements OnInit {
   surveyForm: FormGroup;
   lengthVariants = 0;
   maxScoreVariants = 0;
+  moduleFormId: string;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private formService: FormService,
+              private router: Router,
+              @Inject(TuiDialogService) private readonly dialogs: TuiDialogService) {
     this.surveyForm = this.fb.group({});
+  }
+
+  showDialog(content: PolymorpheusContent<TuiDialogContext>): void {
+    this.dialogs.open(content).subscribe();
   }
 
   ngOnInit() {
@@ -71,8 +85,6 @@ export class AnketaTableComponent implements OnInit {
 
       this.surveyForm.addControl(`question_${question.id}`, questionGroup);
     });
-
-    console.log(this.surveyForm)
   }
 
   scalePatchValue(newVariant: IVariant) {
@@ -91,15 +103,29 @@ export class AnketaTableComponent implements OnInit {
 
   sendSurvey() {
     // Отправьте данные формы на сервер
-    console.log(this.surveyForm.value);
+    // console.log(this.surveyForm.value);
     const selectedVariantIds = this.getSelectedVariantIds();
     console.log(selectedVariantIds);
+    // console.log(this.surveyForm.controls)
+
+    this.moduleFormId = this.router.url.split('/')[6];
+    this.formService.submitAnswers(Number(this.moduleFormId), selectedVariantIds)
+      .pipe(
+        tap(response => {
+          console.log(response)
+        }),
+        catchError(error => {
+          console.log(error);
+          return throwError(error);
+        })
+      );
+
   }
 
   // Необходимо при отправке данных на сервер создать List Id из вариантов в которых отмеченные (answer=true)
   // возвращает list id вариантов
-  getSelectedVariantIds(): number[] {
-    const selectedVariantIds: number[] = [];
+  getSelectedVariantIds(): IAnswerRequest[] {
+    const selectedVariantIds: IAnswerRequest[] = [];
 
     Object.keys(this.surveyForm.controls).forEach((questionKey) => {
       const questionGroup = this.surveyForm.get(questionKey) as FormGroup;
@@ -107,16 +133,17 @@ export class AnketaTableComponent implements OnInit {
 
       if (questionType === QuestionType.SINGLE_CHOICE) {
         const selectedVariantId = (questionGroup.get('variants.id') as FormControl).value;
-        selectedVariantIds.push(selectedVariantId);
+        selectedVariantIds.push({variantId: selectedVariantId});
       } else if (questionType === QuestionType.SCALE) {
         // TODO: Scale подсчет
         const selectedScore = (questionGroup.get('variants.score') as FormControl).value;
-
+        console.log("Scale score: ",selectedScore);
         const question = this.form.questions.find(q => q.id === +questionKey.split('_')[1]);
         if (question) {
           const selectedVariant = question.variants.find(v => v.score === selectedScore);
           if (selectedVariant) {
-            selectedVariantIds.push(selectedVariant.id);
+            console.log("variant Scale score:",selectedVariant.score);
+            // selectedVariantIds.push({variantId: selectedVariant.});
           }
         }
       } else {
@@ -124,9 +151,8 @@ export class AnketaTableComponent implements OnInit {
         variantsArray.controls.forEach((variantGroup) => {
           const variantId = (variantGroup.get('id') as FormControl).value;
           const variantAnswer = (variantGroup.get('answer') as FormControl).value;
-
           if (variantAnswer) {
-            selectedVariantIds.push(variantId);
+            selectedVariantIds.push({variantId: variantId});
           }
         });
       }

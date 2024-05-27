@@ -1,9 +1,10 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {IPatient} from "../../models/response/patient";
+import {IPatient, PatientStatus} from "../../models/response/patient";
 import {Observable, tap} from "rxjs";
 import {PatientService} from "../../services/patient/patient.service";
 import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
+import {TuiStatus} from "@taiga-ui/kit";
 
 @Component({
   selector: 'app-mydata-page',
@@ -41,6 +42,10 @@ export class MydataPageComponent implements OnInit{
   stringFyAge(birthDate: string): string {
     const [year, month, day] = birthDate.split('-');
     return day + '-' + month + '-' + year;
+  }
+
+  stringFyName(firstName: string, lastName: string, middleName: string): string {
+    return lastName +' ' + firstName +' ' + middleName;
   }
 
   calculateAge(birthDate: string): number {

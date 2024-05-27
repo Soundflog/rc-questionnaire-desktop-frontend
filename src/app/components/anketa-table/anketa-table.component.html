@@ -73,8 +73,34 @@
   <button class="w-full" tuiButton size="xl"
           appearance="primary"
           type="submit"
-          (click)="sendSurvey()"
+          (click)="showDialog(template)"
   >
     Отправить
   </button>
+  <ng-template
+    #template
+    let-observer
+  >
+    <h1 class="tui-space_bottom-3">Подверждение</h1>
+    <p class="tui-space_bottom-3">Убедитесь в правильности введенных данных</p>
+    <button
+      size="m"
+      tuiButton
+      type="button"
+      class="tui-space_right-3"
+      (click)="sendSurvey()"
+    >
+      Подвердить
+    </button>
+    <button
+      size="m"
+      tuiButton
+      appearance="accent"
+      type="button"
+      (click)="observer.complete()"
+    >
+      Отменить
+    </button>
+  </ng-template>
+
 </div>

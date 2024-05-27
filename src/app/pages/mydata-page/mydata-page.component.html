@@ -3,65 +3,46 @@
   <ng-container *ngIf="patient$ | async as patient; else loading">
     <div>
       <hr/>
-      <button tuiIconButton icon="tuiIconAirplay"></button>
+      <label class="tui-space_bottom-5">
+        {{ stringFyName(patient.firstName, patient.lastName, patient.middleName) }}
+      </label>
       <div>
-        <label tuiLabel="Пол">Мужчина</label>
         <div tuiGroup
-             class="group"
+             class="group tui-space_bottom-3"
              [collapsed]="true">
-          <label tuiLabel="Дата рождения">{{ stringFyAge(patient.birthDate) }}</label>
-          <label tuiLabel="Возраст">{{ calculateAge(patient.birthDate) }}</label>
+          <label tuiLabel="Дата рождения">
+            {{ stringFyAge(patient.birthDate) }}
+          </label>
+          <label tuiLabel="Возраст">
+            {{ calculateAge(patient.birthDate) }}
+          </label>
         </div>
-        <label tuiLabel="Статус">{{ patient.patientStatus }}</label>
-        <label tuiLabel="Место жительства">{{ patient.address }}</label>
-        <label tuiLabel="Данные о работе">{{ patient.workPlaceData }}</label>
-        <div *ngIf="patient.bookmark">
-          <label tuiLabel="Заметка врача">{{ patient.bookmark }}</label>
+        <label tuiLabel="Статус" class="tui-space_bottom-3">
+            {{ patient.patientStatus }}
+        </label>
+        <label tuiLabel="Место жительства" class="tui-space_bottom-3">
+          {{ patient.address }}
+        </label>
+        <label tuiLabel="Данные о работе" class="tui-space_bottom-3">
+          {{ patient.workPlaceData }}
+        </label>
+        <div *ngIf="patient.bookmark" class="tui-space_bottom-3">
+          <label tuiLabel="Заметка врача">
+            {{ patient.bookmark }}
+          </label>
         </div>
       </div>
     </div>
     <hr/>
-    <tui-accordion-item class="pb-5 w-full tui-space_bottom-4">
+    <tui-accordion-item class="pb-5 w-full tui-space_top-4">
       О докторе
       <ng-template tuiAccordionItemContent>
         <div #content>
-          <img ngSrc="image" height="100" width="150" class="rounded">
+          <img ngSrc="assets/home-timeline-one.png" height="100" width="150" class="rounded">
           <!--          <img [src]="product.image" [alt]="product.title" class="w-1/6 mb-2">-->
-          <h2 class="font-bold">ФАМИЛИЯ ИМЯ ОТЧЕСТВО</h2>
+          <h2 class="font-bold">Иванов Иван Иванович</h2>
           <label tuiLabel="Должность">{{ graduation }}</label>
           <label tuiLabel="Стаж">{{ staj_old }}</label>
-        </div>
-      </ng-template>
-    </tui-accordion-item>
-    <tui-accordion-item class="pb-5 w-full">
-      Паспорт РФ
-      <ng-template tuiAccordionItemContent>
-        <div #content>
-          <span class="small">
-            <label tuiLabel="Серия и номер паспорта">
-              <span [tuiSensitive]="sensitive">{{ patient.passport.number }} {{ patient.passport.series }}</span>
-            </label>
-          </span>
-          <span class="small">
-            <label tuiLabel="Кем Выдан">
-              <span [tuiSensitive]="sensitive">
-                {{ patient.passport.issued }}
-              </span>
-            </label>
-          </span>
-
-          <span class="small">
-            <label tuiLabel="Дата выдачи">
-              <span [tuiSensitive]="sensitive">
-                {{ stringFyAge(patient.passport.issuedDate) }}
-              </span>
-            </label>
-          </span>
-
-          <label>
-            <tui-toggle [(ngModel)]="sensitive"></tui-toggle>
-            Скрыть
-          </label>
         </div>
       </ng-template>
     </tui-accordion-item>

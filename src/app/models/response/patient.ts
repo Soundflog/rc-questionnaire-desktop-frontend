@@ -2,16 +2,21 @@ import {IPassport} from "../pasport";
 
 export interface IPatient {
   id?: number
-  first_name: string
-  middle_name: string
-  last_name: string
+  firstName: string
+  middleName: string
+  lastName: string
   birthDate: string
   address: string
-  phone_number: number
+  phoneNumber: number
   workPlaceData: string
   snils: number
   polis: number
   bookmark: string
   patientStatus: string
-  passport: IPassport
+}
+
+export enum PatientStatus {
+  Active = 'Нуждается в реабилитации',
+  Inactive = 'Проходит реабилитацию',
+  Archived = 'Проходил реабилитацию ранее',
 }

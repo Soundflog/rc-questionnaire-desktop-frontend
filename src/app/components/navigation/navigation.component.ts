@@ -15,8 +15,8 @@ import {AuthService} from "../../services/auth/auth.service";
 export class NavigationComponent implements OnInit {
   title = "RehabSurvey";
   pageText = this.pageContentService.pageText$
-  user = patients[0]
-  username = this.user.last_name + " " + this.user.first_name + " " + this.user.middle_name
+  // user = patients[0]
+  // username = this.user.lastName + " " + this.user.firstName + " " + this.user.middleName
   constructor(
       private _location: Location,
       private navigationService: NavigationService,
