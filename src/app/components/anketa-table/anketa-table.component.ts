@@ -8,8 +8,9 @@ import {FormService} from "../../services/form/form.service";
 import {Router} from "@angular/router";
 import {IAnswerRequest} from "../../models/request/answerRequest";
 import {catchError, tap, throwError} from "rxjs";
-import {TuiDialogContext, TuiDialogService} from "@taiga-ui/core";
+import {TuiAlertService, TuiDialogContext, TuiDialogService, TuiNotification} from "@taiga-ui/core";
 import {PolymorpheusContent} from '@tinkoff/ng-polymorpheus';
+import {throwDialogContentAlreadyAttachedError} from "@angular/cdk/dialog";
 
 @Component({
   selector: 'app-anketa-table',
@@ -24,10 +25,12 @@ export class AnketaTableComponent implements OnInit {
   lengthVariants = 0;
   maxScoreVariants = 0;
   moduleFormId: string;
+  programFormId: string;
 
   constructor(private fb: FormBuilder,
               private formService: FormService,
               private router: Router,
+              private alerts: TuiAlertService,
               @Inject(TuiDialogService) private readonly dialogs: TuiDialogService) {
     this.surveyForm = this.fb.group({});
   }
@@ -57,6 +60,7 @@ export class AnketaTableComponent implements OnInit {
             content: [question.content, Validators.required],
             type: [question.type, Validators.required],
             variants: this.fb.group({
+              id: [question.variants[0].id, Validators.required],
               score: [question.variants[0].score, Validators.required]
             })
           });
@@ -105,28 +109,34 @@ export class AnketaTableComponent implements OnInit {
     // Отправьте данные формы на сервер
     // console.log(this.surveyForm.value);
     const selectedVariantIds = this.getSelectedVariantIds();
-    console.log(selectedVariantIds);
-    // console.log(this.surveyForm.controls)
 
     this.moduleFormId = this.router.url.split('/')[6];
-    this.formService.submitAnswers(Number(this.moduleFormId), selectedVariantIds)
-      .pipe(
-        tap(response => {
-          console.log(response)
-        }),
-        catchError(error => {
-          console.log(error);
-          return throwError(error);
-        })
-      );
-
+    if (this.moduleFormId === undefined || this.moduleFormId === null || this.moduleFormId === '') {
+      this.programFormId = this.router.url.split('/')[4];
+      this.formService.submitProgramFormAnswers(this.programFormId, selectedVariantIds)
+        .pipe(tap(response => {
+            this.alerts.open({message: 'Данные успешно сохранены'}, {status: 'success'});
+          }),
+          catchError((err) => {
+            return throwError(err.message);
+          })
+        ).subscribe();
+    } else {
+      this.formService.submitModuleFormAnswers(this.moduleFormId, selectedVariantIds)
+        .pipe(tap(response => {
+            this.alerts.open({message: 'Данные успешно сохранены'}, {status: 'success'});
+          }),
+          catchError(error => {
+            return throwError(error.message);
+          })
+        ).subscribe();
+    }
   }
 
   // Необходимо при отправке данных на сервер создать List Id из вариантов в которых отмеченные (answer=true)
   // возвращает list id вариантов
   getSelectedVariantIds(): IAnswerRequest[] {
     const selectedVariantIds: IAnswerRequest[] = [];
-
     Object.keys(this.surveyForm.controls).forEach((questionKey) => {
       const questionGroup = this.surveyForm.get(questionKey) as FormGroup;
       const questionType = (questionGroup.get('type') as FormControl).value;
@@ -135,17 +145,17 @@ export class AnketaTableComponent implements OnInit {
         const selectedVariantId = (questionGroup.get('variants.id') as FormControl).value;
         selectedVariantIds.push({variantId: selectedVariantId});
       } else if (questionType === QuestionType.SCALE) {
-        // TODO: Scale подсчет
         const selectedScore = (questionGroup.get('variants.score') as FormControl).value;
-        console.log("Scale score: ",selectedScore);
-        const question = this.form.questions.find(q => q.id === +questionKey.split('_')[1]);
-        if (question) {
-          const selectedVariant = question.variants.find(v => v.score === selectedScore);
-          if (selectedVariant) {
-            console.log("variant Scale score:",selectedVariant.score);
-            // selectedVariantIds.push({variantId: selectedVariant.});
-          }
-        }
+        const selectedVariantId = (questionGroup.get('variants.id') as FormControl).value;
+        selectedVariantIds.push({variantId: selectedVariantId, scaleScore: selectedScore});
+        // const question = this.form.questions.find(q => q.id === +questionKey.split('_')[1]);
+        // if (question) {
+        //   const selectedVariant = question.variants.find(v => v.score === selectedScore);
+        //   if (selectedVariant) {
+        //     console.log("variant Scale score:",selectedVariant.score);
+        //     // selectedVariantIds.push({variantId: selectedVariant});
+        //   }
+        // }
       } else {
         const variantsArray = questionGroup.get('variants') as FormArray;
         variantsArray.controls.forEach((variantGroup) => {
@@ -161,6 +171,9 @@ export class AnketaTableComponent implements OnInit {
     return selectedVariantIds;
   }
 
+  private _errorHandler(message: string, status?: TuiNotification) {
+    this.alerts.open({message: message}, {status: status}).subscribe();
+  }
 
   protected readonly QuestionType = QuestionType;
   protected readonly length = length;

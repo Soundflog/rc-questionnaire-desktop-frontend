@@ -25,9 +25,9 @@ export class AnketirovaniePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.productsService.getAll().subscribe(() => {
-      this.loading = false;
-    });
+    // this.productsService.getAll().subscribe(() => {
+    //   this.loading = false;
+    // });
 
     this.route.data.subscribe((data) => {
       this.pageTitle = data.title || 'Default Title';
