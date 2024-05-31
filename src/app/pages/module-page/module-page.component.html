@@ -1,39 +1,44 @@
 <div class="container">
   <ng-container *ngIf="modules$ | async as mods; else loading">
-    <tui-island class="tui-space_bottom-5">
-      <ng-container *ngFor="let ex of mods.exercises">
-        <h3 class="tui-island__title">{{ ex.blockType }}</h3>
-        <div class="container tui-space_bottom-4">
-          <div class="tui-row">
-            <div class="tui-island__content">
-              <!--      TODO: for app-module-exercise необходимо сделать-->
-              <app-module-exercise
-                [id]="ex.moduleExId"
-                [moduleId]="moduleId"
-                [name]=ex.name
-                [description]=ex.description
-              />
+    <ng-container *ngIf="mods.forms.length > 0 && mods.exercises.length > 0; else empty">
+      <tui-island class="tui-space_bottom-5">
+        <ng-container *ngFor="let ex of mods.exercises">
+          <h3 class="tui-island__title">{{ ex.blockType }}</h3>
+          <div class="container tui-space_bottom-4">
+            <div class="tui-row">
+              <div class="tui-island__content">
+                <app-module-exercise
+                  [id]="ex.moduleExId"
+                  [moduleId]="moduleId"
+                  [name]=ex.name
+                  [description]=ex.description
+                />
+              </div>
             </div>
           </div>
-        </div>
-      </ng-container>
-      <h3 class="tui-island__title">Опросы</h3>
-      <div class="container">
-        <div class="tui-row">
-          <!--      TODO: for app-module-anketa необходимо сделать-->
-          <ng-container *ngFor="let f of mods.forms">
-            <div class="">
-              <app-module-anketa
-                [id]="f.moduleFormId"
-                [moduleId]="moduleId"
-                [title]=f.name
-                [description]=f.description
-              />
+        </ng-container>
+        <ng-container *ngIf="mods.forms.length > 0">
+          <h3 class="tui-island__title">Опросы</h3>
+          <div class="container">
+            <div class="tui-row">
+              <ng-container *ngFor="let f of mods.forms">
+                <div class="">
+                  <app-module-anketa
+                    [id]="f.moduleFormId"
+                    [moduleId]="moduleId"
+                    [title]=f.name
+                    [description]=f.description
+                  />
+                </div>
+              </ng-container>
             </div>
-          </ng-container>
-        </div>
-      </div>
-    </tui-island>
+          </div>
+        </ng-container>
+      </tui-island>
+    </ng-container>
+    <ng-template #empty>
+      <app-empty-module></app-empty-module>
+    </ng-template>
   </ng-container>
   <ng-template #loading>
     <app-loading/>

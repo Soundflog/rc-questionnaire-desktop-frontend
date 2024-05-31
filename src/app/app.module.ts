@@ -66,6 +66,7 @@ import {ProgramFormPageComponent} from './pages/program-form-page/program-form-p
 import {httpInterceptorProviders} from "./services/auth/auth-interceptor";
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import {TuiBlockStatusModule} from "@taiga-ui/layout";
+import { EmptyModuleComponent } from './components/empty-module/empty-module.component';
 
 
 @NgModule({
@@ -96,7 +97,8 @@ import {TuiBlockStatusModule} from "@taiga-ui/layout";
     NavModuleComponent,
     LoadingComponent,
     ProgramFormPageComponent,
-    NotFoundPageComponent
+    NotFoundPageComponent,
+    EmptyModuleComponent
   ],
   imports: [
     BrowserModule,
