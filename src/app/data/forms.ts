@@ -3,7 +3,7 @@ import {IScale} from "../models/scale";
 import {QuestionType} from "../models/question";
 
 export const forms: IForm[] = [
-  {
+  /*{
     id: 1,
     name: "Анкета 1",
     description: "Описание анкеты 1",
@@ -158,5 +158,5 @@ export const forms: IForm[] = [
       description: "description scale name"
     },
     questions: []
-  }
+  }*/
 ]

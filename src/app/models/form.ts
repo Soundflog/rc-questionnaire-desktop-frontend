@@ -6,6 +6,7 @@ import {IQuestion} from "./question";
 export interface IForm {
     id?: number
     name: string
+  isAnswered: boolean
     description: string
     scale: IScale
   questions: IQuestion[]

@@ -8,6 +8,7 @@
       <div orientation="vertical" tuiGroup class="group"
            [collapsed]="true"
            *ngIf="question?.variants"
+           style="display: block"
       >
         <!--        Множество-->
         <ng-container *ngIf="question.type === QuestionType.MULTIPLE_CHOICE">
@@ -49,8 +50,8 @@
           </div>
         </ng-container>
         <!-- Для вопросов со шкалой -->
-        <ng-container *ngIf="question.type === QuestionType.SCALE">
-          <div formGroupName="variants">
+        <ng-container *ngIf="question.type === QuestionType.SCALE" style="display: block">
+          <div formGroupName="variants" style="display: block">
             <input size="m" tuiSlider type="range"
                    formControlName="score"
                    [max]="maxScoreVariants"
@@ -62,7 +63,7 @@
                       *ngFor="let variant of question.variants"
                       (click)="scalePatchValue(variant)"
               >
-                {{ variant.score }}
+                <label tuiLabel="{{variant.score}}">{{variant.content}}</label>
               </button>
             </div>
           </div>
@@ -88,7 +89,7 @@
       tuiButton
       type="button"
       class="tui-space_right-3"
-      (click)="sendSurvey()"
+      (click)="sendSurvey(); observer.complete()"
     >
       OK
     </button>

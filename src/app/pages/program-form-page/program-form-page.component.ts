@@ -7,7 +7,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 @Component({
   selector: 'app-program-form-page',
   templateUrl: './program-form-page.component.html',
-  styleUrls: ['./program-form-page.component.css']
+  styleUrls: ['./program-form-page.component.css', "./program-form-page.component.less"]
 })
 export class ProgramFormPageComponent implements OnInit{
   form$: Observable<IForm>;

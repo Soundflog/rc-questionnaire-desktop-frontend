@@ -1,7 +1,8 @@
-<tui-island>
+<tui-island class="rod-island-program-page">
   <ng-container *ngIf="rehabProgram$ | async as rehabProgram; else loading">
-    <tui-island class="tui-space_bottom-5">
-      <ng-container *ngIf="rehabProgram.programFormResponses[0] as prForm0">
+    <ng-container *ngIf="rehabProgram.programFormResponses[0] as prForm0">
+      <tui-island class="tui-space_bottom-5">
+
         <h3 class="tui-island__title">{{ prForm0.typeName }} </h3>
         <p class="tui-island__paragraph tui-space_bottom-3">
           {{ prForm0.name }}
@@ -25,12 +26,11 @@
         >
           {{ stringFyDate(prForm0.finishedAt) }}
         </label>
-      </ng-container>
-    </tui-island>
+      </tui-island>
+    </ng-container>
 
-    <tui-accordion class="container tui-space_bottom-5">
-      <tui-accordion-item>
-
+    <tui-accordion class="tui-space_bottom-5 ">
+      <tui-accordion-item [open]="true">
         <h3 class="font-bold">Мероприятия медицинской реабилитации</h3>
         <tui-badge
           status="success"
@@ -43,6 +43,7 @@
             <tui-island class="tui-space_bottom-2">
               <div class="module-content">
                 <span class="module-text">{{ m.name }}</span>
+                <span class="module-text">{{ m.finishedAt }}</span>
                 <button
                   size="m"
                   appearance="primary"
@@ -60,8 +61,8 @@
       </tui-accordion-item>
     </tui-accordion>
 
-    <tui-island class="tui-space_bottom-5">
-      <ng-container *ngIf="rehabProgram.programFormResponses[1] as prForm1">
+    <ng-container *ngIf="rehabProgram.programFormResponses[1] as prForm1">
+      <tui-island class="tui-space_bottom-5">
         <h3 class="tui-island__title">{{ prForm1.typeName }} </h3>
         <p class="tui-island__paragraph tui-space_bottom-3">
           {{ prForm1.name }}
@@ -85,8 +86,8 @@
         >
           {{ stringFyDate(prForm1.finishedAt) }}
         </label>
-      </ng-container>
-    </tui-island>
+      </tui-island>
+    </ng-container>
     <label class="tui-space_bottom-3"
            tuiLabel="Дата начала программы"
     >

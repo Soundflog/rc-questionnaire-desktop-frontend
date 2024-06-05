@@ -5,7 +5,7 @@ import {IForm} from "../../models/form";
 import {QuestionType} from "../../models/question";
 import {IVariant} from "../../models/variant";
 import {FormService} from "../../services/form/form.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {IAnswerRequest} from "../../models/request/answerRequest";
 import {catchError, tap, throwError} from "rxjs";
 import {TuiAlertService, TuiDialogContext, TuiDialogService, TuiNotification} from "@taiga-ui/core";
@@ -23,13 +23,15 @@ export class AnketaTableComponent implements OnInit {
 
   surveyForm: FormGroup;
   lengthVariants = 0;
-  maxScoreVariants = 0;
+  maxScoreVariants: number;
   moduleFormId: string;
   programFormId: string;
+
 
   constructor(private fb: FormBuilder,
               private formService: FormService,
               private router: Router,
+              private activeRoute: ActivatedRoute,
               private alerts: TuiAlertService,
               @Inject(TuiDialogService) private readonly dialogs: TuiDialogService) {
     this.surveyForm = this.fb.group({});
@@ -56,6 +58,8 @@ export class AnketaTableComponent implements OnInit {
           });
           break;
         case QuestionType.SCALE: // Шкала ответов
+          // Сортируем массив вариантов ответа по score
+          question.variants = this.sortVariantsByScore(question.variants)
           questionGroup = this.fb.group({
             content: [question.content, Validators.required],
             type: [question.type, Validators.required],
@@ -64,9 +68,8 @@ export class AnketaTableComponent implements OnInit {
               score: [question.variants[0].score, Validators.required]
             })
           });
+          this.maxScoreVariants = Math.max(...question.variants.map(v => v.score));
           this.lengthVariants = question.variants.length;
-          // Доверяем тому что в конце массива будет лежать максимальный score у варианта
-          this.maxScoreVariants = question.variants[question.variants.length - 1].score;
           break;
         default: // Поле для выбора нескольких вариантов ответа
           // FormArray для вариантов ответа
@@ -110,9 +113,9 @@ export class AnketaTableComponent implements OnInit {
     // console.log(this.surveyForm.value);
     const selectedVariantIds = this.getSelectedVariantIds();
 
-    this.moduleFormId = this.router.url.split('/')[6];
+    this.moduleFormId = this.activeRoute.snapshot.params['formId'];
     if (this.moduleFormId === undefined || this.moduleFormId === null || this.moduleFormId === '') {
-      this.programFormId = this.router.url.split('/')[4];
+      this.programFormId = this.activeRoute.snapshot.params['programFormId'];
       this.formService.submitProgramFormAnswers(this.programFormId, selectedVariantIds)
         .pipe(tap(response => {
             this.alerts.open({message: 'Данные успешно сохранены'}, {status: 'success'});
@@ -169,6 +172,12 @@ export class AnketaTableComponent implements OnInit {
     });
 
     return selectedVariantIds;
+  }
+
+
+  // Функция для сортировки массива IVariant[] по значению score
+  sortVariantsByScore(variants: IVariant[]): IVariant[] {
+    return variants.slice().sort((a, b) => a.score - b.score); // Для сортировки по возрастанию
   }
 
   private _errorHandler(message: string, status?: TuiNotification) {
