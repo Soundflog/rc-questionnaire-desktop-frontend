@@ -40,7 +40,7 @@ export class ProgrammPageComponent implements OnInit{
 
   goToNextPage(programFormId: number){
     String(programFormId);
-    this.router.navigate(['/rehabilitation/program/form/' + programFormId]);
+    this.router.navigate(['/rehabilitation/program/forms/' + programFormId]);
     this.visiblePrimaryAnketa = !this.visiblePrimaryAnketa;
   }
 }

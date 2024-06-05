@@ -28,6 +28,6 @@ export class ModuleAnketaComponent implements OnInit{
 
   goToNextPage(moduleId: string, formId: number) {
     String(formId)
-    this.router.navigate([`/rehabilitation/program/module/${moduleId}/form/${formId}`]);
+    this.router.navigate([`/rehabilitation/program/modules/${moduleId}/forms/${formId}`]);
   }
 }

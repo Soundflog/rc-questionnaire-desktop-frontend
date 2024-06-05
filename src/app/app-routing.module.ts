@@ -28,17 +28,18 @@ const routes: Routes = [
       { path: 'program', component: ProgrammPageComponent, data: { title: 'Программа реабилитации' } },
       { path: 'results', component: ResultsPageComponent, data: { title: 'Результаты реабилитации' } },
       {
-        path: 'program/module/:moduleId',
+        path: 'program/modules/:moduleId',
         component: ModuleRodPageComponent,
         data: { title: 'Реабилитационный модуль' },
         children: [
           { path: '', component: ModulePageComponent, data: { title: 'Модуль' } },
-          { path: 'exercise/:exerciseId', component: ExercisePageComponent, data: { title: 'Упражнение' } },
-          { path: 'form/:formId', component: AnketaPageComponent, data: { title: 'Анкета' } },
+          { path: 'exercises/:exerciseId', component: ExercisePageComponent, data: { title: 'Упражнение' } },
+          { path: 'forms/:formId', component: AnketaPageComponent, data: { title: 'Анкета' } },
+          { path: 'forms/:formId', component: AnketaPageComponent, data: { title: 'Анкета' } },
         ],
       },
       {
-        path: 'program/form/:programFormId',
+        path: 'program/forms/:programFormId',
         component: ProgramFormPageComponent,
       }
     ],

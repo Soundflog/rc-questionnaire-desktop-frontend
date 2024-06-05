@@ -25,32 +25,27 @@ export class NavModuleComponent implements OnInit{
     this.moduleIdService.moduleId$.subscribe((moduleId) => {
       this.receivedModuleId = moduleId;
     });
-    // FormId
-    this.receivedFormId = this.formIdService.getFormId();
-    this.formIdService.formId$.subscribe((formId)=>{
-      this.receivedFormId = formId;
-    });
   }
   goToNextPage( page:String): void {
     // Здесь 'next-page' - это путь к следующей странице
-    this.router.navigate(['/rehabilitation/program/module/'+ this.receivedModuleId + page]);
+    this.router.navigate(['/rehabilitation/program/modules/'+ this.receivedModuleId + page]);
   }
 
   items = [
     {
       caption: 'Модуль',
-      routerLink: '/program/module/:moduleId',
+      routerLink: '/program/modules/:moduleId',
       page: ''
     },
     {
       caption: 'Упражнения',
-      routerLink: '/program/module/:moduleId/exercise/:exerciseId',
-      page: '/exercise'
+      routerLink: '/program/modules/:moduleId/exercises/all',
+      page: '/exercises/all'
     },
     {
       caption: 'Анкеты',
-      routerLink: '/program/module/:moduleId/anketa/:anketaId',
-      page: '/anketa/'+this.receivedFormId
+      routerLink: '/program/modules/:moduleId/forms/all',
+      page: '/forms/all'
     },
   ];
 }

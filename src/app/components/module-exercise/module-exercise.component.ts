@@ -41,6 +41,6 @@ export class ModuleExerciseComponent implements OnInit{
 
   goToNextPage(moduleId: string, exerciseId: number) {
     String(exerciseId)
-    this.router.navigate([`/rehabilitation/program/module/${moduleId}/exercise/${exerciseId}`]);
+    this.router.navigate([`/rehabilitation/program/modules/${moduleId}/exercises/${exerciseId}`]);
   }
 }
