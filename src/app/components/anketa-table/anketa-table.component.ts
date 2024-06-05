@@ -10,7 +10,6 @@ import {IAnswerRequest} from "../../models/request/answerRequest";
 import {catchError, tap, throwError} from "rxjs";
 import {TuiAlertService, TuiDialogContext, TuiDialogService, TuiNotification} from "@taiga-ui/core";
 import {PolymorpheusContent} from '@tinkoff/ng-polymorpheus';
-import {throwDialogContentAlreadyAttachedError} from "@angular/cdk/dialog";
 
 @Component({
   selector: 'app-anketa-table',
@@ -26,7 +25,6 @@ export class AnketaTableComponent implements OnInit {
   maxScoreVariants: number;
   moduleFormId: string;
   programFormId: string;
-
 
   constructor(private fb: FormBuilder,
               private formService: FormService,
@@ -45,7 +43,6 @@ export class AnketaTableComponent implements OnInit {
     // Добавление FormControl для каждого вопроса в форме
     this.form.questions.forEach(question => {
       let questionGroup: FormGroup;
-
       switch (question.type) {
         case QuestionType.SINGLE_CHOICE: // Поле для выбора одного варианта ответа
           // FormGroup
@@ -123,7 +120,10 @@ export class AnketaTableComponent implements OnInit {
           catchError((err) => {
             return throwError(err.message);
           })
-        ).subscribe();
+        )
+        .subscribe(() => {
+          this.router.navigate(['/rehabilitation/program']);
+        });
     } else {
       this.formService.submitModuleFormAnswers(this.moduleFormId, selectedVariantIds)
         .pipe(tap(response => {
@@ -132,7 +132,10 @@ export class AnketaTableComponent implements OnInit {
           catchError(error => {
             return throwError(error.message);
           })
-        ).subscribe();
+        )
+        .subscribe(() => {
+          this.router.navigate(['/rehabilitation/program']);
+        });
     }
   }
 

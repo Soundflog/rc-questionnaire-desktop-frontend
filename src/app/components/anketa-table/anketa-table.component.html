@@ -12,7 +12,8 @@
       >
         <!--        Множество-->
         <ng-container *ngIf="question.type === QuestionType.MULTIPLE_CHOICE">
-          <div orientation="vertical" tuiGroup class="group"
+          <div orientation="vertical" tuiGroup
+               class="group many-choice"
                [collapsed]="true"
                formArrayName="variants"
           >
@@ -63,7 +64,7 @@
                       *ngFor="let variant of question.variants"
                       (click)="scalePatchValue(variant)"
               >
-                <label tuiLabel="{{variant.score}}">{{variant.content}}</label>
+                <label tuiLabel="{{variant.score}}">{{ variant.content }}</label>
               </button>
             </div>
           </div>
