@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ProductsService} from '../../services/another/products/products.service'
 import {PageContentService} from "../../components/navigation/page-content.service";
 import {ActivatedRoute} from "@angular/router";
-import {AuthService} from "../../services/auth/auth.service";
 
 @Component({
   selector: 'app-anketirovanie-page',
@@ -16,10 +14,8 @@ export class AnketirovaniePageComponent implements OnInit {
 
 
   constructor(
-    public productsService: ProductsService,
     public pageContentService: PageContentService,
-    private route: ActivatedRoute,
-    public authService: AuthService
+    private route: ActivatedRoute
   ) {
   }
 
@@ -36,6 +32,4 @@ export class AnketirovaniePageComponent implements OnInit {
       this.pageContentService.updatePageContent(this.pageTitle, this.pageText);
     });
   }
-
-
 }

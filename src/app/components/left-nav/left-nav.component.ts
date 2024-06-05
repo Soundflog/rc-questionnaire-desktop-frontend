@@ -9,12 +9,4 @@ export class LeftNavComponent {
   open = false;
 
   activeItemIndex = 0;
-
-  readonly nav = [
-    {title: 'Мои данные', link: 'data'},
-    {title: 'История проведения медицинской реабилитации', link: 'history'},
-    {title: 'Программа реабилитации', link: 'program'},
-    {title: 'Результаты реабилитации', link:'results'},
-  ];
-
 }
