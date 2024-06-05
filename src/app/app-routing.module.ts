@@ -13,6 +13,8 @@ import {ModuleRodPageComponent} from "./pages/module-rod-page/module-rod-page.co
 import {authGuard} from "./services/auth/auth.guard";
 import {NotFoundPageComponent} from "./pages/not-found-page/not-found-page.component";
 import {ProgramFormPageComponent} from "./pages/program-form-page/program-form-page.component";
+import {ExerciseAllPageComponent} from "./pages/exercise-all-page/exercise-all-page.component";
+import {AnketaAllPageComponent} from "./pages/anketa-all-page/anketa-all-page.component";
 
 
 
@@ -35,7 +37,8 @@ const routes: Routes = [
           { path: '', component: ModulePageComponent, data: { title: 'Модуль' } },
           { path: 'exercises/:exerciseId', component: ExercisePageComponent, data: { title: 'Упражнение' } },
           { path: 'forms/:formId', component: AnketaPageComponent, data: { title: 'Анкета' } },
-          { path: 'forms/:formId', component: AnketaPageComponent, data: { title: 'Анкета' } },
+          { path: 'forms/all', component: AnketaAllPageComponent, data: { title: 'Анкеты' } },
+          { path: 'exercises/all', component: ExerciseAllPageComponent, data: { title: 'Упражнения' } },
         ],
       },
       {

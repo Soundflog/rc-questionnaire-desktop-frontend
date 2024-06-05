@@ -68,6 +68,7 @@ import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.com
 import {TuiBlockStatusModule} from "@taiga-ui/layout";
 import { EmptyModuleComponent } from './components/empty-module/empty-module.component';
 import { ExerciseAllPageComponent } from './pages/exercise-all-page/exercise-all-page.component';
+import { AnketaAllPageComponent } from './pages/anketa-all-page/anketa-all-page.component';
 
 
 @NgModule({
@@ -100,7 +101,8 @@ import { ExerciseAllPageComponent } from './pages/exercise-all-page/exercise-all
     ProgramFormPageComponent,
     NotFoundPageComponent,
     EmptyModuleComponent,
-    ExerciseAllPageComponent
+    ExerciseAllPageComponent,
+    AnketaAllPageComponent
   ],
   imports: [
     BrowserModule,
