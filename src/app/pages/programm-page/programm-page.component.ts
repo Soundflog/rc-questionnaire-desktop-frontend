@@ -4,6 +4,9 @@ import {Router} from "@angular/router";
 import {PatientService} from "../../services/patient/patient.service";
 import {Observable, tap} from "rxjs";
 import {IRehabProgram} from "../../models/response/rehab/rehab_program";
+import {IProgramFormShort, ProgramFormType} from "../../models/response/rehab/programFormShort";
+import {map} from "rxjs/operators";
+import {IModuleShort} from "../../models/response/rehab/moduleShort";
 
 @Component({
   selector: 'app-programm-page',
@@ -25,7 +28,13 @@ export class ProgrammPageComponent implements OnInit{
 
   ngOnInit(): void {
     this.rehabProgram$ = this.patientService.getRehab().pipe(
+      // Сортируем по Входным анкетам (в начале все входные анкеты)
+      map(program => ({
+        ...program,
+        programFormResponses: this.sortProgramForms(program.programFormResponses)
+      })),
       tap((rehab: IRehabProgram) => {
+        console.log(rehab);
       }),
     );
   }
@@ -42,5 +51,25 @@ export class ProgrammPageComponent implements OnInit{
     String(programFormId);
     this.router.navigate(['/rehabilitation/program/forms/' + programFormId]);
     this.visiblePrimaryAnketa = !this.visiblePrimaryAnketa;
+  }
+
+  sortProgramForms(forms: IProgramFormShort[]): IProgramFormShort[] {
+    return forms.sort((a, b) => {
+      if (a.typeName === ProgramFormType.IN && b.typeName !== ProgramFormType.IN) {
+        return -1; // a идет перед b
+      } else if (a.typeName !== ProgramFormType.IN && b.typeName === ProgramFormType.IN) {
+        return 1; // b идет перед a
+      } else {
+        return 0; // порядок не меняется
+      }
+    });
+  }
+
+  isModuleFinished(module: IModuleShort): boolean {
+    return !!module.finishedAt;
+  }
+
+  isModulesFinished(modules: IModuleShort[]): boolean  {
+    return modules.every(module => this.isModuleFinished(module));
   }
 }

@@ -16,16 +16,18 @@
           appearance="primary"
           tuiButton
           type="button"
-          [disabled]="visiblePrimaryAnketa"
+          [disabled]="prForm0.finishedAt != null"
           (click)="goToNextPage(prForm0.id)"
         >
           Перейти
         </button>
-        <label class="tui-space_bottom-3"
-               tuiLabel="Дата окончания"
-        >
-          {{ stringFyDate(prForm0.finishedAt) }}
-        </label>
+        <div *ngIf="prForm0.finishedAt != null">
+          <label class="tui-space_bottom-3"
+                 tuiLabel="Дата окончания"
+          >
+            {{ stringFyDate(prForm0.finishedAt) }}
+          </label>
+        </div>
       </tui-island>
     </ng-container>
 
@@ -33,8 +35,8 @@
       <tui-accordion-item [open]="true">
         <h3 class="font-bold">Мероприятия медицинской реабилитации</h3>
         <tui-badge
-          status="success"
-          value="Success"
+          [status]="isModulesFinished(rehabProgram.moduleShortResponses) ? 'success' : 'info'"
+          [value]="isModulesFinished(rehabProgram.moduleShortResponses) ? 'Успешно' : 'Не пройдено'"
           class="tui-space_right-2 tui-space_bottom-2"
         ></tui-badge>
 
@@ -42,15 +44,21 @@
           <ng-container *ngFor="let m of rehabProgram.moduleShortResponses">
             <tui-island class="tui-space_bottom-2">
               <div class="module-content">
-                <span class="module-text">{{ m.name }}</span>
-                <span class="module-text">{{ m.finishedAt }}</span>
+                <div class="module-content-text-badge">
+                  <span class="module-text">{{ m.name }}</span>
+                  <tui-badge
+                    [status]="isModuleFinished(m) ? 'success' : 'info'"
+                    [value]="isModuleFinished(m) ? 'Успешно' : 'Не пройдено'"
+                    class="tui-space_right-2 tui-space_bottom-2"
+                  ></tui-badge>
+                </div>
                 <button
                   size="m"
                   appearance="primary"
                   tuiButton
                   type="button"
                   (click)="sendModuleId(m.id)"
-                  routerLink="/rehabilitation/program/module/{{m.id}}"
+                  routerLink="/rehabilitation/program/modules/{{m.id}}"
                 >
                   Перейти
                 </button>

@@ -5,6 +5,11 @@ export interface IProgramFormShort {
   id: number
   name: string
   description: string
-  typeName: string
+  typeName: ProgramFormType
   finishedAt: string
+}
+
+export enum ProgramFormType {
+  IN = "Вводная анкета",
+  OUT = "Выходная анкета",
 }
