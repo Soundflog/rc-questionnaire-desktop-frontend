@@ -1,0 +1,27 @@
+<tui-island class="tui-space_bottom-5">
+  <h3 class="tui-island__title">{{ programForm.typeName }} </h3>
+  <p class="tui-island__paragraph tui-space_bottom-3">
+    {{ programForm.name }}
+  </p>
+  <p class="tui-island__paragraph tui-space_bottom-3">
+    {{ programForm.description }}
+  </p>
+  <button
+    class="tui-space_bottom-3"
+    size="m"
+    appearance="primary"
+    tuiButton
+    type="button"
+    [disabled]="programForm.finishedAt != null"
+    (click)="goToNextPage(programForm.id)"
+  >
+    Перейти
+  </button>
+  <div *ngIf="programForm.finishedAt != null">
+    <label class="tui-space_bottom-3"
+           tuiLabel="Дата прохождения"
+    >
+      {{ stringFyDate(programForm.finishedAt) }}
+    </label>
+  </div>
+</tui-island>

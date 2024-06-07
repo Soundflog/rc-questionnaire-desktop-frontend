@@ -26,7 +26,7 @@ import {
   TuiHostedDropdownModule, TuiDataListModule, TuiExpandModule, TuiSvgModule, TuiModeModule
 } from "@taiga-ui/core";
 import {
-  TuiAccordionModule, TuiAvatarModule,
+  TuiAccordionModule,
   TuiBadgeModule, TuiBreadcrumbsModule, TuiCheckboxBlockModule,
   TuiInputModule, TuiInputSliderModule,
   TuiIslandModule, TuiRadioBlockModule, TuiRadioGroupModule, TuiRadioLabeledModule, TuiRadioListModule, TuiRadioModule,
@@ -53,13 +53,13 @@ import {TuiPreviewModule} from "@taiga-ui/addon-preview";
 import {AnketaTableComponent} from './components/anketa-table/anketa-table.component';
 import {TuiTableModule} from "@taiga-ui/addon-table";
 import {NavModuleComponent} from './components/nav-module/nav-module.component';
-import {TuiActiveZoneModule, TuiValueChangesModule} from "@taiga-ui/cdk";
+import {TuiActiveZoneModule, TuiPlatformModule, TuiValueChangesModule} from "@taiga-ui/cdk";
 import {
-  TuiAppearanceModule,
-  TuiFadeModule,
+  TuiAppearanceModule, TuiAvatarModule, TuiCardModule,
+  TuiFadeModule, TuiHeaderModule,
   TuiIconsModule,
   TuiNavigationModule,
-  TuiSensitiveModule
+  TuiSensitiveModule, TuiSurfaceModule, TuiTitleModule
 } from "@taiga-ui/experimental";
 import {LoadingComponent} from './components/loading/loading.component';
 import {ProgramFormPageComponent} from './pages/program-form-page/program-form-page.component';
@@ -69,6 +69,7 @@ import {TuiBlockStatusModule} from "@taiga-ui/layout";
 import { EmptyModuleComponent } from './components/empty-module/empty-module.component';
 import { ExerciseAllPageComponent } from './pages/exercise-all-page/exercise-all-page.component';
 import { AnketaAllPageComponent } from './pages/anketa-all-page/anketa-all-page.component';
+import { CardAnketaModuleComponent } from './components/card-anketa-module/card-anketa-module.component';
 
 
 @NgModule({
@@ -102,7 +103,8 @@ import { AnketaAllPageComponent } from './pages/anketa-all-page/anketa-all-page.
     NotFoundPageComponent,
     EmptyModuleComponent,
     ExerciseAllPageComponent,
-    AnketaAllPageComponent
+    AnketaAllPageComponent,
+    CardAnketaModuleComponent
   ],
   imports: [
     BrowserModule,
@@ -155,7 +157,13 @@ import { AnketaAllPageComponent } from './pages/anketa-all-page/anketa-all-page.
     TuiSensitiveModule,
     TuiToggleModule,
     TuiBlockStatusModule,
-    TuiModeModule
+    TuiModeModule,
+    TuiCardModule,
+    TuiAvatarModule,
+    TuiHeaderModule,
+    TuiTitleModule,
+    TuiSurfaceModule,
+    TuiPlatformModule
   ],
   providers: [Title, httpInterceptorProviders,
     {provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],

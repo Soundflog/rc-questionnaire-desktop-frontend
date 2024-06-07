@@ -1,34 +1,7 @@
 <tui-island class="rod-island-program-page">
   <ng-container *ngIf="rehabProgram$ | async as rehabProgram; else loading">
     <ng-container *ngIf="rehabProgram.programFormResponses[0] as prForm0">
-      <tui-island class="tui-space_bottom-5">
-
-        <h3 class="tui-island__title">{{ prForm0.typeName }} </h3>
-        <p class="tui-island__paragraph tui-space_bottom-3">
-          {{ prForm0.name }}
-        </p>
-        <p class="tui-island__paragraph tui-space_bottom-3">
-          {{ prForm0.description }}
-        </p>
-        <button
-          class="tui-space_bottom-3"
-          size="m"
-          appearance="primary"
-          tuiButton
-          type="button"
-          [disabled]="prForm0.finishedAt != null"
-          (click)="goToNextPage(prForm0.id)"
-        >
-          Перейти
-        </button>
-        <div *ngIf="prForm0.finishedAt != null">
-          <label class="tui-space_bottom-3"
-                 tuiLabel="Дата окончания"
-          >
-            {{ stringFyDate(prForm0.finishedAt) }}
-          </label>
-        </div>
-      </tui-island>
+      <app-card-anketa-module [programForm]="prForm0"></app-card-anketa-module>
     </ng-container>
 
     <tui-accordion class="tui-space_bottom-5 ">
@@ -70,42 +43,20 @@
     </tui-accordion>
 
     <ng-container *ngIf="rehabProgram.programFormResponses[1] as prForm1">
-      <tui-island class="tui-space_bottom-5">
-        <h3 class="tui-island__title">{{ prForm1.typeName }} </h3>
-        <p class="tui-island__paragraph tui-space_bottom-3">
-          {{ prForm1.name }}
-        </p>
-        <p class="tui-island__paragraph tui-space_bottom-3">
-          {{ prForm1.description }}
-        </p>
-        <button
-          class="tui-space_bottom-3"
-          size="m"
-          appearance="primary"
-          tuiButton
-          type="button"
-          [disabled]="visiblePrimaryAnketa"
-          (click)="goToNextPage(prForm1.id)"
-        >
-          Перейти
-        </button>
-        <label class="tui-space_bottom-3"
-               tuiLabel="Дата окончания"
-        >
-          {{ stringFyDate(prForm1.finishedAt) }}
-        </label>
-      </tui-island>
+      <app-card-anketa-module [programForm]="prForm1"></app-card-anketa-module>
     </ng-container>
     <label class="tui-space_bottom-3"
            tuiLabel="Дата начала программы"
     >
       {{ stringFyDate(rehabProgram.startDate) }}
     </label>
-    <label class="tui-space_bottom-3"
-           tuiLabel="Дата окончания программы"
-    >
-      {{ stringFyDate(rehabProgram.endDate) }}
-    </label>
+    <div *ngIf="rehabProgram.endDate!= null">
+      <label class="tui-space_bottom-3"
+             tuiLabel="Дата окончания программы"
+      >
+        {{ stringFyDate(rehabProgram.endDate) }}
+      </label>
+    </div>
   </ng-container>
   <ng-template #loading>
     <app-loading/>
