@@ -1,1 +1,15 @@
-<p>anketa-all-page works!</p>
+<tui-island>
+  <ng-container *ngIf="formsShort$ | async as forms; else loading">
+    <ng-container *ngFor="let f of forms; index as i">
+      <app-module-anketa
+        [id]="f.moduleFormId"
+        [moduleId]="moduleId"
+        [title]=f.name
+        [description]=f.description
+      />
+    </ng-container>
+  </ng-container>
+  <ng-template #loading>
+    <app-loading></app-loading>
+  </ng-template>
+</tui-island>
