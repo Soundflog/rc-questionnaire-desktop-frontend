@@ -3,6 +3,7 @@ import {patients} from "../../data/patients";
 import {PatientService} from "../../services/patient/patient.service";
 import {Observable, tap} from "rxjs";
 import {IHistoryResponse} from "../../models/response/history/historyResponse";
+import {histories} from "../../data/history";
 
 @Component({
   selector: 'app-history-page',
@@ -15,18 +16,19 @@ export class HistoryPageComponent implements OnInit{
 
   history = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore\n" +
     "      et dolore magna aliqua.";
-  isHistory = false;
-  history$: Observable<IHistoryResponse[]>
+  histories = histories;
+  isHistory = true;
+  // history$: Observable<IHistoryResponse[]>
 
   constructor(
     private patientService: PatientService,
   ) {}
 
   ngOnInit() {
-    this.history$ = this.patientService.getHistory().pipe(
-      tap(history => {
-        console.log(history);
-      })
-    );
+    // this.history$ = this.patientService.getHistory().pipe(
+    //   tap(history => {
+    //     console.log(history);
+    //   })
+    // );
   }
 }

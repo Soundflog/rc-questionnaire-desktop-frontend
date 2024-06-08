@@ -1,33 +1,44 @@
 <div class="container">
   <tui-island>
     <h3 class="tui-island__title"
-        (click)="isHistory=!isHistory"
     >
       История проведения медицинской реабилитации
     </h3>
 
-    <ng-container *ngIf="history$ | async as historyResponses; else loading">
-      <ng-container *ngFor="let h of historyResponses">
-        <p *ngIf="isHistory" class="tui-island__paragraph">
+    <!--    <ng-container *ngIf="history$ | async as historyResponses; else loading">-->
+    <tui-accordion class="container">
+      <tui-accordion-item *ngFor="let h of histories">
+        {{ h.endDate }}
+        <ng-template tuiAccordionItemContent>
+          <ng-container *ngFor="let pr of h.protocols">
+            <p class="tui-text_body-l">
+              {{ pr.rehabDiagnosis }}
+            </p>
+            <p class="tui-text_body-l-2">
+              {{pr.recommendations}}
+            </p>
+          </ng-container>
+          <label
+            class="tui-space_bottom-3"
+            tuiLabel="Дата начало"
+          >
+            {{ h.startDate }}
+          </label>
           <label
             class="tui-space_bottom-3"
             tuiLabel="Дата прохождения"
           >
             {{ h.endDate }}
           </label>
-          <ng-container *ngFor="let pr of h.protocols">
-            <p class="tui-island__paragraph">
-              {{pr.recommendations}}
-            </p>
-          </ng-container>
-        </p>
-      </ng-container>
-      <p *ngIf="!isHistory" class="tui-island__paragraph">
-        Отсутствует
-      </p>
-    </ng-container>
-    <ng-template #loading>
-      <app-loading></app-loading>
-    </ng-template>
+        </ng-template>
+      </tui-accordion-item>
+    </tui-accordion>
+    <!--    <p *ngIf="!isHistory" class="tui-island__paragraph">-->
+    <!--      Отсутствует-->
+    <!--    </p>-->
+    <!--    </ng-container>-->
+    <!--    <ng-template #loading>-->
+    <!--      <app-loading></app-loading>-->
+    <!--    </ng-template>-->
   </tui-island>
 </div>
