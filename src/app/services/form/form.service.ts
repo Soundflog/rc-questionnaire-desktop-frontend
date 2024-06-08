@@ -24,7 +24,7 @@ export class FormService {
   }
 
   submitModuleFormAnswers(moduleFormId:string, answers: IAnswerRequest[]) {
-    return this._http.post<IScoreResponse>(`${this._baseUrl}/answers/modules/${moduleFormId}`, answers)
+    return this._http.post<IScoreResponse>(`${this._baseUrl}/answers/modules/${moduleFormId}/submit`, answers)
       .pipe(
         tap((response: IScoreResponse) => {
           console.log(response);
@@ -34,7 +34,7 @@ export class FormService {
   }
 
   submitProgramFormAnswers(programFormId:string, answers: IAnswerRequest[]) {
-    return this._http.post<IScoreResponse>(`${this._baseUrl}/answers/programs/${programFormId}`, answers)
+    return this._http.post<IScoreResponse>(`${this._baseUrl}/answers/programs/${programFormId}/submit`, answers)
       .pipe(tap((response: IScoreResponse) => {
           console.log(response);
         }),

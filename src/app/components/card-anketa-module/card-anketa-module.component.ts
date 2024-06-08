@@ -1,6 +1,8 @@
-import {Component, Input} from '@angular/core';
+import {Component, Inject, Input} from '@angular/core';
 import {IProgramFormShort} from "../../models/response/rehab/programFormShort";
 import {Router} from "@angular/router";
+import {TuiDialogContext, TuiDialogService, TuiDialogSize} from "@taiga-ui/core";
+import {PolymorpheusContent} from "@tinkoff/ng-polymorpheus";
 
 @Component({
   selector: 'app-card-anketa-module',
@@ -10,7 +12,8 @@ import {Router} from "@angular/router";
 export class CardAnketaModuleComponent {
   @Input() programForm: IProgramFormShort;
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              @Inject(TuiDialogService) private readonly dialogs: TuiDialogService) {
   }
   goToNextPage(programFormId: number){
     String(programFormId);
@@ -19,5 +22,20 @@ export class CardAnketaModuleComponent {
 
   stringFyDate(date: string) {
     return new Date(date).toLocaleDateString();
+  }
+
+
+  onClick(
+    content: PolymorpheusContent<TuiDialogContext>,
+    header: PolymorpheusContent,
+    size: TuiDialogSize,
+  ): void {
+    this.dialogs
+      .open(content, {
+        label: 'What a cool library set',
+        header,
+        size,
+      })
+      .subscribe();
   }
 }
