@@ -41,7 +41,7 @@ export class MydataPageComponent implements OnInit{
 
   stringFyAge(birthDate: string): string {
     const [year, month, day] = birthDate.split('-');
-    return day + '-' + month + '-' + year;
+    return day + '.' + month + '.' + year;
   }
 
   stringFyName(firstName: string, lastName: string, middleName: string): string {

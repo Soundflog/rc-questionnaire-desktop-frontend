@@ -2,33 +2,34 @@
   <!--      TODO: добавить пол, status-->
   <ng-container *ngIf="patient$ | async as patient; else loading">
     <div>
-      <hr/>
-      <label class="tui-space_bottom-5">
+      <label
+        class="tui-space_bottom-3 tui-text_h6"
+      >
         {{ stringFyName(patient.firstName, patient.lastName, patient.middleName) }}
       </label>
       <div>
         <div tuiGroup
              class="group tui-space_bottom-3"
              [collapsed]="true">
-          <label tuiLabel="Дата рождения">
+          <label class="tui-text_body-l" tuiLabel="Дата рождения">
             {{ stringFyAge(patient.birthDate) }}
           </label>
-          <label tuiLabel="Возраст">
+          <label class="tui-text_body-l" tuiLabel="Возраст">
             {{ calculateAge(patient.birthDate) }}
           </label>
         </div>
-        <label tuiLabel="Статус" class="tui-space_bottom-3">
+        <label tuiLabel="Статус" class="tui-space_bottom-3 tui-text_body-l">
             {{ patient.patientStatus }}
         </label>
-        <label tuiLabel="Место жительства" class="tui-space_bottom-3">
+        <label tuiLabel="Место жительства" class="tui-space_bottom-3 tui-text_body-l">
           {{ patient.address }}
         </label>
-        <label tuiLabel="Данные о работе" class="tui-space_bottom-3">
+        <label tuiLabel="Данные о работе" class="tui-space_bottom-3 tui-text_body-l">
           {{ patient.workPlaceData }}
         </label>
-        <div *ngIf="patient.bookmark" class="tui-space_bottom-3">
+        <div class="tui-space_bottom-3">
           <label tuiLabel="Заметка врача">
-            {{ patient.bookmark }}
+            {{ patient.bookmark ? patient.bookmark: 'Отсутствует'  }}
           </label>
         </div>
       </div>

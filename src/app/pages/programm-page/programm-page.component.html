@@ -1,4 +1,5 @@
 <tui-island class="rod-island-program-page">
+  <label class="tui-text_h6 tui-space_bottom-5 content-center">Программа реабилитации</label>
   <ng-container *ngIf="rehabProgram$ | async as rehabProgram; else loading">
     <ng-container *ngIf="rehabProgram.programFormResponses[0] as prForm0">
       <app-card-anketa-module [programForm]="prForm0"></app-card-anketa-module>

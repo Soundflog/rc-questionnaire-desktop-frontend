@@ -22,9 +22,9 @@ export class NavModuleComponent implements OnInit{
   ngOnInit(): void {
     // ModuleId
     this.receivedModuleId = this.moduleIdService.getModuleId();
-    this.moduleIdService.moduleId$.subscribe((moduleId) => {
-      this.receivedModuleId = moduleId;
-    });
+    // this.moduleIdService.moduleId$.subscribe((moduleId) => {
+    //   this.receivedModuleId = moduleId;
+    // });
   }
   goToNextPage( page:String): void {
     // Здесь 'next-page' - это путь к следующей странице
