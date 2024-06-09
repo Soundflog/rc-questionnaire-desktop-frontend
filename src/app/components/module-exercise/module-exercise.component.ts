@@ -8,7 +8,7 @@ import {ExerciseService} from "../../services/module/ExerciseService";
 @Component({
   selector: 'app-module-exercise',
   templateUrl: './module-exercise.component.html',
-  styleUrls: ['./module-exercise.component.css'],
+  styleUrls: ['./module-exercise.component.css', './module-exercise.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModuleExerciseComponent implements OnInit{

@@ -3,6 +3,8 @@ import {Observable, tap} from "rxjs";
 import {PatientService} from "../../services/patient/patient.service";
 import {IModule} from "../../models/response/module/module";
 import {ActivatedRoute, Router} from "@angular/router";
+import {IExerciseShortResponse} from "../../models/response/module/exerciseShort";
+import {IExercise} from "../../models/exercise";
 
 @Component({
   selector: 'app-module-page',
@@ -11,7 +13,8 @@ import {ActivatedRoute, Router} from "@angular/router";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModulePageComponent implements OnInit {
-  modules$: Observable<IModule>
+  modules$: Observable<IModule>;
+  groupedExercises: { [key: string]: IExerciseShortResponse[] } = {};
   moduleId: string;
 
   constructor(
@@ -22,7 +25,7 @@ export class ModulePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe((params) => {
       const moduleIdParam = params.get('moduleId');
       if (moduleIdParam !== null) {
         this.moduleId = moduleIdParam;
@@ -31,8 +34,23 @@ export class ModulePageComponent implements OnInit {
 
     this.modules$ = this.patientService.getModule(this.moduleId).pipe(
       tap((module: IModule) => {
-        console.log(module)
-      }),
+        this.groupedExercises = this.groupByBlockType(module.exercises);
+      })
     );
+  }
+
+  private groupByBlockType(exercises: IExerciseShortResponse[]): { [key: string]: IExerciseShortResponse[] } {
+    return exercises.reduce((groups, exercise) => {
+      const blockType = exercise.blockType;
+      if (!groups[blockType]) {
+        groups[blockType] = [];
+      }
+      groups[blockType].push(exercise);
+      return groups;
+    }, {} as { [key: string]: IExerciseShortResponse[] });
+  }
+
+  getBlockTypes(groupedExercises: { [key: string]: IExerciseShortResponse[]} ): string[] {
+    return Object.keys(groupedExercises);
   }
 }

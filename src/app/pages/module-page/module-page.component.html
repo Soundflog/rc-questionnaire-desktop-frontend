@@ -2,17 +2,20 @@
   <ng-container *ngIf="modules$ | async as mods; else loading">
     <ng-container *ngIf="mods.forms.length > 0 && mods.exercises.length > 0; else empty">
       <tui-island class="tui-space_bottom-5">
-        <ng-container *ngFor="let ex of mods.exercises">
-          <h3 class="tui-island__title">{{ ex.blockType }}</h3>
+        <ng-container *ngFor="let blockType of getBlockTypes(groupedExercises)">
+          <h3 class="tui-island__title">{{ blockType }}</h3>
           <div class="container tui-space_bottom-4">
             <div class="tui-row">
               <div class="tui-island__content">
-                <app-module-exercise
-                  [id]="ex.moduleExId"
-                  [moduleId]="moduleId"
-                  [name]=ex.name
-                  [description]=ex.description
-                />
+                <ng-container *ngFor="let ex of groupedExercises[blockType]">
+                  <app-module-exercise
+                    class="max-w-min"
+                    [id]="ex.moduleExId"
+                    [moduleId]="moduleId"
+                    [name]=ex.name
+                    [description]=ex.description
+                  />
+                </ng-container>
               </div>
             </div>
           </div>
@@ -21,16 +24,16 @@
           <h3 class="tui-island__title">Опросы</h3>
           <div class="container">
             <div class="tui-row">
-              <ng-container *ngFor="let f of mods.forms">
-                <div class="">
+              <div class="tui-island__content">
+                <ng-container *ngFor="let f of mods.forms">
                   <app-module-anketa
                     [id]="f.moduleFormId"
                     [moduleId]="moduleId"
                     [title]=f.name
                     [description]=f.description
                   />
-                </div>
-              </ng-container>
+                </ng-container>
+              </div>
             </div>
           </div>
         </ng-container>
