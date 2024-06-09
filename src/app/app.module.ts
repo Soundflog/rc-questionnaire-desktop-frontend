@@ -4,13 +4,10 @@ import {BrowserModule, Title} from '@angular/platform-browser'
 import {ToastrModule} from "ngx-toastr";
 import {AppRoutingModule} from './app-routing.module'
 import {AppComponent} from './app.component'
-import {ProductComponent} from './components/another/product/product.component'
 import {HttpClientModule} from '@angular/common/http'
 import {GlobalErrorComponent} from './components/another/global-error/global-error.component'
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import {FilterProductsPipe} from './pipes/filter-products.pipe'
-import {ModalComponent} from './components/another/modal/modal.component'
-import {CreateProductComponent} from './components/another/create-product/create-product.component'
 import {FocusDirective} from './directives/focus.directive'
 import {AnketirovaniePageComponent} from './pages/main/anketirovanie-page/anketirovanie-page.component'
 import {NavigationComponent} from './components/navs/navigation/navigation.component'
@@ -38,12 +35,9 @@ import {LeftNavComponent} from './components/navs/left-nav/left-nav.component';
 import {AuthPageComponent} from './pages/auth-page/auth-page.component';
 import {MydataPageComponent} from './pages/mydata-page/mydata-page.component';
 import {HistoryPageComponent} from './pages/history-page/history-page.component';
-import {ProgrammPageComponent} from './pages/programm-page/programm-page.component';
 import {ResultsPageComponent} from './pages/results-page/results-page.component';
-import {AccordComponent} from './components/another/accord/accord.component';
 import {NgOptimizedImage} from "@angular/common";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {ModulePageComponent} from './pages/module-page/module-page.component';
 import {ExercisePageComponent} from './pages/exercise-page/exercise-page.component';
 import {AnketaPageComponent} from './pages/form/anketa-page/anketa-page.component';
 import {ModuleExerciseComponent} from './components/exercises/module-exercise/module-exercise.component';
@@ -70,27 +64,25 @@ import { EmptyModuleComponent } from './components/another/empty-module/empty-mo
 import { ExerciseAllPageComponent } from './pages/all-module/exercise-all-page/exercise-all-page.component';
 import { AnketaAllPageComponent } from './pages/all-module/anketa-all-page/anketa-all-page.component';
 import { CardAnketaModuleComponent } from './components/forms/card-anketa-module/card-anketa-module.component';
+import {ProgrammPageComponent} from "./pages/rehab/programm-page/programm-page.component";
+import {ModulePageComponent} from "./pages/rehab/module-rod-page/module-page/module-page.component";
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductComponent,
     GlobalErrorComponent,
     FilterProductsPipe,
-    ModalComponent,
-    CreateProductComponent,
     FocusDirective,
     AnketirovaniePageComponent,
     NavigationComponent,
     LeftNavComponent,
+    ModulePageComponent,
     AuthPageComponent,
     MydataPageComponent,
     HistoryPageComponent,
     ProgrammPageComponent,
     ResultsPageComponent,
-    AccordComponent,
-    ModulePageComponent,
     ExercisePageComponent,
     AnketaPageComponent,
     ModuleExerciseComponent,
@@ -167,6 +159,12 @@ import { CardAnketaModuleComponent } from './components/forms/card-anketa-module
   ],
   providers: [Title, httpInterceptorProviders,
     {provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
+  exports: [
+    ModuleExerciseComponent,
+    ModuleAnketaComponent,
+    EmptyModuleComponent,
+    LoadingComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -9,8 +9,7 @@ import {ActivatedRoute, Router} from "@angular/router";
   selector: 'app-module-page',
   templateUrl: './module-page.component.html',
   styleUrls: ['./module-page.component.css', "./module-page.component.less"],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ModulePageComponent implements OnInit {
   modules$: Observable<IModule>;

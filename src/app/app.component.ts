@@ -1,6 +1,4 @@
 import {Component} from '@angular/core';
-import {AppModule} from "./app.module";
-import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-root',

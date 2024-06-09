@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AnketaPageComponent } from './anketa-page.component';
+import {AnketaPageComponent} from './anketa-page.component';
 
 describe('AnketaPageComponent', () => {
   let component: AnketaPageComponent;

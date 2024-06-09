@@ -4,9 +4,7 @@ import {AnketirovaniePageComponent} from './pages/main/anketirovanie-page/anketi
 import {AuthPageComponent} from "./pages/auth-page/auth-page.component";
 import {MydataPageComponent} from "./pages/mydata-page/mydata-page.component";
 import {HistoryPageComponent} from "./pages/history-page/history-page.component";
-import {ProgrammPageComponent} from "./pages/programm-page/programm-page.component";
 import {ResultsPageComponent} from "./pages/results-page/results-page.component";
-import {ModulePageComponent} from "./pages/module-page/module-page.component";
 import {ExercisePageComponent} from "./pages/exercise-page/exercise-page.component";
 import {AnketaPageComponent} from "./pages/form/anketa-page/anketa-page.component";
 import {ModuleRodPageComponent} from "./pages/rehab/module-rod-page/module-rod-page.component";
@@ -15,6 +13,8 @@ import {NotFoundPageComponent} from "./pages/not-found-page/not-found-page.compo
 import {ProgramFormPageComponent} from "./pages/form/program-form-page/program-form-page.component";
 import {ExerciseAllPageComponent} from "./pages/all-module/exercise-all-page/exercise-all-page.component";
 import {AnketaAllPageComponent} from "./pages/all-module/anketa-all-page/anketa-all-page.component";
+import {ProgrammPageComponent} from "./pages/rehab/programm-page/programm-page.component";
+import {ModulePageComponent} from "./pages/rehab/module-rod-page/module-page/module-page.component";
 
 
 
