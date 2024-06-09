@@ -6,7 +6,7 @@ import {FormIdService} from "../../../services/module/FormIdService";
 @Component({
   selector: 'app-nav-module',
   templateUrl: './nav-module.component.html',
-  styleUrls: ['./nav-module.component.css'],
+  styleUrls: ['./nav-module.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavModuleComponent implements OnInit{

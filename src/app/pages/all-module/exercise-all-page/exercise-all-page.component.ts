@@ -25,7 +25,7 @@ export class ExerciseAllPageComponent implements OnInit{
     this.moduleId = this.route.url.split('/')[4]
     this.exercisesShort$ = this.patientService.getAllExercisesModule(this.moduleId).pipe(
       tap((response) => {
-        console.log(response)
+        // console.log(response)
       })
     );
   }

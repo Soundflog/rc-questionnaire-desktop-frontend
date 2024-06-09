@@ -54,15 +54,15 @@ export class PatientService {
       )
   }
 
-  getExercise(moduleId: string, exerciseId: string) {
-    return this._http.get<IExercise>(`${this._baseUrl}/modules/${moduleId}/exercises/${exerciseId}`)
+  getExercise(moduleId: string, moduleExerciseId: string) {
+    return this._http.get<IExercise>(`${this._baseUrl}/modules/${moduleId}/exercises/${moduleExerciseId}`)
       .pipe(
         catchError(this.errorHandler.bind(this))
       )
   }
 
-  getForm(moduleId: string, formId: string) {
-    return this._http.get<IForm>(`${this._baseUrl}/modules/${moduleId}/forms/${formId}`)
+  getForm(moduleId: string, moduleFormId: string) {
+    return this._http.get<IForm>(`${this._baseUrl}/modules/${moduleId}/forms/${moduleFormId}`)
       .pipe(
         catchError(this.errorHandler.bind(this))
       )

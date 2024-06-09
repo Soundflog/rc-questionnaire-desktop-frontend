@@ -22,7 +22,7 @@ export class AnketaAllPageComponent implements OnInit{
     this.moduleId = this.router.url.split('/')[4]
     this.formsShort$ = this.patientService.getAllFormModule(this.moduleId).pipe(
       tap((response) => {
-        console.log(response)
+        // console.log(response)
       })
     );
   }

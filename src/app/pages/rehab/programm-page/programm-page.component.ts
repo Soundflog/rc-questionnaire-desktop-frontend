@@ -35,7 +35,7 @@ export class ProgrammPageComponent implements OnInit{
         programFormResponses: this.sortProgramForms(program.programFormResponses)
       })),
       tap((rehab: IRehabProgram) => {
-        console.log(rehab);
+        // console.log(rehab);
       }),
     );
   }
