@@ -1,0 +1,18 @@
+<ng-container *ngFor="let blockType of getBlockTypes(groupedExercises)">
+  <h3 class="tui-island__title">{{ blockType }}</h3>
+  <div class="container tui-space_bottom-4">
+    <div class="tui-row">
+      <div class="tui-island__content">
+        <ng-container *ngFor="let ex of groupedExercises[blockType]">
+          <app-module-exercise
+            class="max-w-min"
+            [id]="ex.moduleExId"
+            [moduleId]="moduleId"
+            [name]=ex.name
+            [description]=ex.description
+          />
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</ng-container>

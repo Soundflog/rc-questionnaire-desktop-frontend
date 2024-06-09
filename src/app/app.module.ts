@@ -6,14 +6,14 @@ import {AppRoutingModule} from './app-routing.module'
 import {AppComponent} from './app.component'
 import {ProductComponent} from './components/another/product/product.component'
 import {HttpClientModule} from '@angular/common/http'
-import {GlobalErrorComponent} from './components/global-error/global-error.component'
+import {GlobalErrorComponent} from './components/another/global-error/global-error.component'
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import {FilterProductsPipe} from './pipes/filter-products.pipe'
 import {ModalComponent} from './components/another/modal/modal.component'
 import {CreateProductComponent} from './components/another/create-product/create-product.component'
 import {FocusDirective} from './directives/focus.directive'
-import {AnketirovaniePageComponent} from './pages/anketirovanie-page/anketirovanie-page.component'
-import {NavigationComponent} from './components/navigation/navigation.component'
+import {AnketirovaniePageComponent} from './pages/main/anketirovanie-page/anketirovanie-page.component'
+import {NavigationComponent} from './components/navs/navigation/navigation.component'
 import {
   TuiButtonModule,
   TuiGroupModule,
@@ -34,7 +34,7 @@ import {
   TuiTabsModule, TuiTagModule, TuiToggleModule
 } from "@taiga-ui/kit";
 import {TuiAppBarModule, TuiSidebarModule, TuiTabBarModule} from "@taiga-ui/addon-mobile";
-import {LeftNavComponent} from './components/left-nav/left-nav.component';
+import {LeftNavComponent} from './components/navs/left-nav/left-nav.component';
 import {AuthPageComponent} from './pages/auth-page/auth-page.component';
 import {MydataPageComponent} from './pages/mydata-page/mydata-page.component';
 import {HistoryPageComponent} from './pages/history-page/history-page.component';
@@ -45,14 +45,14 @@ import {NgOptimizedImage} from "@angular/common";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ModulePageComponent} from './pages/module-page/module-page.component';
 import {ExercisePageComponent} from './pages/exercise-page/exercise-page.component';
-import {AnketaPageComponent} from './pages/anketa-page/anketa-page.component';
-import {ModuleExerciseComponent} from './components/module-exercise/module-exercise.component';
-import {ModuleAnketaComponent} from './components/module-anketa/module-anketa.component';
-import {ModuleRodPageComponent} from './pages/module-rod-page/module-rod-page.component';
+import {AnketaPageComponent} from './pages/form/anketa-page/anketa-page.component';
+import {ModuleExerciseComponent} from './components/exercises/module-exercise/module-exercise.component';
+import {ModuleAnketaComponent} from './components/forms/module-anketa/module-anketa.component';
+import {ModuleRodPageComponent} from './pages/rehab/module-rod-page/module-rod-page.component';
 import {TuiPreviewModule} from "@taiga-ui/addon-preview";
-import {AnketaTableComponent} from './components/anketa-table/anketa-table.component';
+import {AnketaTableComponent} from './components/forms/anketa-table/anketa-table.component';
 import {TuiTableModule} from "@taiga-ui/addon-table";
-import {NavModuleComponent} from './components/nav-module/nav-module.component';
+import {NavModuleComponent} from './components/navs/nav-module/nav-module.component';
 import {TuiActiveZoneModule, TuiPlatformModule, TuiValueChangesModule} from "@taiga-ui/cdk";
 import {
   TuiAppearanceModule, TuiAvatarModule, TuiCardModule,
@@ -61,15 +61,15 @@ import {
   TuiNavigationModule,
   TuiSensitiveModule, TuiSurfaceModule, TuiTitleModule
 } from "@taiga-ui/experimental";
-import {LoadingComponent} from './components/loading/loading.component';
-import {ProgramFormPageComponent} from './pages/program-form-page/program-form-page.component';
+import {LoadingComponent} from './components/another/loading/loading.component';
+import {ProgramFormPageComponent} from './pages/form/program-form-page/program-form-page.component';
 import {httpInterceptorProviders} from "./services/auth/auth-interceptor";
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import {TuiBlockStatusModule} from "@taiga-ui/layout";
-import { EmptyModuleComponent } from './components/empty-module/empty-module.component';
-import { ExerciseAllPageComponent } from './pages/exercise-all-page/exercise-all-page.component';
-import { AnketaAllPageComponent } from './pages/anketa-all-page/anketa-all-page.component';
-import { CardAnketaModuleComponent } from './components/card-anketa-module/card-anketa-module.component';
+import { EmptyModuleComponent } from './components/another/empty-module/empty-module.component';
+import { ExerciseAllPageComponent } from './pages/all-module/exercise-all-page/exercise-all-page.component';
+import { AnketaAllPageComponent } from './pages/all-module/anketa-all-page/anketa-all-page.component';
+import { CardAnketaModuleComponent } from './components/forms/card-anketa-module/card-anketa-module.component';
 
 
 @NgModule({
