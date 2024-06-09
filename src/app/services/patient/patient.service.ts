@@ -10,6 +10,7 @@ import {IModule} from "../../models/response/module/module";
 import {IExercise} from "../../models/exercise";
 import {IForm} from "../../models/form";
 import {IFormShortResponse} from "../../models/response/module/formShort";
+import {IExerciseShortResponse} from "../../models/response/module/exerciseShort";
 
 @Injectable({
   providedIn: 'root'
@@ -69,6 +70,13 @@ export class PatientService {
 
   getAllFormModule(moduleId: string) {
     return this._http.get<IFormShortResponse[]>(`${this._baseUrl}/modules/${moduleId}/forms/all`)
+      .pipe(
+        catchError(this.errorHandler.bind(this))
+      )
+  }
+
+  getAllExercisesModule(moduleId: string) {
+    return this._http.get<IExerciseShortResponse[]>(`${this._baseUrl}/modules/${moduleId}/exercises/all`)
       .pipe(
         catchError(this.errorHandler.bind(this))
       )
