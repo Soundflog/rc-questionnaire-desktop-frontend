@@ -6,3 +6,29 @@
   align-items: stretch;
   flex-wrap: nowrap;
 }
+
+.module-content {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  @media @tui-mobile{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+}
+
+.module-text {
+  margin-right: auto; /* Задайте нужное значение отступа между текстом и кнопкой */
+}
+
+.module-content-text-badge{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+}

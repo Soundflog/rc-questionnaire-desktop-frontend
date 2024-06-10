@@ -6,7 +6,7 @@ import {FormIdService} from "../../../services/module/FormIdService";
 @Component({
   selector: 'app-module-anketa',
   templateUrl: './module-anketa.component.html',
-  styleUrls: ['./module-anketa.component.css']
+  styleUrls: ['./module-anketa.component.less']
 })
 export class ModuleAnketaComponent implements OnInit{
   @Input() id: number;

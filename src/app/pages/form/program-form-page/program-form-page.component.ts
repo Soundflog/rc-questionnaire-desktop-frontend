@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Observable, tap} from "rxjs";
 import {IForm} from "../../../models/form";
 import {PatientService} from "../../../services/patient/patient.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-program-form-page',
@@ -15,9 +15,9 @@ export class ProgramFormPageComponent implements OnInit{
 
   constructor(
     private patientService: PatientService,
-    private router: Router,
-    private route: ActivatedRoute,
+    private router: Router
   ) {}
+
   ngOnInit() {
     // this.programFormId = this.router.url.split('/')[6];
     this.programFormId = this.router.url.split('/')[4];

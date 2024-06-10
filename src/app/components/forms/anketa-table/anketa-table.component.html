@@ -4,7 +4,7 @@
          *ngFor="let question of form.questions; let i = index"
          [formGroupName]="'question_'+question.id"
     >
-      <h4 class="title">{{ question.content }}</h4>
+      <h4 class="tui-text_body-xl">{{ question.content }}</h4>
       <div orientation="vertical" tuiGroup class="group"
            [collapsed]="true"
            *ngIf="question?.variants"

@@ -1,19 +1,17 @@
 <tui-island>
   <ng-container *ngIf="exercise$ | async as ex; else loading">
-    <label class="mb-4"
-           tuiLabel="Название Упражнения">
+    <label class="tui-text_h6">
       {{ex.name}}
     </label>
     <button
       size="m"
       tuiButton
       type="button"
-      class="tui-space_bottom-4"
+      class="tui-space_bottom-4 tui-space_top-4"
       (click)="show()"
     >
       Посмотреть упражнение
     </button>
-
     <ng-template
       #preview
       let-preview
