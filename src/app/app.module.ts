@@ -23,12 +23,23 @@ import {
   TuiHostedDropdownModule, TuiDataListModule, TuiExpandModule, TuiSvgModule, TuiModeModule
 } from "@taiga-ui/core";
 import {
-  TuiAccordionModule,
-  TuiBadgeModule, TuiBreadcrumbsModule, TuiCheckboxBlockModule,
-  TuiInputModule, TuiInputSliderModule,
-  TuiIslandModule, TuiRadioBlockModule, TuiRadioGroupModule, TuiRadioLabeledModule, TuiRadioListModule, TuiRadioModule,
-  TuiRatingModule, TuiSliderModule,
-  TuiTabsModule, TuiTagModule, TuiToggleModule
+    TuiAccordionModule,
+    TuiBadgeModule,
+    TuiBreadcrumbsModule,
+    TuiCheckboxBlockModule,
+    TuiInputModule,
+    TuiInputSliderModule,
+    TuiIslandModule,
+    TuiRadioBlockModule,
+    TuiRadioGroupModule,
+    TuiRadioLabeledModule,
+    TuiRadioListModule,
+    TuiRadioModule,
+    TuiRatingModule,
+    TuiSliderModule,
+    TuiTabsModule,
+    TuiTagModule,
+    TuiToggleModule
 } from "@taiga-ui/kit";
 import {TuiAppBarModule, TuiSidebarModule, TuiTabBarModule} from "@taiga-ui/addon-mobile";
 import {LeftNavComponent} from './components/navs/left-nav/left-nav.component';
@@ -49,7 +60,7 @@ import {TuiTableModule} from "@taiga-ui/addon-table";
 import {NavModuleComponent} from './components/navs/nav-module/nav-module.component';
 import {TuiActiveZoneModule, TuiPlatformModule, TuiValueChangesModule} from "@taiga-ui/cdk";
 import {
-  TuiAppearanceModule, TuiAvatarModule, TuiCardModule,
+  TuiAppearanceModule, TuiAutoColorModule, TuiAvatarModule, TuiButtonGroupModule, TuiCardModule,
   TuiFadeModule, TuiHeaderModule,
   TuiIconsModule,
   TuiNavigationModule,
@@ -155,7 +166,10 @@ import {ModulePageComponent} from "./pages/rehab/module-rod-page/module-page/mod
     TuiHeaderModule,
     TuiTitleModule,
     TuiSurfaceModule,
-    TuiPlatformModule
+    TuiPlatformModule,
+    TuiAvatarModule,
+    TuiAutoColorModule,
+    TuiButtonGroupModule
   ],
   providers: [Title, httpInterceptorProviders,
     {provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],

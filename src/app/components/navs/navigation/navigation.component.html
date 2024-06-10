@@ -1,20 +1,27 @@
-<tui-app-bar>
-  <button
-    tuiAppBarBack
-    tuiSlot="left"
-    title="Назад"
-    (click)="backClicked()"
-  ></button>
-  RehabSurvey
+<!--<tui-app-bar>-->
+<div class="app-bar">
+  <tui-avatar
+    src="RS"
+    class="text"
+  ></tui-avatar>
+  <a
+    class="tui-text_h5 label-app"
+  >
+    RehabSurvey
+  </a>
+  <div class="left-nav-bar">
+    <app-left-nav></app-left-nav>
+  </div>
   <button
     class="button_background"
     icon="tuiIconSettingsLarge"
     title="Settings"
     tuiIconButton
-    tuiSlot="right"
+    appearance="flat"
     (click)="logout()"
   ></button>
-</tui-app-bar>
+</div>
+<!--</tui-app-bar>-->
 <!--<div class="tui-island_text-align_center mx-5 flex-auto content-center">-->
 <!--  <div class="flex-grow font-bold flex-auto text-2xl">{{ pageText | async }}</div>-->
 <!--</div>-->
