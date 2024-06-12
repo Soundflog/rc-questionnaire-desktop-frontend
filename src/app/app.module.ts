@@ -20,7 +20,12 @@ import {
   TuiDialogModule,
   TuiAlertModule,
   TUI_SANITIZER,
-  TuiHostedDropdownModule, TuiDataListModule, TuiExpandModule, TuiSvgModule, TuiModeModule
+  TuiHostedDropdownModule,
+  TuiDataListModule,
+  TuiExpandModule,
+  TuiSvgModule,
+  TuiModeModule,
+  TuiPrimitiveTextfieldModule, TuiWrapperModule, TuiHintModule, TuiTextfieldControllerModule
 } from "@taiga-ui/core";
 import {
     TuiAccordionModule,
@@ -169,7 +174,11 @@ import {ModulePageComponent} from "./pages/rehab/module-rod-page/module-page/mod
     TuiPlatformModule,
     TuiAvatarModule,
     TuiAutoColorModule,
-    TuiButtonGroupModule
+    TuiButtonGroupModule,
+    TuiPrimitiveTextfieldModule,
+    TuiWrapperModule,
+    TuiHintModule,
+    TuiTextfieldControllerModule
   ],
   providers: [Title, httpInterceptorProviders,
     {provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
