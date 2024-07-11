@@ -6,6 +6,7 @@ import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
 import {TuiAlertService, TuiPrimitiveTextfieldComponent} from "@taiga-ui/core";
 import {AbstractTuiControl, TuiNativeFocusableElement} from "@taiga-ui/cdk";
+import {tap} from "rxjs";
 
 @Component({
   selector: 'app-auth-page',
@@ -45,12 +46,12 @@ export class AuthPageComponent extends AbstractTuiControl<string> {
 
   onSubmit(): void {
     if (this.authForm.valid) {
-      this.authService.login(this.authForm.value).subscribe(
-        () => {
-          this.router.navigate(['/rehabilitation/data']).then(() => {
-          })
-          this.alerts.open('Вы успешно вошли в систему', {status: 'success'}).subscribe()
-        });
+      this.authService.login(this.authForm.value).pipe
+      (tap(() => {
+        this.alerts.open('Вы успешно вошли в систему', {status: 'success'}).subscribe()
+        this.router.navigate(['/rehabilitation/data']).then(() => {})
+        })
+      ).subscribe();
     } else {
       this.alerts.open('Заполните все поля', {status: 'warning'}).subscribe()
     }

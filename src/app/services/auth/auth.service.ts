@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 import {ToastrService} from "ngx-toastr";
 import {IAuthUser, IUser} from "../../models/types/user.interface";
 import {API_URL} from "../../constants/constants";
+import {TuiAlertService} from "@taiga-ui/core";
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,7 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: TuiAlertService
   ) {
     const token = localStorage.getItem('token')
     this.isAuthSig.set(!!token)
@@ -43,7 +44,7 @@ export class AuthService {
     localStorage.removeItem('token');
     this.isAuthSig.set(false)
     this.router.navigate(['/']).then(r =>of() )
-    this.toastr.success('Logged out')
+    this.toastr.open('Logged out').subscribe()
   }
 
   isAuthenticated(): Observable<boolean> {
@@ -52,6 +53,6 @@ export class AuthService {
   }
 
   private handeError(err: HttpErrorResponse) {
-    this.toastr.error(err.error.message)
+    this.toastr.open(err.error.message, {status: 'error'}).subscribe()
   }
 }

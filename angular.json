@@ -18,7 +18,11 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": [
-              "lodash"
+              "lodash",
+              "@taiga-ui/kit",
+              "@tinkoff/ng-dompurify",
+              "text-mask-core",
+              "dompurify"
             ],
             "outputPath": "dist/angular-test-project",
             "index": "src/index.html",

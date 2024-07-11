@@ -1,5 +1,5 @@
-<tui-island>
-  <ng-container *ngIf="exercise$ | async as ex; else loading">
+<tui-island class="island">
+  <ng-container  *ngIf="exercise$ | async as ex; else loading">
     <label class="tui-text_h6">
       {{ex.name}}
     </label>
@@ -24,7 +24,7 @@
           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           frameborder="0"
-          src="{{ex.videoUrl}}"
+          src="https://www.youtube.com/embed/gjfY7VMV9M8?autoplay=1"
           title="Youtube"
           class="content"
         ></iframe>

@@ -5,10 +5,9 @@
          [formGroupName]="'question_'+question.id"
     >
       <h4 class="tui-text_body-xl">{{ question.content }}</h4>
-      <div orientation="vertical" tuiGroup class="group"
+      <div orientation="vertical" tuiGroup class="group all-choice"
            [collapsed]="true"
            *ngIf="question?.variants"
-           style="display: block"
       >
         <!--        Множество-->
         <ng-container *ngIf="question.type === QuestionType.MULTIPLE_CHOICE">

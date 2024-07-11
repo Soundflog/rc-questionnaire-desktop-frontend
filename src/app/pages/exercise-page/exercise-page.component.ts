@@ -17,6 +17,8 @@ export class ExercisePageComponent implements OnInit {
   readonly preview?: TemplateRef<TuiDialogContext>;
 
   exercise$: Observable<IExercise>
+  zaglushkaUrl: string = 'https://www.youtube.com/watch?v=gjfY7VMV9M8';
+  // zaglushkaUrl: string = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1';
   exerciseId: string;
   moduleId: string;
 
